@@ -19,6 +19,9 @@
     <Filter Include="MainBranch\Math">
       <UniqueIdentifier>{328379a4-885b-4cc1-a93a-e1517f2ee710}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainBranch\Scene">
+      <UniqueIdentifier>{13840875-8cc3-4d45-b643-889ccd176b01}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseObject.h">
@@ -27,6 +30,9 @@
     <ClInclude Include="Math.h">
       <Filter>MainBranch\Math</Filter>
     </ClInclude>
+    <ClInclude Include="SceneBase.h">
+      <Filter>MainBranch\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math.cpp">
@@ -34,6 +40,9 @@
     </ClCompile>
     <ClCompile Include="BaseObject.cpp">
       <Filter>MainBranch</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBase.cpp">
+      <Filter>MainBranch\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

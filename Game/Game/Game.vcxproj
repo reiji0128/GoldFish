@@ -148,10 +148,12 @@
   <ItemGroup>
     <ClInclude Include="BaseObject.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="SceneBase.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="SceneBase.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
