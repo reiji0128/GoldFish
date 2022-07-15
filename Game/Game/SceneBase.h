@@ -1,4 +1,5 @@
 #pragma once
+#include "Math.h"
 
 /// <summary>
 /// それぞれシーンのタグ.
@@ -16,6 +17,7 @@ enum SCENE_TAG
 /// </summary>
 class SceneBase
 {
+public:
 	/// <summary>
 	/// コンストラクタ.
 	/// </summary>
@@ -36,4 +38,6 @@ class SceneBase
 	/// 描画関数、仮想関数.
 	/// </summary>
 	virtual void Draw() = 0;
+
+protected:
 };
