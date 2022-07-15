@@ -4,7 +4,7 @@
 /// <summary>
 /// それぞれシーンのタグ.
 /// </summary>
-enum SCENE_TAG
+enum class SCENE_TAG : short
 {
 	NONE_TAG = 0,
 	TITLE_TAG,
@@ -13,7 +13,7 @@ enum SCENE_TAG
 };
 
 /// <summary>
-/// SceneBaseクラス.
+/// シーンの基底クラス.
 /// </summary>
 class SceneBase
 {
