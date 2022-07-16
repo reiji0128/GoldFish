@@ -1,15 +1,16 @@
 #pragma once
 #include "Math.h"
+#include "Background.h"
 
 /// <summary>
 /// それぞれシーンのタグ.
 /// </summary>
 enum class SCENE_TAG : short
 {
-	NONE_TAG = 0,
-	TITLE_TAG,
-	PLAY_TAG,
-	RESULT_TAG,
+	NONE_TAG = 0,         // シーンが無しの時.
+	TITLE_TAG,            // シーンがタイトルの時.
+	PLAY_TAG,             // シーンがプレイの時.
+	RESULT_TAG,           // シーンがリザルトの時.
 };
 
 /// <summary>
@@ -40,4 +41,5 @@ public:
 	virtual void Draw() = 0;
 
 protected:
+	Background* mBg;      // 背景クラスを保存する変数.
 };
