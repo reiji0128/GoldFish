@@ -24,13 +24,13 @@ public:
 	void GameRoop();
 
 	/// <summary>
-	/// シーン生成.
+	/// シーン生成関数.
 	/// </summary>
 	/// <param name="sceneTag">次のシーンを判定するときのenum class型のタグ.</param>
 	void CreatsScene(SCENE_TAG sceneTag);
 
 	/// <summary>
-	/// シーンの削除.
+	/// シーンの削除関数.
 	/// </summary>
 	void ClearScene();
 

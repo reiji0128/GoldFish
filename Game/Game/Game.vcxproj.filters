@@ -39,6 +39,9 @@
     <ClInclude Include="Background.h">
       <Filter>MainBranch</Filter>
     </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>MainBranch\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math.cpp">
@@ -55,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="Background.cpp">
       <Filter>MainBranch</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>MainBranch\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
