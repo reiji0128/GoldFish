@@ -23,7 +23,7 @@ public:
 	/// オーバーライド関数.
 	/// </summary>
 	/// <returns>enum class型のSCENE_TAGを返す.</returns>
-	SCENE_TAG Update() override;
+	SCENE_TAG Update(float deltaTime) override;
 
 	/// <summary>
 	/// 描画関数.

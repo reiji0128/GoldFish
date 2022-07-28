@@ -33,7 +33,7 @@ public:
 	/// 更新関数、仮想関数.
 	/// </summary>
 	/// <returns>enumのSCENE_TAGを返す.</returns>
-	virtual SCENE_TAG Update() = 0;
+	virtual SCENE_TAG Update(float delteTime) = 0;
 
 	/// <summary>
 	/// 描画関数、仮想関数.
