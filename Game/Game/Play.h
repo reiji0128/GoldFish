@@ -2,30 +2,27 @@
 #include "SceneBase.h"
 
 /// <summary>
-/// シーンのタイトルクラス.
+/// シーンのプレイクラス.
 /// SceneBaseを継承している.
 /// </summary>
-class Title : public SceneBase
+class Play : public SceneBase
 {
 public:
 	/// <summary>
 	/// コンストラクタ.
 	/// </summary>
-	Title();
+	Play();
 
 	/// <summary>
 	/// デストラクタ.
 	/// </summary>
-	~Title();
-
-
-	SCENE_TAG Update(float deltaTime) override;
+	~Play();
 
 	/// <summary>
-	/// 描画関数.
+	/// 更新関数.
 	/// オーバーライド関数.
 	/// </summary>
-	void Draw() override;
-
-private:
+	/// <param name="deltaTime">float型のデルタタイムを引数として設定する.</param>
+	/// <returns></returns>
+	SCENE_TAG Update(float deltaTime) override;
 };

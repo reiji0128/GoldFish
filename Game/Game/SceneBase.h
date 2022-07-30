@@ -32,7 +32,8 @@ public:
 	/// <summary>
 	/// 更新関数、仮想関数.
 	/// </summary>
-	/// <returns>enumのSCENE_TAGを返す.</returns>
+	/// <param name="delteTime">float型のデルタタイムの引数.</param>
+	/// <returns>SCENE_TAG型のenumクラスをreturnとして返す.</returns>
 	virtual SCENE_TAG Update(float delteTime) = 0;
 
 	/// <summary>
