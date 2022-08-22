@@ -1,12 +1,12 @@
 #include "SceneBase.h"
+#include "Background.h"
 
 /// <summary>
 /// コンストラクタ.
 /// </summary>
 SceneBase::SceneBase()
-	:mBackgroundImg(-1)
-	,mPos(Vector2::Zero)
 {
+	this->mBg = new Background();
 }
 
 /// <summary>
