@@ -35,8 +35,8 @@ void SceneManager::GameRoop()
 			break;
 		}
 
-		// 現在のシーンタグを保存する.@@@
-		SCENE_TAG tag = mNowScene->Update();
+		//// 現在のシーンタグを保存する.@@@
+		//SCENE_TAG tag = mNowScene->Update();
 
 		// ------------描画処理-------------- //
 		ClearDrawScreen();
@@ -46,17 +46,17 @@ void SceneManager::GameRoop()
 
 		ScreenFlip();
 
-		// シーンタグが無しの時は以下の処理は実行しない.
-		if (tag == SCENE_TAG::NONE_TAG)
-		{
-			continue;
-		}
+		//// シーンタグが無しの時は以下の処理は実行しない.@@@
+		//if (tag == SCENE_TAG::NONE_TAG)
+		//{
+		//	continue;
+		//}
 
 		// シーンの削除.@@@
 		ClearScene();
 
-		// シーンの生成.@@@
-		CreatsScene(tag);
+		//// シーンの生成.@@@
+		//CreatsScene(tag);
 	}
 }
 
