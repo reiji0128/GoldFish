@@ -4,12 +4,16 @@
 /// <summary>
 /// コンストラクタ.
 /// </summary>
-Background::Background()
+Background::Background(const char* fileName)
 	:mPos(Vector2::Zero)
-	,mWidth(0)
-	,mHeight(0)
+	,mScale(Vector2::Zero)
 	,mImgHandle(-1)
 {
+	// 画像ハンドルの取得.
+	mImgHandle = LoadGraph(fileName);
+
+	// 画像の大きさの取得.
+	GetGraphSizeF(mImgHandle, &mScale.x, &mScale.y);
 }
 
 /// <summary>
@@ -26,19 +30,6 @@ Background::~Background()
 	DeleteGraph(mImgHandle);
 	// 削除した後に-1を入力しておく.
 	mImgHandle = -1;
-}
-
-/// <summary>
-/// 読み込み関数.
-/// </summary>
-/// <param name="imgName">char*型の画像のファイルパス.</param>
-void Background::Load(const char* imgName)
-{
-	// 画像読み込み.
-	mImgHandle = LoadGraph(imgName);
-
-	// 画像サイズの取得.
-	GetGraphSize(mImgHandle, &mWidth, &mHeight);
 }
 
 /// <summary>

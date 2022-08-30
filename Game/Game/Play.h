@@ -1,5 +1,6 @@
 #pragma once
 #include "SceneBase.h"
+#include "GameManager.h"
 
 /// <summary>
 /// シーンのプレイクラス.
@@ -31,4 +32,8 @@ public:
 	void Draw() override;
 
 private:
+	/// <summary>
+	/// ゲーム全体の処理が入っている変数.
+	/// </summary>
+	GameManager* gameManager;
 };

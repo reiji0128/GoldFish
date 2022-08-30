@@ -28,18 +28,12 @@ public:
 	/// <summary>
 	/// コンストラクタ.
 	/// </summary>
-	Background();
+	Background(const char* fileName);
 
 	/// <summary>
 	/// デストラクタ.
 	/// </summary>
 	~Background();
-
-	/// <summary>
-	/// 読み込み関数.
-	/// </summary>
-	/// <param name="imgName">読み取り専用のchar*型のファイルパス.</param>
-	void Load(const char* imgName);
 
 	/// <summary>
 	/// 更新関数.
@@ -53,7 +47,7 @@ public:
 
 private:
 	Vector2 mPos;               // 座標保存変数.
-	int mWidth, mHeight;        // 画像の横幅、縦幅の保存変数.
+	Vector2 mScale;             // 画像の大きさの保存変数.
 	int mImgHandle;             // 画像ハンドル保存変数.
 
 

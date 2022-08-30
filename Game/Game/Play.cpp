@@ -4,7 +4,10 @@
 /// コンストラクタ.
 /// </summary>
 Play::Play()
+	:gameManager(nullptr)// gameManagerの初期化.
 {
+	// gameManagerのコンストラクタ.
+	gameManager = new GameManager();
 }
 
 /// <summary>
@@ -12,6 +15,7 @@ Play::Play()
 /// </summary>
 Play::~Play()
 {
+	delete gameManager;
 }
 
 /// <summary>
@@ -21,8 +25,7 @@ Play::~Play()
 /// <returns>SCENE_TAG型のenumクラスを返す.</returns>
 SCENE_TAG Play::Update(float deltaTime)
 {
-	// Backgroundクラスの更新関数を行う.
-	mBg->Update();
+	//gameManager->Update();
 
 	// 特定の条件でリザルトシーンを移行する処理@@@
 
@@ -35,6 +38,4 @@ SCENE_TAG Play::Update(float deltaTime)
 /// </summary>
 void Play::Draw()
 {
-	// プレイシーンの背景を描画.
-	mBg->Draw();
 }

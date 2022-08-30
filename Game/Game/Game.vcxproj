@@ -149,6 +149,7 @@
     <ClInclude Include="Background.h" />
     <ClInclude Include="BaseObject.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Image.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Play.h" />
     <ClInclude Include="Result.h" />
@@ -160,6 +161,7 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Image.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Play.cpp" />
     <ClCompile Include="Result.cpp" />

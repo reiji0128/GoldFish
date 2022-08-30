@@ -25,7 +25,7 @@ public:
 	SceneBase();
 
 	/// <summary>
-	/// デストラクタ.
+	/// デストラクタ、仮想関数.
 	/// </summary>
 	virtual ~SceneBase();
 
