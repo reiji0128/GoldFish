@@ -2,24 +2,6 @@
 #include "Math.h"
 
 /// <summary>
-/// 画像ファイルの順番.
-/// </summary>
-static enum BackgroundFileNum
-{
-	NONE_IMG = 0,
-	TITLE_IMG,
-	PLAY_IMG,
-	RESULT_IMG,
-
-	MAX_IMG_FILE_NUM,
-};
-
-static const char* MapPicName[MAX_IMG_FILE_NUM] =
-{
-	"img/none.png",
-};
-
-/// <summary>
 /// 背景クラス.
 /// </summary>
 class Background

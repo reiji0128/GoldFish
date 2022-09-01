@@ -2,6 +2,25 @@
 #include "Math.h"
 
 /// <summary>
+/// 画像ファイルの順番.
+/// </summary>
+static enum class ImgFileNum :short
+{
+	NONE_IMG = 0,
+	TITLE_IMG,
+	PLAY_IMG,
+	RESULT_IMG,
+
+	MAX_IMG_FILE_NUM,
+};
+
+// 上記のenumクラスから
+static const char* MapPicName[] =
+{
+	"img/none.png",
+};
+
+/// <summary>
 /// 画像クラス.
 /// 
 /// </summary>
