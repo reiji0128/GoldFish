@@ -151,6 +151,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Play.h" />
+    <ClInclude Include="Poi.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="SceneManager.h" />
@@ -162,6 +163,7 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Play.cpp" />
+    <ClCompile Include="Poi.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneManager.cpp" />
