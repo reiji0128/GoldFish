@@ -28,6 +28,8 @@ Button::~Button()
 
 void Button::Update(float deltaTime)
 {
+	// オンマウス？(ぶっちゃけパッドなのでマウスとかではない)のときの挙動.
+	//if()
 }
 
 void Button::Draw()

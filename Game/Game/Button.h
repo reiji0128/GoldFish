@@ -6,19 +6,19 @@
 /// </summary>
 static enum ButtonImgFileNum
 {
-	NONE_IMG = 0,
-	START_IMG,
-	EXIT_IMG,
+	NONE_BUTTON_IMG = 0,
+	START_BUTTON_IMG,
+	EXIT_BUTTON_IMG,
 
-	MAX_IMG_FILE_NUM,
+	MAX_BUTTON_FILE_NUM,
 };
 
 // è„ãLÇÃenumÉNÉâÉXÇ©ÇÁ
-static const char* ButtonImgName[ButtonImgFileNum::MAX_IMG_FILE_NUM] =
+static const char* ButtonImgName[ButtonImgFileNum::MAX_BUTTON_FILE_NUM] =
 {
-	"img/None.png",
-	"img/Start.png",
-	"img/Exit.png",
+	"img/Button/None.png",
+	"img/Button/Start.png",
+	"img/Button/Exit.png",
 };
 
 class Button
