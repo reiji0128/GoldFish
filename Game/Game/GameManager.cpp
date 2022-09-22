@@ -46,6 +46,7 @@ bool GameManager::Initialize()
 	// 例）UIManager::CreateInstance();
 	//     ActorManager::CreateInstance();
 
+	// 問題がなければtrueを返す.
 	return true;
 }
 
@@ -54,22 +55,32 @@ bool GameManager::Initialize()
 /// </summary>
 void GameManager::GameLoop()
 {
+	// ループを回すかどうかのフラグがtrueだった時
 	while (mRunningFlag)
 	{
+		// ループを抜ける際に使用する入力処理関数.
 		ProcessInput();
 
+		// 現在のシーンを次のシーンを保存する変数に保存する.
 		mReturnTag = mNowScene->Update();
 
+		// 次のシーンが今のシーンと違ったとき.
 		if (mReturnTag != SceneBase::mNowSceneTag)
 		{
+			// 今のシーンを削除する.
 			delete mNowScene;
 
+			// 新しくシーンを生成する.
 			CreateScene();
+
+			// 以下の処理を飛ばしてwhileからループしなおす.
 			continue;
 		}
 
+		// 描画処理関数.
 		DrawGame();
 
+		// 更新処理関数.
 		UpdateGame();
 	}
 }
@@ -79,31 +90,52 @@ void GameManager::GameLoop()
 /// </summary>
 void GameManager::terminate()
 {
+	// 1つしか実態を持たないクラスの削除.
+	// 例）UIManager::DeleteInstance();
+	//     ActorManager::DeleteInstance();
+
+	// その他単体のクラスを持つ変数の削除.
 	delete mNowScene;
 	delete mFps;
 
+	// Dxlibの終了処理.
 	DxLib_End();
 }
 
+/// <summary>
+/// mReturnTagを使用した新しいシーンを生成する関数.
+/// </summary>
 void GameManager::CreateScene()
 {
+	// 次のタグがタイトルシーンタグだった時.
 	if (mReturnTag == SceneBase::SceneTag::TITLE_TAG)
 	{
+		// タイトルクラスを生成する.
 		mNowScene = new Title();
 	}
+	// 次のタグがプレイシーンタグだった時.
 	else if (mReturnTag == SceneBase::SceneTag::PLAY_TAG)
 	{
+		// プレイクラスを生成する.
 		mNowScene = new Play();
 	}
+	// 次のタグがリザルトシーンタグだった時.
 	else if (mReturnTag == SceneBase::SceneTag::RESULT_TAG)
 	{
+		// リザルトクラスを生成する.
 		mNowScene = new Result();
 	}
 }
 
+/// <summary>
+/// ループを抜ける際に使用する入力処理関数.
+/// </summary>
 void GameManager::ProcessInput()
 {
+	// 一つ目のXBoxコントローラーが押されたボタンの番号を保存する変数.
 	int pad1Input;
+
+	// 一つ目のXBoxコントローラーの押されたボタンの番号を保存する.
 	pad1Input = GetJoypadInputState(DX_INPUT_PAD1);
 
 	// ウィンドウが閉じられた時
@@ -111,7 +143,7 @@ void GameManager::ProcessInput()
 	// またはXBoxコントローラーのメニューキーが押された時.
 	if (ProcessMessage() == -1
 		|| CheckHitKey(KEY_INPUT_ESCAPE)
-		|| pad1Input & PAD_INPUT_10)
+		|| pad1Input & PAD_INPUT_11)
 	{
 		mRunningFlag = false;
 	}
