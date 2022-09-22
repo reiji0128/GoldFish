@@ -17,10 +17,10 @@ static enum BgImgFileNum
 // è„ãLÇÃenumÉNÉâÉXÇ©ÇÁ
 static const char* BgImgName[BgImgFileNum::MAX_IMG_FILE_NUM] =
 {
-	"img/None.png",
-	"img/Title.png",
-	"img/Play.png",
-	"img/Result.png",
+	"Img/Bg/none.png",
+	"Img/Bg/Title.png",
+	"Img/Bg/Play.png",
+	"Img/Bg/Result.png",
 };
 
 /// <summary>
