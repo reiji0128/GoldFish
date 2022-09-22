@@ -1,34 +1,142 @@
 #include "GameManager.h"
+#include "DxLib.h"
+
+#include "Title.h"
+#include "Play.h"
+#include "Result.h"
 
 /// <summary>
 /// コンストラクタ.
 /// </summary>
 GameManager::GameManager()
+	:MWidth(1920)
+	,MHeight(1080)
+	,MColorBitNum(16)
+	,MZbitNum(24)
+	,mRunningFlag(true)
+	,mNowScene(nullptr)
+	,mReturnTag(SceneBase::mNowSceneTag)
+	,mFps(nullptr)
 {
-	// こちらに変数のコンストラクタ処理を入力してください.
+}
+
+bool GameManager::Initialize()
+{
+	SetGraphMode(MWidth, MHeight, MColorBitNum);
+	ChangeWindowMode(TRUE);
+
+	if (DxLib_Init() == -1)
+	{
+		return false;
+	}
+
+	mFps = new FPS();
+
+	// 1つしか実態を持たないクラスの生成.
+	// 例）UIManager::CreateInstance();
+	//     ActorManager::CreateInstance();
+
+	return true;
 }
 
 /// <summary>
-/// デストラクタ.
+/// ゲームループ.
 /// </summary>
-GameManager::~GameManager()
+void GameManager::GameLoop()
 {
-	// こちらに変数のデストラクタ処理を入力してください.
+	while (mRunningFlag)
+	{
+		ProcessInput();
+
+		mReturnTag = mNowScene->Update();
+
+		if (mReturnTag != SceneBase::mNowSceneTag)
+		{
+			delete mNowScene;
+
+			CreateScene();
+			continue;
+		}
+
+		DrawGame();
+
+		UpdateGame();
+	}
 }
 
 /// <summary>
-/// 更新関数.
+/// クラスやマネージャーのメモリ解放処理.
 /// </summary>
-/// <param name="deltaTime"></param>
-void GameManager::Update(float deltaTime)
+void GameManager::terminate()
 {
-	// こちらに変数の更新処理を入力してください.
+	delete mNowScene;
+	delete mFps;
+
+	DxLib_End();
+}
+
+void GameManager::CreateScene()
+{
+	if (mReturnTag == SceneBase::SceneTag::TITLE_TAG)
+	{
+		mNowScene = new Title();
+	}
+	else if (mReturnTag == SceneBase::SceneTag::PLAY_TAG)
+	{
+		mNowScene = new Play();
+	}
+	else if (mReturnTag == SceneBase::SceneTag::RESULT_TAG)
+	{
+		mNowScene = new Result();
+	}
+}
+
+void GameManager::ProcessInput()
+{
+	int pad1Input;
+	pad1Input = GetJoypadInputState(DX_INPUT_PAD1);
+
+	// ウィンドウが閉じられた時
+	// またはESCキーが押された時
+	// またはXBoxコントローラーのメニューキーが押された時.
+	if (ProcessMessage() == -1
+		|| CheckHitKey(KEY_INPUT_ESCAPE)
+		|| pad1Input & PAD_INPUT_10)
+	{
+		mRunningFlag = false;
+	}
+
+	// 現在の入力処理.
+	mNowScene->Input();
 }
 
 /// <summary>
-/// 描画関数.
+/// 更新処理.
 /// </summary>
-void GameManager::Draw()
+void GameManager::UpdateGame()
 {
-	// こちらに変数の描画処理を入力してください.
+	float deltaTime = mFps->GetDeltaTime();
+
+	//-------------------------------------
+
+	//-------------------------------------
+
+	mFps->Update();
+}
+
+/// <summary>
+/// 描画処理.
+/// </summary>
+void GameManager::DrawGame()
+{
+	ClearDrawScreen();
+
+	//---------------------------------------
+
+	mNowScene->Draw();
+
+	//---------------------------------------
+
+
+	ScreenFlip();
 }

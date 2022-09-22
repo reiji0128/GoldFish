@@ -1,13 +1,12 @@
 #include "Play.h"
+#include "DxLib.h"
 
 /// <summary>
 /// コンストラクタ.
 /// </summary>
 Play::Play()
-	:gameManager(nullptr)// gameManagerの初期化.
+	:SceneBase(SceneBase::SceneTag::PLAY_TAG)
 {
-	// gameManagerのコンストラクタ.
-	gameManager = new GameManager();
 }
 
 /// <summary>
@@ -15,7 +14,6 @@ Play::Play()
 /// </summary>
 Play::~Play()
 {
-	delete gameManager;
 }
 
 /// <summary>
@@ -23,14 +21,20 @@ Play::~Play()
 /// </summary>
 /// <param name="deltaTime">float型のデルタタイムの引数.</param>
 /// <returns>SCENE_TAG型のenumクラスを返す.</returns>
-SCENE_TAG Play::Update(float deltaTime)
+SceneBase::SceneTag Play::Update()
 {
-	//gameManager->Update();
+	//mBg->Update();
 
-	// 特定の条件でリザルトシーンを移行する処理@@@
+	//gameManager->Update(deltaTime);
+
+	// 特定の条件でリザルトシーンを移行する処理
+	if (mChangeSceneFlag)
+	{
+		return SceneTag::RESULT_TAG;
+	}
 
 	// それ以外の場合はこのシーンを返す.
-	return SCENE_TAG::NONE_TAG;
+	return SceneTag::NONE_TAG;
 }
 
 /// <summary>
@@ -38,4 +42,10 @@ SCENE_TAG Play::Update(float deltaTime)
 /// </summary>
 void Play::Draw()
 {
+	mBg->Draw();
+}
+
+void Play::Input()
+{
+	// ここにシーンを変える条件でmChangeSceneFlagを変える.
 }

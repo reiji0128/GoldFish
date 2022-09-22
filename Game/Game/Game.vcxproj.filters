@@ -25,6 +25,18 @@
     <Filter Include="MainBranch\GameManager">
       <UniqueIdentifier>{f431a90a-2576-4088-857f-af9611d1cdf9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainBranch\Scene\Title">
+      <UniqueIdentifier>{44161cca-f099-4e57-90f1-f97bb0d344a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainBranch\Scene\Play">
+      <UniqueIdentifier>{bd4dbc5f-d300-44b4-bfd8-a09b95ca8b90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainBranch\Scene\Result">
+      <UniqueIdentifier>{0f7a829a-71a8-4809-9ab5-a8996db3031f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainBranch\FPS">
+      <UniqueIdentifier>{5ce6292b-0940-4e38-a8f4-5dd72df3eef7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseObject.h">
@@ -36,25 +48,25 @@
     <ClInclude Include="SceneBase.h">
       <Filter>MainBranch\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>MainBranch\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Background.h">
       <Filter>MainBranch</Filter>
-    </ClInclude>
-    <ClInclude Include="Title.h">
-      <Filter>MainBranch\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Play.h">
-      <Filter>MainBranch\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Result.h">
-      <Filter>MainBranch\Scene</Filter>
     </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>MainBranch\GameManager</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>MainBranch\Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Play.h">
+      <Filter>MainBranch\Scene\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Result.h">
+      <Filter>MainBranch\Scene\Result</Filter>
+    </ClInclude>
+    <ClInclude Include="FPS.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,20 +80,8 @@
     <ClCompile Include="SceneBase.cpp">
       <Filter>MainBranch\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>MainBranch\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Background.cpp">
       <Filter>MainBranch</Filter>
-    </ClCompile>
-    <ClCompile Include="Title.cpp">
-      <Filter>MainBranch\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Play.cpp">
-      <Filter>MainBranch\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Result.cpp">
-      <Filter>MainBranch\Scene</Filter>
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>MainBranch\GameManager</Filter>
@@ -91,6 +91,18 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>MainBranch</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>MainBranch\Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Play.cpp">
+      <Filter>MainBranch\Scene\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Result.cpp">
+      <Filter>MainBranch\Scene\Result</Filter>
+    </ClCompile>
+    <ClCompile Include="FPS.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

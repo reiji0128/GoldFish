@@ -1,5 +1,7 @@
 #pragma once
 #include "SceneBase.h"
+#include "Background.h"
+#include "Button.h"
 
 /// <summary>
 /// シーンのタイトルクラス.
@@ -23,15 +25,21 @@ public:
 	/// </summary>
 	/// <param name="deltaTime">float型のデルタタイムの引数.</param>
 	/// <returns>SCENE_TAG型のenumクラスを返す.</returns>
-	SCENE_TAG Update(float deltaTime) override;
+	SceneTag Update() override;
 
 	/// <summary>
-	/// 描画関数.
-	/// オーバーライド関数.
+	/// 描画処理.
 	/// </summary>
 	void Draw() override;
 
-private:
-	Background* mBg;
+	/// <summary>
+	/// 入力処理関数、オーバーライド関数.
+	/// </summary>
+	void Input() override;
 
+private:
+	Button* mStartButton;
+	Button* mExitButton;
+
+	bool mStartFlag;
 };

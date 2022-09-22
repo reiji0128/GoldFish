@@ -3,43 +3,54 @@
 #include "Background.h"
 
 /// <summary>
-/// それぞれシーンのタグ.
-/// </summary>
-enum class SCENE_TAG : short
-{
-	NONE_TAG = 0,         // シーンが無しの時.
-	TITLE_TAG,            // シーンがタイトルの時.
-	PLAY_TAG,             // シーンがプレイの時.
-	RESULT_TAG,           // シーンがリザルトの時.
-};
-
-/// <summary>
 /// シーンの基底クラス.
 /// </summary>
 class SceneBase
 {
 public:
 	/// <summary>
-	/// コンストラクタ.
+	/// それぞれシーンのタグ.
 	/// </summary>
-	SceneBase();
+	enum class SceneTag : short
+	{
+		NONE_TAG = 0,         // シーンが無しの時.
+		INIT_TAG,             // シーンが初期状態の時.
+		TITLE_TAG,            // シーンがタイトルの時.
+		PLAY_TAG,             // シーンがプレイの時.
+		RESULT_TAG,           // シーンがリザルトの時.
+	};
 
 	/// <summary>
-	/// デストラクタ、仮想関数.
+	/// コンストラクタ.
 	/// </summary>
-	virtual ~SceneBase();
+	SceneBase(SceneTag nowTag);
+
+	/// <summary>
+	/// デストラクタ.
+	/// </summary>
+	~SceneBase() {};
 
 	/// <summary>
 	/// 更新関数、仮想関数.
 	/// </summary>
 	/// <param name="delteTime">float型のデルタタイムの引数.</param>
 	/// <returns>SCENE_TAG型のenumクラスを返す.</returns>
-	virtual SCENE_TAG Update(float delteTime) = 0;
+	virtual SceneBase::SceneTag Update() = 0;
 
 	/// <summary>
-	/// 描画関数、仮想関数.
+	/// 入力処理関数、仮想関数.
+	/// </summary>
+	virtual void Input() = 0;
+
+	/// <summary>
+	/// 描画関数.
 	/// </summary>
 	virtual void Draw() = 0;
 
+	static SceneTag mNowSceneTag;        // 現在のシーンタグ.
+
 protected:
+	Background* mBg;                     // 背景の生成.
+
+	bool mChangeSceneFlag;               // シーン移動フラグ.
 };
