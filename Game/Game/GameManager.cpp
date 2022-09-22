@@ -5,31 +5,41 @@
 #include "Play.h"
 #include "Result.h"
 
+//-----------------必要な時にヘッダーファイルをインクルードしてください.-------------------//
+
 /// <summary>
 /// コンストラクタ.
 /// </summary>
 GameManager::GameManager()
-	:MWidth(1920)
-	,MHeight(1080)
-	,MColorBitNum(16)
-	,MZbitNum(24)
-	,mRunningFlag(true)
-	,mNowScene(nullptr)
-	,mReturnTag(SceneBase::mNowSceneTag)
-	,mFps(nullptr)
+	:MWidth(1920)                             // ウィンドウのx軸のサイズ.
+	,MHeight(1080)                            // ウィンドウのy軸のサイズ.
+	,MColorBitNum(16)                         // ウィンドウのカラービットの数.
+	,mRunningFlag(true)                       // ゲームループを回すかどうかを保存するフラグ、trueならループが回りfalseならループから抜ける.
+	,mNowScene(nullptr)                       // 現在のシーンを保存する変数.
+	,mReturnTag(SceneBase::mNowSceneTag)      // 次のシーンのタグを保存する変数.
+	,mFps(nullptr)                            // fpsクラスを保存する変数.
 {
 }
 
+/// <summary>
+/// 初期化処理.
+/// </summary>
+/// <returns>もし成功すればtrueが、失敗すればfalseが返ってくる.</returns>
 bool GameManager::Initialize()
 {
+	// ウィンドウのサイズとカラービットを指定する.
 	SetGraphMode(MWidth, MHeight, MColorBitNum);
+
+	// フルスクリーンを避けるため、ウィンドウモードにする.
 	ChangeWindowMode(TRUE);
 
+	// Dxlibがエラーを起こしていた時はreturnでfalseを返す.
 	if (DxLib_Init() == -1)
 	{
 		return false;
 	}
 
+	// fpsを計測するために
 	mFps = new FPS();
 
 	// 1つしか実態を持たないクラスの生成.

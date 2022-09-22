@@ -62,7 +62,6 @@ private:
 	const int MWidth;
 	const int MHeight;
 	const int MColorBitNum;
-	const int MZbitNum;
 
 	bool mRunningFlag;
 

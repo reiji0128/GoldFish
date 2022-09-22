@@ -12,8 +12,8 @@ Title::Title()
 {
 	mBg = new Background(BgImgName[BgImgFileNum::TITLE_IMG]);
 
-	mStartButton = new Button(ButtonImgName[ButtonImgFileNum::START_BUTTON_IMG]);
-	mExitButton = new Button(ButtonImgName[ButtonImgFileNum::EXIT_BUTTON_IMG]);
+	//mStartButton = new Button(ButtonImgName[ButtonImgFileNum::START_BUTTON_IMG]);
+	//mExitButton = new Button(ButtonImgName[ButtonImgFileNum::EXIT_BUTTON_IMG]);
 }
 
 /// <summary>
