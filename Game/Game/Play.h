@@ -1,5 +1,7 @@
 #pragma once
 #include "SceneBase.h"
+//#include "Background.h"
+//#include "GameManager.h"
 
 /// <summary>
 /// シーンのプレイクラス.
@@ -23,12 +25,23 @@ public:
 	/// </summary>
 	/// <param name="deltaTime">float型のデルタタイムの引数.</param>
 	/// <returns>SCENE_TAG型のenumクラスをreturnとして返す.</returns>
-	SCENE_TAG Update(float deltaTime) override;
+	SceneTag Update() override;
 
 	/// <summary>
-	/// 描画関数、オーバーライド関数.
+	/// 描画関数.
 	/// </summary>
 	void Draw() override;
 
+	/// <summary>
+	/// 入力処理関数、オーバーライド関数.
+	/// </summary>
+	void Input() override;
+
 private:
+	///// <summary>
+	///// ゲーム全体の処理が入っている変数.
+	///// </summary>
+	//GameManager* mGameManager;
+
+	//bool mResultFlag;
 };

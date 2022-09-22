@@ -1,10 +1,13 @@
 #include "Play.h"
+#include "DxLib.h"
 
 /// <summary>
 /// コンストラクタ.
 /// </summary>
 Play::Play()
+	:SceneBase(SceneBase::SceneTag::PLAY_TAG)
 {
+	mBg = new Background(BgImgName[BgImgFileNum::PLAY_IMG]);
 }
 
 /// <summary>
@@ -19,15 +22,18 @@ Play::~Play()
 /// </summary>
 /// <param name="deltaTime">float型のデルタタイムの引数.</param>
 /// <returns>SCENE_TAG型のenumクラスを返す.</returns>
-SCENE_TAG Play::Update(float deltaTime)
+SceneBase::SceneTag Play::Update()
 {
-	// Backgroundクラスの更新関数を行う.
-	mBg->Update();
+	//gameManager->Update(deltaTime);
 
-	// 特定の条件でリザルトシーンを移行する処理@@@
+	// 特定の条件でリザルトシーンを移行する処理
+	if (mChangeSceneFlag)
+	{
+		return SceneTag::RESULT_TAG;
+	}
 
 	// それ以外の場合はこのシーンを返す.
-	return SCENE_TAG::NONE_TAG;
+	return mNowSceneTag;
 }
 
 /// <summary>
@@ -35,6 +41,18 @@ SCENE_TAG Play::Update(float deltaTime)
 /// </summary>
 void Play::Draw()
 {
-	// プレイシーンの背景を描画.
 	mBg->Draw();
+}
+
+void Play::Input()
+{
+	// ここにシーンを変える条件でmChangeSceneFlagを変える.
+	if (CheckHitKey(KEY_INPUT_9))
+	{
+		mChangeSceneFlag = true;
+	}
+	else
+	{
+		mChangeSceneFlag = false;
+	}
 }

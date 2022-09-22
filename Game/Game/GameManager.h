@@ -1,4 +1,6 @@
 #pragma once
+#include "SceneBase.h"
+#include "FPS.h"
 
 //------------------------------
 // ここにゲームプレイ中に必要なヘッダーをインクルードしてください.
@@ -18,19 +20,60 @@ public:
 	/// <summary>
 	/// デストラクタ.
 	/// </summary>
-	~GameManager();
+	~GameManager() {};
 
 	/// <summary>
-	/// 更新関数.
+	/// 初期化処理.
 	/// </summary>
-	/// <param name="deltaTime">float型のデルタタイムの引数.</param>
-	void Update(float deltaTime);
+	/// <returns>返り値がtrueの時は成功、falseの時は失敗.</returns>
+	bool Initialize();
 
 	/// <summary>
-	/// 描画関数.
+	/// ゲームループ.
 	/// </summary>
-	void Draw();
+	void GameLoop();
+
+	/// <summary>
+	/// 終了処理.
+	/// </summary>
+	void terminate();
 
 private:
+	/// <summary>
+	/// mNextSceneTagを使用した新しいシーンを生成する関数.
+	/// </summary>
+	void CreateScene();
+
+	/// <summary>
+	/// 入力処理関数.
+	/// </summary>
+	void ProcessInput();
+
+	/// <summary>
+	/// ゲームの更新処理.
+	/// </summary>
+	void UpdateGame();
+
+	/// <summary>
+	/// ゲームの描画処理.
+	/// </summary>
+	void DrawGame();
+
+	const int MWidth;
+	const int MHeight;
+	const int MColorBitNum;
+
+	bool mRunningFlag;
+
+	SceneBase* mNowScene;
+	SceneBase::SceneTag mReturnTag;
+
+	FPS* mFps;
+
+public:
+	void SetFirstScene(SceneBase* firstScene)
+	{
+		mNowScene = firstScene;
+	};
 };
 

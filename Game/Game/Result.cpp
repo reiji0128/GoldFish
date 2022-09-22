@@ -1,10 +1,13 @@
 #include "Result.h"
+#include "DxLib.h"
 
 /// <summary>
 /// コンストラクタ.
 /// </summary>
 Result::Result()
+	:SceneBase(SceneBase::SceneTag::RESULT_TAG)
 {
+	mBg = new Background(BgImgName[BgImgFileNum::RESULT_IMG]);
 }
 
 /// <summary>
@@ -18,15 +21,17 @@ Result::~Result()
 /// 更新関数.
 /// </summary>
 /// <param name="deltaTime">float型のデルタタイムの引数.</param>
-/// <returns>SCENE_TAG型のenumクラスを返す.</returns>
-SCENE_TAG Result::Update(float deltaTime)
+/// <returns>SceneTag型のenumクラスを返す.</returns>
+SceneBase::SceneTag Result::Update()
 {
-	// タイトルシーンへの移行処理.@@@
-
-	// ゲーム終了処理.@@@
+	// タイトルシーンへの移行処理.
+	if (mChangeSceneFlag)
+	{
+		return SceneTag::TITLE_TAG;
+	}
 
 	// それ以外はこのシーンを返す.
-	return SCENE_TAG::NONE_TAG;
+	return mNowSceneTag;
 }
 
 /// <summary>
@@ -34,6 +39,22 @@ SCENE_TAG Result::Update(float deltaTime)
 /// </summary>
 void Result::Draw()
 {
-	// 背景の描画処理.
 	mBg->Draw();
+}
+
+void Result::Input()
+{
+	int pad1Input;
+	pad1Input = GetJoypadInputState(DX_INPUT_PAD1);
+
+	if (pad1Input & PAD_INPUT_1
+		|| CheckHitKey(KEY_INPUT_0))
+	{
+		// シーンを変えるフラグをtrueにする.
+		mChangeSceneFlag = true;
+	}
+	else
+	{
+		mChangeSceneFlag = false;
+	}
 }

@@ -4,7 +4,7 @@
 /// <summary>
 /// 画像ファイルの順番.
 /// </summary>
-static enum BackgroundFileNum
+static enum BgImgFileNum
 {
 	NONE_IMG = 0,
 	TITLE_IMG,
@@ -14,9 +14,13 @@ static enum BackgroundFileNum
 	MAX_IMG_FILE_NUM,
 };
 
-static const char* MapPicName[MAX_IMG_FILE_NUM] =
+// 上記のenumクラスから
+static const char* BgImgName[BgImgFileNum::MAX_IMG_FILE_NUM] =
 {
-	"img/none.png",
+	"Img/Bg/none.png",
+	"Img/Bg/Title.png",
+	"Img/Bg/Play.png",
+	"Img/Bg/Result.png",
 };
 
 /// <summary>
@@ -28,18 +32,12 @@ public:
 	/// <summary>
 	/// コンストラクタ.
 	/// </summary>
-	Background();
+	Background(const char* fileName);
 
 	/// <summary>
 	/// デストラクタ.
 	/// </summary>
 	~Background();
-
-	/// <summary>
-	/// 読み込み関数.
-	/// </summary>
-	/// <param name="imgName">読み取り専用のchar*型のファイルパス.</param>
-	void Load(const char* imgName);
 
 	/// <summary>
 	/// 更新関数.
@@ -53,9 +51,8 @@ public:
 
 private:
 	Vector2 mPos;               // 座標保存変数.
-	int mWidth, mHeight;        // 画像の横幅、縦幅の保存変数.
+	Vector2 mScale;             // 画像の大きさの保存変数.
 	int mImgHandle;             // 画像ハンドル保存変数.
-
 
 public:// ---------セッター・ゲッター関数--------------
 	
@@ -68,21 +65,13 @@ public:// ---------セッター・ゲッター関数--------------
 		mPos = pos;
 	}
 
-	/// <summary>
-	/// 画像の横幅の取得関数.
-	/// </summary>
-	/// <returns>int型の画像の横幅.</returns>
-	int GetImgWidth()
+	Vector2 GetPosition()
 	{
-		return mWidth;
+		return mPos;
 	}
 
-	/// <summary>
-	/// 画像の縦幅の取得関数.
-	/// </summary>
-	/// <returns>int型の画像の縦幅.</returns>
-	int GetImgHeight()
+	Vector2 GetScale()
 	{
-		return mHeight;
+		return mScale;
 	}
 };

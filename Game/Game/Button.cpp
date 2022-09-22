@@ -1,10 +1,7 @@
+#include "Button.h"
 #include "DxLib.h"
-#include "Background.h"
 
-/// <summary>
-/// コンストラクタ.
-/// </summary>
-Background::Background(const char* fileName)
+Button::Button(const char* fileName)
 	:mPos(Vector2::Zero)
 	,mScale(Vector2::Zero)
 	,mImgHandle(-1)
@@ -14,10 +11,7 @@ Background::Background(const char* fileName)
 	GetGraphSizeF(mImgHandle, &mScale.x, &mScale.y);
 }
 
-/// <summary>
-/// デストラクタ.
-/// </summary>
-Background::~Background()
+Button::~Button()
 {
 	// すでに画像ハンドルが-1の時はreturnを返す
 	if (mImgHandle == -1)
@@ -32,18 +26,13 @@ Background::~Background()
 	mImgHandle = -1;
 }
 
-/// <summary>
-/// 更新関数.
-/// </summary>
-void Background::Update()
+void Button::Update(float deltaTime)
 {
+	// オンマウス？(ぶっちゃけパッドなのでマウスとかではない)のときの挙動.
+	//if()
 }
 
-/// <summary>
-/// 描画関数.
-/// </summary>
-void Background::Draw()
+void Button::Draw()
 {
-	// 描画処理.
 	DrawGraph(mPos.x, mPos.y, mImgHandle, true);
 }
