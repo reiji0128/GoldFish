@@ -32,4 +32,6 @@ public:
 	void Draw() override;
 
 private:
+	Background* mBg;
+
 };
