@@ -22,23 +22,6 @@
     <Filter Include="MainBranch\Scene">
       <UniqueIdentifier>{13840875-8cc3-4d45-b643-889ccd176b01}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainBranch\Fish">
-      <UniqueIdentifier>{81bb9c9f-2d07-413d-bef4-f9c178daeeda}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainBranch\Tag">
-      <UniqueIdentifier>{f5667c8a-6679-4828-a680-4a308b450b90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainBranch\Fish\GoldFish">
-      <UniqueIdentifier>{273d0e05-c3cd-4011-bcc4-9ee7163f3434}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainBranch\Fish\RedFish">
-      <UniqueIdentifier>{b8813ecf-a71a-46ec-8269-8508bb4dcc03}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainBranch\Fish\BlueFish">
-      <UniqueIdentifier>{b9f601a7-196a-498f-9adf-f6af5380689c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainBranch\FishManager">
-      <UniqueIdentifier>{e231e65c-e70e-462e-9b8f-2e862c30cac2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -51,35 +34,27 @@
     <ClInclude Include="SceneBase.h">
       <Filter>MainBranch\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>MainBranch\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Background.h">
       <Filter>MainBranch</Filter>
     </ClInclude>
-    <ClInclude Include="Title.h">
-      <Filter>MainBranch\Scene</Filter>
+    <ClInclude Include="GameManager.h">
+      <Filter>MainBranch\GameManager</Filter>
     </ClInclude>
-    <ClInclude Include="Play.h">
+    <ClInclude Include="Button.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Tag.h">
-      <Filter>MainBranch\Tag</Filter>
+    <ClInclude Include="Title.h">
+      <Filter>MainBranch\Scene\Title</Filter>
     </ClInclude>
-    <ClInclude Include="Fish.h">
-      <Filter>MainBranch\Fish</Filter>
+    <ClInclude Include="Play.h">
+      <Filter>MainBranch\Scene\Play</Filter>
     </ClInclude>
-    <ClInclude Include="GoldFish.h">
-      <Filter>MainBranch\Fish\GoldFish</Filter>
+    <ClInclude Include="Result.h">
+      <Filter>MainBranch\Scene\Result</Filter>
     </ClInclude>
-    <ClInclude Include="RedFish.h">
-      <Filter>MainBranch\Fish\RedFish</Filter>
+    <ClInclude Include="FPS.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="BlueFish.h">
-      <Filter>MainBranch\Fish\BlueFish</Filter>
-    </ClInclude>
-    <ClInclude Include="FishManager.h">
-      <Filter>MainBranch\FishManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -92,32 +67,30 @@
     <ClCompile Include="SceneBase.cpp">
       <Filter>MainBranch\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>MainBranch\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Background.cpp">
       <Filter>MainBranch</Filter>
     </ClCompile>
-    <ClCompile Include="Title.cpp">
-      <Filter>MainBranch\Scene</Filter>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>MainBranch\GameManager</Filter>
     </ClCompile>
-    <ClCompile Include="Play.cpp">
+    <ClCompile Include="Button.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Fish.cpp">
-      <Filter>MainBranch\Fish</Filter>
+    <ClCompile Include="main.cpp">
+      <Filter>MainBranch</Filter>
     </ClCompile>
-    <ClCompile Include="GoldFish.cpp">
-      <Filter>MainBranch\Fish\GoldFish</Filter>
+    <ClCompile Include="Title.cpp">
+      <Filter>MainBranch\Scene\Title</Filter>
     </ClCompile>
-    <ClCompile Include="RedFish.cpp">
-      <Filter>MainBranch\Fish\RedFish</Filter>
+    <ClCompile Include="Play.cpp">
+      <Filter>MainBranch\Scene\Play</Filter>
     </ClCompile>
-    <ClCompile Include="BlueFish.cpp">
-      <Filter>MainBranch\Fish\BlueFish</Filter>
+    <ClCompile Include="Result.cpp">
+      <Filter>MainBranch\Scene\Result</Filter>
     </ClCompile>
-    <ClCompile Include="FishManager.cpp">
-      <Filter>MainBranch\FishManager</Filter>
+    <ClCompile Include="FPS.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -148,30 +148,19 @@
   <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="BaseObject.h" />
-    <ClInclude Include="BlueFish.h" />
-    <ClInclude Include="Fish.h" />
-    <ClInclude Include="FishManager.h" />
-    <ClInclude Include="GoldFish.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="RedFish.h" />
     <ClInclude Include="Tag.h" />
     <ClInclude Include="Play.h" />
+    <ClInclude Include="Poi.h" />
+    <ClInclude Include="Result.h" />
     <ClInclude Include="SceneBase.h" />
-    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Title.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="BaseObject.cpp" />
-    <ClCompile Include="BlueFish.cpp" />
-    <ClCompile Include="Fish.cpp" />
-    <ClCompile Include="FishManager.cpp" />
-    <ClCompile Include="GoldFish.cpp" />
-    <ClCompile Include="Math.cpp" />
-    <ClCompile Include="Play.cpp" />
-    <ClCompile Include="RedFish.cpp" />
     <ClCompile Include="SceneBase.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
