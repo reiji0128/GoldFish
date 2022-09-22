@@ -1,17 +1,22 @@
-#include"DxLib.h"
-#include"SceneManager.h"
+#include "DxLib.h"
+#include "GameManager.h"
+#include "Title.h"
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
-	ChangeWindowMode(true);
-	if (DxLib_Init() == -1)return -1;
-	SetDrawScreen(DX_SCREEN_BACK);
+	// ゲームクラス定義.
+	GameManager gameMane;
 
-	SceneManager* sceneMg = new SceneManager();
+	bool success = gameMane.Initialize();
 
-	delete sceneMg;
+	gameMane.SetFirstScene(new Title());
 
-	DxLib_End();
+	if (success)
+	{
+		gameMane.GameLoop();
+	}
+
+	gameMane.terminate();
 
 	return 0;
 }
