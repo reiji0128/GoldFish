@@ -162,6 +162,7 @@
     <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Play.cpp" />
     <ClCompile Include="Result.cpp" />
