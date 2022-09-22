@@ -167,7 +167,6 @@
     <ClCompile Include="Fish.cpp" />
     <ClCompile Include="FishManager.cpp" />
     <ClCompile Include="GoldFish.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Play.cpp" />
     <ClCompile Include="RedFish.cpp" />
