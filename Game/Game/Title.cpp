@@ -51,7 +51,8 @@ void Title::Input()
 	int pad1Input;
 	pad1Input = GetJoypadInputState(DX_INPUT_PAD1);
 
-	if (pad1Input & PAD_INPUT_1)
+	if (pad1Input & PAD_INPUT_1
+		|| CheckHitKey(KEY_INPUT_8))
 	{
 		// シーンを変えるフラグをtrueにする.
 		mChangeSceneFlag = true;
