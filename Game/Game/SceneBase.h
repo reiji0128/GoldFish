@@ -42,5 +42,4 @@ public:
 	virtual void Draw() = 0;
 
 protected:
-	Background* mBg;      // ”wŒiƒNƒ‰ƒX‚ğ•Û‘¶‚·‚é•Ï”.
 };

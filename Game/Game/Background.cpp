@@ -1,10 +1,19 @@
+#include "DxLib.h"
 #include "Background.h"
 
 /// <summary>
 /// コンストラクタ.
 /// </summary>
-Background::Background()
+Background::Background(const char* fileName)
+	:mPos(Vector2::Zero)
+	,mScale(Vector2::Zero)
+	,mVec(Vector2::Zero)
+	,mMoveFlag(false)
+	,mImgHandle(-1)
 {
+	mImgHandle = LoadGraph(fileName);
+
+	GetGraphSizeF(mImgHandle, &mScale.x, &mScale.y);
 }
 
 /// <summary>
@@ -12,6 +21,17 @@ Background::Background()
 /// </summary>
 Background::~Background()
 {
+	// すでに画像ハンドルが-1の時はreturnを返す
+	if (mImgHandle == -1)
+	{
+		return;
+	}
+
+	// 画像をメモリ上から削除する.
+	DeleteGraph(mImgHandle);
+
+	// 削除した後に-1を代入する.
+	mImgHandle = -1;
 }
 
 /// <summary>
@@ -19,6 +39,10 @@ Background::~Background()
 /// </summary>
 void Background::Update()
 {
+	if (mMoveFlag)
+	{
+		mPos += mVec;
+	}
 }
 
 /// <summary>

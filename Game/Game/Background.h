@@ -2,6 +2,28 @@
 #include "Math.h"
 
 /// <summary>
+/// 画像ファイルの順番.
+/// </summary>
+static enum BgImgFileNum
+{
+	NONE_IMG = 0,
+	TITLE_IMG,
+	PLAY_IMG,
+	RESULT_IMG,
+
+	MAX_IMG_FILE_NUM,
+};
+
+// 上記のenumクラスから
+static const char* BgImgName[BgImgFileNum::MAX_IMG_FILE_NUM] =
+{
+	"img/None.png",
+	"img/Title.png",
+	"img/Play.png",
+	"img/Result.png",
+};
+
+/// <summary>
 /// 背景クラス.
 /// </summary>
 class Background
@@ -31,7 +53,8 @@ private:
 	Vector2 mPos;               // 座標保存変数.
 	Vector2 mScale;             // 画像の大きさの保存変数.
 	int mImgHandle;             // 画像ハンドル保存変数.
-
+	Vector2 mVec;               // 画像移動保存変数.
+	bool mMoveFlag;             // 画像移動フラグ保存変数.
 
 public:// ---------セッター・ゲッター関数--------------
 	
@@ -44,21 +67,13 @@ public:// ---------セッター・ゲッター関数--------------
 		mPos = pos;
 	}
 
-	/// <summary>
-	/// 画像の横幅の取得関数.
-	/// </summary>
-	/// <returns>int型の画像の横幅.</returns>
-	int GetImgWidth()
+	Vector2 GetPosition()
 	{
-		return mWidth;
+		return mPos;
 	}
 
-	/// <summary>
-	/// 画像の縦幅の取得関数.
-	/// </summary>
-	/// <returns>int型の画像の縦幅.</returns>
-	int GetImgHeight()
+	Vector2 GetScale()
 	{
-		return mHeight;
+		return mScale;
 	}
 };

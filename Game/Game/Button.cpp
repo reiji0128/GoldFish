@@ -1,26 +1,17 @@
-#include "Image.h"
+#include "Button.h"
 #include "DxLib.h"
 
-/// <summary>
-/// コンストラクタ.
-/// </summary>
-/// <param name="fileName">const char*型のファイルパス.</param>
-Image::Image(const char* fileName)
+Button::Button(const char* fileName)
 	:mPos(Vector2::Zero)
 	,mScale(Vector2::Zero)
 	,mImgHandle(-1)
 {
-	// 画像ハンドルの取得.
 	mImgHandle = LoadGraph(fileName);
 
-	// 画像の大きさの取得.
 	GetGraphSizeF(mImgHandle, &mScale.x, &mScale.y);
 }
 
-/// <summary>
-/// デストラクタ.
-/// </summary>
-Image::~Image()
+Button::~Button()
 {
 	// すでに画像ハンドルが-1の時はreturnを返す
 	if (mImgHandle == -1)
@@ -33,4 +24,13 @@ Image::~Image()
 
 	// 削除した後に-1を代入する.
 	mImgHandle = -1;
+}
+
+void Button::Update(float deltaTime)
+{
+}
+
+void Button::Draw()
+{
+	DrawGraph(mPos.x, mPos.y, mImgHandle, true);
 }
