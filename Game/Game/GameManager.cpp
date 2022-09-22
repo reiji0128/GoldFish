@@ -145,10 +145,11 @@ void GameManager::ProcessInput()
 		|| CheckHitKey(KEY_INPUT_ESCAPE)
 		|| pad1Input & PAD_INPUT_11)
 	{
+		// ゲームループを抜けるためにフラグをfalseにする.
 		mRunningFlag = false;
 	}
 
-	// 現在の入力処理.
+	// 現在のシーン別の入力処理.
 	mNowScene->Input();
 }
 
@@ -157,12 +158,14 @@ void GameManager::ProcessInput()
 /// </summary>
 void GameManager::UpdateGame()
 {
+	// deltaTimeをfpsクラスから受け取る.
 	float deltaTime = mFps->GetDeltaTime();
 
-	//-------------------------------------
+	//----------------それぞれの更新処理---------------------
 
 	//-------------------------------------
 
+	// fpsクラスを更新する.
 	mFps->Update();
 }
 
@@ -171,14 +174,16 @@ void GameManager::UpdateGame()
 /// </summary>
 void GameManager::DrawGame()
 {
+	// 画面を一度消去する.
 	ClearDrawScreen();
 
-	//---------------------------------------
+	//------------------それぞれの描画処理---------------------
 
+	// 現在のシーンを描画する.
 	mNowScene->Draw();
 
 	//---------------------------------------
 
-
+	// 裏スクリーンに描画したものを表に表示する.
 	ScreenFlip();
 }
