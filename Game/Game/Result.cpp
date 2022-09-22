@@ -52,4 +52,8 @@ void Result::Input()
 		// シーンを変えるフラグをtrueにする.
 		mChangeSceneFlag = true;
 	}
+	else
+	{
+		mChangeSceneFlag = false;
+	}
 }

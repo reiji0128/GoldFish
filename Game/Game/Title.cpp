@@ -56,4 +56,8 @@ void Title::Input()
 		// シーンを変えるフラグをtrueにする.
 		mChangeSceneFlag = true;
 	}
+	else
+	{
+		mChangeSceneFlag = false;
+	}
 }

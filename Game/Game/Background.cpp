@@ -7,8 +7,6 @@
 Background::Background(const char* fileName)
 	:mPos(Vector2::Zero)
 	,mScale(Vector2::Zero)
-	,mVec(Vector2::Zero)
-	,mMoveFlag(false)
 	,mImgHandle(-1)
 {
 	mImgHandle = LoadGraph(fileName);
@@ -39,10 +37,6 @@ Background::~Background()
 /// </summary>
 void Background::Update()
 {
-	if (mMoveFlag)
-	{
-		mPos += mVec;
-	}
 }
 
 /// <summary>

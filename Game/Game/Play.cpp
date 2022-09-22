@@ -7,6 +7,7 @@
 Play::Play()
 	:SceneBase(SceneBase::SceneTag::PLAY_TAG)
 {
+	mBg = new Background(BgImgName[BgImgFileNum::PLAY_IMG]);
 }
 
 /// <summary>
@@ -23,8 +24,6 @@ Play::~Play()
 /// <returns>SCENE_TAG型のenumクラスを返す.</returns>
 SceneBase::SceneTag Play::Update()
 {
-	//mBg->Update();
-
 	//gameManager->Update(deltaTime);
 
 	// 特定の条件でリザルトシーンを移行する処理
@@ -34,7 +33,7 @@ SceneBase::SceneTag Play::Update()
 	}
 
 	// それ以外の場合はこのシーンを返す.
-	return SceneTag::NONE_TAG;
+	return mNowSceneTag;
 }
 
 /// <summary>
@@ -48,4 +47,12 @@ void Play::Draw()
 void Play::Input()
 {
 	// ここにシーンを変える条件でmChangeSceneFlagを変える.
+	if (CheckHitKey(KEY_INPUT_9))
+	{
+		mChangeSceneFlag = true;
+	}
+	else
+	{
+		mChangeSceneFlag = false;
+	}
 }

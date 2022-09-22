@@ -53,8 +53,6 @@ private:
 	Vector2 mPos;               // 座標保存変数.
 	Vector2 mScale;             // 画像の大きさの保存変数.
 	int mImgHandle;             // 画像ハンドル保存変数.
-	Vector2 mVec;               // 画像移動保存変数.
-	bool mMoveFlag;             // 画像移動フラグ保存変数.
 
 public:// ---------セッター・ゲッター関数--------------
 	
