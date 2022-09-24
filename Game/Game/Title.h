@@ -1,6 +1,5 @@
 #pragma once
 #include "SceneBase.h"
-#include "Background.h"
 #include "Button.h"
 
 /// <summary>
