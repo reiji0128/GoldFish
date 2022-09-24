@@ -4,18 +4,18 @@
 /// <summary>
 /// 画像ファイルの順番.
 /// </summary>
-static enum BgImgFileNum
+enum BgImgFileNum : unsigned short
 {
-	NONE_IMG = 0,
-	TITLE_IMG,
-	PLAY_IMG,
-	RESULT_IMG,
+	NoneBg = 0,
+	TitleBg,
+	PlayBg,
+	ResultBg,
 
-	MAX_IMG_FILE_NUM,
+	MaxBgNum,
 };
 
-// 上記のenumクラスから
-static const char* BgImgName[BgImgFileNum::MAX_IMG_FILE_NUM] =
+// 上記のenumクラスの順番で画像パスを保存する保存変数.
+const char* BgImgName[BgImgFileNum::MaxBgNum] =
 {
 	"Img/Bg/none.png",
 	"Img/Bg/Title.png",
@@ -65,11 +65,19 @@ public:// ---------セッター・ゲッター関数--------------
 		mPos = pos;
 	}
 
+	/// <summary>
+	/// 現在の座標を返す.
+	/// </summary>
+	/// <returns>Vector2型の変数を返す.</returns>
 	Vector2 GetPosition()
 	{
 		return mPos;
 	}
 
+	/// <summary>
+	/// 現在の画像サイズを返す.
+	/// </summary>
+	/// <returns>Vector2型の変数を返す.</returns>
 	Vector2 GetScale()
 	{
 		return mScale;
