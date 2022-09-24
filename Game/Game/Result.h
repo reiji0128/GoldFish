@@ -20,14 +20,14 @@ public:
 	~Result();
 
 	/// <summary>
-	/// 更新関数.
+	/// 更新関数、オーバーライド関数.
 	/// </summary>
 	/// <param name="deltaTime">float型のデルタタイムの引数.</param>
 	/// <returns>SCENE_TAG型のenumクラスを返す.</returns>
 	SceneTag Update() override;
 
 	/// <summary>
-	/// 描画関数.
+	/// 描画関数、オーバーライド関数.
 	/// </summary>
 	void Draw() override;
 
@@ -36,5 +36,6 @@ public:
 	/// </summary>
 	void Input() override;
 
-private:};
+private:
+};
 

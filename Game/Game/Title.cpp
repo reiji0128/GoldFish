@@ -52,7 +52,7 @@ void Title::Draw()
 }
 
 /// <summary>
-/// 入力処理関数、オーバーライド関数.
+/// シーンを変える際の入力処理関数.
 /// </summary>
 void Title::Input()
 {
