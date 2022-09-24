@@ -152,11 +152,11 @@
     <ClCompile Include="main.cpp">
       <Filter>MainBranch</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>MainBranch\Button</Filter>
-    </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>MainBranch\GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>MainBranch\Button</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
