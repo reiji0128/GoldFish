@@ -11,13 +11,13 @@ public:
 	/// <summary>
 	/// それぞれシーンのタグ.
 	/// </summary>
-	enum class SceneTag : short
+	enum class SceneTag
 	{
-		NONE_TAG = 0,         // シーンが無しの時.
-		INIT_TAG,             // シーンが初期状態の時.
-		TITLE_TAG,            // シーンがタイトルの時.
-		PLAY_TAG,             // シーンがプレイの時.
-		RESULT_TAG,           // シーンがリザルトの時.
+		NoneTag = 0,         // シーンが無しの時.
+		InitTag,             // シーンが初期状態の時.
+		TitleTag,            // シーンがタイトルの時.
+		PlayTag,             // シーンがプレイの時.
+		ResultTag,           // シーンがリザルトの時.
 	};
 
 	/// <summary>
@@ -43,7 +43,7 @@ public:
 	virtual void Input() = 0;
 
 	/// <summary>
-	/// 描画関数.
+	/// 描画関数、仮想関数.
 	/// </summary>
 	virtual void Draw() = 0;
 
@@ -51,6 +51,5 @@ public:
 
 protected:
 	Background* mBg;                     // 背景の生成.
-
 	bool mChangeSceneFlag;               // シーン移動フラグ.
 };

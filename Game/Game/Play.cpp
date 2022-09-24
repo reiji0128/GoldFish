@@ -5,9 +5,11 @@
 /// コンストラクタ.
 /// </summary>
 Play::Play()
-	:SceneBase(SceneBase::SceneTag::PLAY_TAG)
+	// SceneBaseクラスの初期化、タグはPlayに指定する.
+	:SceneBase(SceneBase::SceneTag::PlayTag)
 {
-	mBg = new Background(BgImgName[BgImgFileNum::PLAY_IMG]);
+	// Backgroundクラスのコンストラクタ、Playの背景を指定する.
+	mBg = new Background(BgImgName[BgImgFileNum::PlayBg]);
 }
 
 /// <summary>
@@ -18,21 +20,19 @@ Play::~Play()
 }
 
 /// <summary>
-/// 更新関数.
+/// 更新処理.
 /// </summary>
-/// <param name="deltaTime">float型のデルタタイムの引数.</param>
-/// <returns>SCENE_TAG型のenumクラスを返す.</returns>
+/// <returns>SceneBaseのenumClassであるSceneTag型を返す.</returns>
 SceneBase::SceneTag Play::Update()
 {
-	//gameManager->Update(deltaTime);
-
-	// 特定の条件でリザルトシーンを移行する処理
+	// mChangeSceneFlagがtrueだった時
 	if (mChangeSceneFlag)
 	{
-		return SceneTag::RESULT_TAG;
+		// SceneTagをResultTagにする.
+		return SceneTag::ResultTag;
 	}
 
-	// それ以外の場合はこのシーンを返す.
+	// それ以外の場合は現在のシーンを返す.
 	return mNowSceneTag;
 }
 
@@ -41,18 +41,20 @@ SceneBase::SceneTag Play::Update()
 /// </summary>
 void Play::Draw()
 {
+	// Backgroundクラスの描画処理.
 	mBg->Draw();
 }
 
+/// <summary>
+/// シーンを変える際の入力処理関数.
+/// </summary>
 void Play::Input()
 {
-	// ここにシーンを変える条件でmChangeSceneFlagを変える.
+	// ここでPlayを終了した際のFlagやState等を記入する.@@@
+	// またはデバッグ用としてキーボードの9ボタンを押した時.
 	if (CheckHitKey(KEY_INPUT_9))
 	{
+		// mChangeSceneFlagをtrueにする
 		mChangeSceneFlag = true;
-	}
-	else
-	{
-		mChangeSceneFlag = false;
 	}
 }

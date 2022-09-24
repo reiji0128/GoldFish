@@ -1,6 +1,5 @@
 #pragma once
 #include "SceneBase.h"
-#include "Background.h"
 #include "Button.h"
 
 /// <summary>
@@ -38,8 +37,8 @@ public:
 	void Input() override;
 
 private:
-	Button* mStartButton;
-	Button* mExitButton;
+	//Button* mStartButton;
+	//Button* mExitButton;
 
-	bool mStartFlag;
+	//bool mStartFlag;
 };

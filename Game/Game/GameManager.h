@@ -40,7 +40,7 @@ public:
 
 private:
 	/// <summary>
-	/// mNextSceneTagを使用した新しいシーンを生成する関数.
+	/// mReturnTagを使用した新しいシーンを生成する関数.
 	/// </summary>
 	void CreateScene();
 
