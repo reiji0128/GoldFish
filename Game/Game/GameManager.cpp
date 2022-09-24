@@ -108,19 +108,19 @@ void GameManager::terminate()
 void GameManager::CreateScene()
 {
 	// 次のタグがタイトルシーンタグだった時.
-	if (mReturnTag == SceneBase::SceneTag::TITLE_TAG)
+	if (mReturnTag == SceneBase::SceneTag::TitleTag)
 	{
 		// タイトルクラスを生成する.
 		mNowScene = new Title();
 	}
 	// 次のタグがプレイシーンタグだった時.
-	else if (mReturnTag == SceneBase::SceneTag::PLAY_TAG)
+	else if (mReturnTag == SceneBase::SceneTag::PlayTag)
 	{
 		// プレイクラスを生成する.
 		mNowScene = new Play();
 	}
 	// 次のタグがリザルトシーンタグだった時.
-	else if (mReturnTag == SceneBase::SceneTag::RESULT_TAG)
+	else if (mReturnTag == SceneBase::SceneTag::ResultTag)
 	{
 		// リザルトクラスを生成する.
 		mNowScene = new Result();

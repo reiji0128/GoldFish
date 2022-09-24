@@ -3,8 +3,8 @@
 
 Button::Button(const char* fileName)
 	:mPos(Vector2::Zero)
-	,mScale(Vector2::Zero)
-	,mImgHandle(-1)
+	, mScale(Vector2::Zero)
+	, mImgHandle(-1)
 {
 	mImgHandle = LoadGraph(fileName);
 
