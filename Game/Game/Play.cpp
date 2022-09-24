@@ -8,7 +8,7 @@ Play::Play()
 	// SceneBaseクラスの初期化、タグはPlayに指定する.
 	:SceneBase(SceneBase::SceneTag::PlayTag)
 {
-	// Backgroundクラスのコンストラクタ.
+	// Backgroundクラスのコンストラクタ、Playの背景を指定する.
 	mBg = new Background(BgImgName[BgImgFileNum::PlayBg]);
 }
 
