@@ -148,12 +148,11 @@
   <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="BaseObject.h" />
+    <ClInclude Include="BlackFish.h" />
     <ClInclude Include="BlueFish.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="FishManager.h" />
-    <ClInclude Include="FishStateBase.h" />
-    <ClInclude Include="FishStateTurn.h" />
     <ClInclude Include="FPS.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GoldFish.h" />
@@ -169,17 +168,18 @@
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="BaseObject.cpp" />
+    <ClCompile Include="BlackFish.cpp" />
     <ClCompile Include="BlueFish.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Fish.cpp" />
     <ClCompile Include="FishManager.cpp" />
-    <ClCompile Include="FishStateTurn.cpp" />
     <ClCompile Include="FPS.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GoldFish.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Play.cpp" />
+    <ClCompile Include="RedFish.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="Title.cpp" />

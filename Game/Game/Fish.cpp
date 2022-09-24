@@ -1,5 +1,4 @@
 #include "Fish.h"
-#include "FishStateBase.h"
 #include "Math.h"
 #include <DxLib.h>
 
