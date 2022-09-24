@@ -7,9 +7,9 @@
 Title::Title()
 	// SceneBaseクラスのコンストラクタ、SceneTagはTitleTagにする.
 	:SceneBase(SceneBase::SceneTag::TitleTag)
-	,mStartButton(nullptr)
-	,mExitButton(nullptr)
-	,mStartFlag(false)
+	//,mStartButton(nullptr)
+	//,mExitButton(nullptr)
+	//,mStartFlag(false)
 {
 	// Backgroundクラスのコンストラクタ、引数にタイトルのBackgroundを指定する.
 	mBg = new Background(BgImgName[BgImgFileNum::TitleBg]);

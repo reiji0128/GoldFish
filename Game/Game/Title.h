@@ -37,8 +37,8 @@ public:
 	void Input() override;
 
 private:
-	Button* mStartButton;
-	Button* mExitButton;
+	//Button* mStartButton;
+	//Button* mExitButton;
 
-	bool mStartFlag;
+	//bool mStartFlag;
 };
