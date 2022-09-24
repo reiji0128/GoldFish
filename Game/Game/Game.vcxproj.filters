@@ -22,6 +22,26 @@
     <Filter Include="MainBranch\Scene">
       <UniqueIdentifier>{13840875-8cc3-4d45-b643-889ccd176b01}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainBranch\FPS">
+      <UniqueIdentifier>{101d0875-4f23-44c9-b070-5c161da80647}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainBranch\Scene\Result">
+      <UniqueIdentifier>{3892b002-e3c3-45ba-aac1-802263d046ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainBranch\Scene\Play">
+      <UniqueIdentifier>{ce331610-162c-4f74-8e03-753d27584342}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainBranch\Scene\Title">
+      <UniqueIdentifier>{b8a44440-eeed-4a4f-a66c-320a2256bee8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainBranch\Background">
+      <UniqueIdentifier>{323535fa-6732-4519-8e68-23004b2b9f56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainBranch\Button">
+      <UniqueIdentifier>{34f0467d-2b78-4d98-8fe1-855c2f3a9c1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainBranch\GameManager">
+      <UniqueIdentifier>{df5a1d20-3c1a-4280-b924-546f0f35bfc5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -34,13 +54,34 @@
     <ClInclude Include="SceneBase.h">
       <Filter>MainBranch\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Background.h">
-      <Filter>MainBranch</Filter>
+    <ClInclude Include="FPS.h">
+      <Filter>MainBranch\FPS</Filter>
     </ClInclude>
-    <ClInclude Include="GameManager.h">
-      <Filter>MainBranch\GameManager</Filter>
+    <ClInclude Include="RedFish.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
+    <ClInclude Include="Tag.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Poi.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GoldFish.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="FishStateTurn.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="FishStateBase.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="FishManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Fish.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="BlueFish.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Title.h">
@@ -53,34 +94,42 @@
       <Filter>MainBranch\Scene\Result</Filter>
     </ClInclude>
     <ClInclude Include="FPS.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    </ClInclude>
-    <ClInclude Include="FPS.h">
       <Filter>MainBranch\FPS</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>MainBranch\Background</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>MainBranch\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>MainBranch\GameManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Math.cpp">
-      <Filter>MainBranch\Math</Filter>
-    </ClCompile>
     <ClCompile Include="BaseObject.cpp">
       <Filter>MainBranch</Filter>
     </ClCompile>
     <ClCompile Include="SceneBase.cpp">
       <Filter>MainBranch\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Background.cpp">
-      <Filter>MainBranch</Filter>
+    <ClCompile Include="FPS.cpp">
+      <Filter>MainBranch\FPS</Filter>
     </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>MainBranch\GameManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
+    <ClCompile Include="GoldFish.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>MainBranch</Filter>
+    <ClCompile Include="FishStateTurn.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="FishManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Fish.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="BlueFish.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Title.cpp">
       <Filter>MainBranch\Scene\Title</Filter>
@@ -92,11 +141,22 @@
       <Filter>MainBranch\Scene\Result</Filter>
     </ClCompile>
     <ClCompile Include="FPS.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    </ClCompile>
-    <ClCompile Include="FPS.cpp">
       <Filter>MainBranch\FPS</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>MainBranch\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>MainBranch\Background</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>MainBranch</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>MainBranch\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>MainBranch\GameManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
