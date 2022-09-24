@@ -2,7 +2,7 @@
 
 // 現在のシーンの初期化.
 SceneBase::SceneTag SceneBase::mNowSceneTag =
-SceneTag::INIT_TAG;
+SceneTag::InitTag;
 
 /// <summary>
 /// コンストラクタ.
