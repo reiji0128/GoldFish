@@ -22,20 +22,6 @@
     <Filter Include="MainBranch\Scene">
       <UniqueIdentifier>{13840875-8cc3-4d45-b643-889ccd176b01}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainBranch\GameManager">
-      <UniqueIdentifier>{f431a90a-2576-4088-857f-af9611d1cdf9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainBranch\Scene\Title">
-      <UniqueIdentifier>{44161cca-f099-4e57-90f1-f97bb0d344a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainBranch\Scene\Play">
-      <UniqueIdentifier>{bd4dbc5f-d300-44b4-bfd8-a09b95ca8b90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainBranch\Scene\Result">
-      <UniqueIdentifier>{0f7a829a-71a8-4809-9ab5-a8996db3031f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainBranch\FPS">
-      <UniqueIdentifier>{5ce6292b-0940-4e38-a8f4-5dd72df3eef7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -66,8 +52,9 @@
     <ClInclude Include="Result.h">
       <Filter>MainBranch\Scene\Result</Filter>
     </ClInclude>
-    <ClInclude Include="Poi.h">
-      <Filter>MainBranch</Filter>
+    <ClInclude Include="FPS.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
     </ClInclude>
     <ClInclude Include="FPS.h">
       <Filter>MainBranch\FPS</Filter>
@@ -104,8 +91,9 @@
     <ClCompile Include="Result.cpp">
       <Filter>MainBranch\Scene\Result</Filter>
     </ClCompile>
-    <ClCompile Include="Poi.cpp">
-      <Filter>MainBranch</Filter>
+    <ClCompile Include="FPS.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
     </ClCompile>
     <ClCompile Include="FPS.cpp">
       <Filter>MainBranch\FPS</Filter>

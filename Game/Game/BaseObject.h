@@ -1,5 +1,6 @@
 #pragma once
 #include "Math.h"
+#include "Tag.h"
 
 class BaseObject
 {
@@ -8,7 +9,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	BaseObject();
+	BaseObject(const Tag tag);
 
 	/// <summary>
 	/// デストラクタ
@@ -52,6 +53,12 @@ public:
 	/// <returns>角度</returns>
 	const float& GetAngle() const { return mAngle; }
 
+	/// <summary>
+	///  タグの取得
+	/// </summary>
+	/// <returns>オブジェクトのタグ</returns>
+	Tag GetTag() const { return mTag; }
+
 // セッター //
 
 	/// <summary>
@@ -72,7 +79,7 @@ public:
 	/// <param name="angle">セットする角度</param>
 	void SetAngle(const float& angle) { mAngle = angle; }
 
-private:
+protected:
 	// 座標
 	Vector2 mPosition;
 
@@ -81,4 +88,7 @@ private:
 
 	// 角度
 	float mAngle;
+
+	// オブジェクトのタグ
+	Tag mTag;
 };
