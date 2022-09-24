@@ -15,7 +15,7 @@ enum BgImgFileNum : unsigned short
 };
 
 // 上記のenumクラスの順番で画像パスを保存する保存変数.
-const char* BgImgName[BgImgFileNum::MaxBgNum] =
+static const char* BgImgName[BgImgFileNum::MaxBgNum] =
 {
 	"Img/Bg/none.png",
 	"Img/Bg/Title.png",
