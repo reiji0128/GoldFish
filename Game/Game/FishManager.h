@@ -22,9 +22,26 @@ class BlackFish;
 class FishManager final
 {
 public:
-	FishManager();
+	/// <summary>
+	/// インスタンスの作成
+	/// </summary>
+	static void CreateInstance();
 
-	~FishManager();
+	/// <summary>
+	/// インスタンスの削除
+	/// </summary>
+	static void DeleteInstance();
+
+	/// <summary>
+	/// 更新処理
+	/// </summary>
+	/// <param name="deltaTime">1フレームの経過時間</param>
+	static void Update(float deltaTime);
+
+	/// <summary>
+	/// 描画処理
+	/// </summary>
+	static void Draw();
 
 	/// <summary>
 	/// 金魚を格納するオブジェクトプールの作成
@@ -33,7 +50,7 @@ public:
 	/// <param name="blueFishSize">生成する青色の金魚の数</param>
 	/// <param name="goldFishSize">生成する金色の金魚の数</param>
 	/// <param name="blackFishSize">生成する黒色の金魚の数</param>
-	void CreatePool(const int redFishSize,
+	static void CreatePool(const int redFishSize,
 					const int blueFishSize,
 					const int goldFishSize,
 	                const int blackFishSize);
@@ -42,18 +59,18 @@ public:
 	/// オブジェクトプールに金魚を追加
 	/// </summary>
 	/// <param name="addFish">追加する金魚</param>
-	void AddFish(Fish* addFish);
+	static void AddFish(Fish* addFish);
 
 	/// <summary>
 	/// オブジェクトプールの金魚の削除
 	/// </summary>
 	/// <param name="removeFish">削除する金魚</param>
-	void RemoveFish(Fish* removeFish);
+	static void RemoveFish(Fish* removeFish);
 
 	/// <summary>
 	/// オブジェクトプールのすべての要素の削除
 	/// </summary>
-	void RemoveAll();
+	static void RemoveAll();
 
 // ゲッター //
 
@@ -65,6 +82,19 @@ public:
 	CollisionInfo GetCollisionInfo(int i);
 
 private:
+	/// <summary>
+	/// シングルトン
+	/// </summary>
+	FishManager();
+
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
+	~FishManager();
+
+	// マネージャーの実態
+	static FishManager* mInstance;
+
 	// 当たり判定情報
 	CollisionInfo mCollisionInfo;
 

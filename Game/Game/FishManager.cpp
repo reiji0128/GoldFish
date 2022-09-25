@@ -5,13 +5,50 @@
 #include "BlueFish.h"
 #include "GoldFish.h"
 
+// FishManager実体へのポインタ定義
+FishManager* FishManager::mInstance = nullptr;
+
 FishManager::FishManager()
 {
+	mInstance = nullptr;
 }
 
 FishManager::~FishManager()
 {
 	RemoveAll();
+}
+
+void FishManager::CreateInstance()
+{
+	if (!mInstance)
+	{
+		mInstance = new FishManager;
+	}
+}
+
+void FishManager::DeleteInstance()
+{
+	if (mInstance)
+	{
+		delete mInstance;
+		mInstance = nullptr;
+	}
+}
+
+void FishManager::Update(float deltaTime)
+{
+	for (auto pool : mInstance->mFishPool)
+	{
+		pool->Update(deltaTime);
+	}
+}
+
+void FishManager::Draw()
+{
+	for (auto pool : mInstance->mFishPool)
+	{
+		pool->Draw();
+	}
 }
 
 /// <summary>
@@ -25,18 +62,18 @@ void FishManager::CreatePool(const int redFishSize, const int blueFishSize, cons
 {
 	for (int i = 0; redFishSize; i++)
 	{
-		mRedFish = new RedFish(Tag::RedFish);
-		AddFish(mRedFish);
+		mInstance->mRedFish = new RedFish(Tag::RedFish);
+		AddFish(mInstance->mRedFish);
 	}
 	for (int i = 0; blueFishSize; i++)
 	{
-		mBlueFish = new BlueFish(Tag::BlueFish);
-		AddFish(mBlueFish);
+		mInstance->mBlueFish = new BlueFish(Tag::BlueFish);
+		AddFish(mInstance->mBlueFish);
 	}
 	for (int i = 0; goldFishSize; i++)
 	{
-		mGoldFish = new GoldFish(Tag::GoldFish);
-		AddFish(mGoldFish);
+		mInstance->mGoldFish = new GoldFish(Tag::GoldFish);
+		AddFish(mInstance->mGoldFish);
 	}
 }
 
@@ -46,7 +83,7 @@ void FishManager::CreatePool(const int redFishSize, const int blueFishSize, cons
 /// <param name="addFish">追加する金魚</param>
 void FishManager::AddFish(Fish* addFish)
 {
-	mFishPool.push_back(addFish);
+	mInstance->mFishPool.push_back(addFish);
 }
 
 /// <summary>
@@ -55,7 +92,7 @@ void FishManager::AddFish(Fish* addFish)
 /// <param name="removeFish">削除する金魚</param>
 void FishManager::RemoveFish(Fish* addFish)
 {
-	mFishPool.pop_back();
+	mInstance->mFishPool.pop_back();
 }
 
 /// <summary>
@@ -63,9 +100,9 @@ void FishManager::RemoveFish(Fish* addFish)
 /// </summary>
 void FishManager::RemoveAll()
 {
-	for (int i = 0; i < mFishPool.size(); i++)
+	for (int i = 0; i < mInstance->mFishPool.size(); i++)
 	{
-		delete mFishPool.back();
+		delete mInstance->mFishPool.back();
 	}
 }
 
