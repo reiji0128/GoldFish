@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseObject.h"
+#include "Tag.h"
 
 /// <summary>
 /// ポイクラス
@@ -11,7 +12,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	Poi(const int num);
+	Poi(Tag tag, const int num);
 
 	/// <summary>
 	/// デストラクタ
@@ -58,16 +59,25 @@ private:
 	/// </summary>
 	void CheckHP();
 
-	// 座標
-	float mPositionX;
-	float mPositionY;
+	/// <summary>
+	/// スコア計算とHP処理
+	/// </summary>
+	/// <param name="tag">金魚の種類</param>
+	void CalcScoreAndHP(Tag tag);
+
+	/// <summary>
+	/// ポイ修理
+	/// </summary>
+	/// <param name="deltaTime"></param>
+	void PoiRepair(float deltaTime);
+
+	/// <summary>
+	/// 当たり判定
+	/// </summary>
+	void Coll();
 
 	// スケール（変動用）
-	float mScale;
-
-	// スケール
-	float mScaleX;
-	float mScaleY;
+	float mFloatScale;
 
 	// 元のスケールの半分
 	float mHalfScaleX;
@@ -105,9 +115,18 @@ private:
 
 	// ボーナス用
 	bool mIsBonus;
-	//float mBonusCounter;
+	int mBonusCount;
+	float mBonusCounter;
 
 	// ポイの耐久値
 	int mPoiHP;
+
+	// ポイが生きてるかどうか
+	bool mAlive;
+
+	float deadTime;
+
+	// スコア
+	int mScore;
 
 };

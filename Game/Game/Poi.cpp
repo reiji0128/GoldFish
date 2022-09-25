@@ -1,51 +1,58 @@
 #include "Poi.h"
 #include "Dxlib.h"
+#include "FishManager.h"
+#include <math.h>
+
 
 /// <summary>
 /// コンストラクタ
 /// </summary>
-Poi::Poi(const int num)
-	:mImage(0)
-	,mPositionX(0)
-	,mPositionY(0)
-	,mScaleX(128.0f)
-	,mScaleY(256.0f)
-	,mScale(1.0f)
+Poi::Poi(Tag tag, const int num)
+	:BaseObject(tag)
+	,mImage(0)
+	,mFloatScale(1.0f)
 	,mPadNum(0)
 	,mInputX(0)
 	,mInputY(0)
 	,mSpeed(400.0f)
 	,mAnimCounter(0)
 	,mAnimNum(0)
+	,mBonusCount(0)
+	,mBonusCounter(0)
 	,mPoiHP(24)
+	,deadTime(0)
+	,mScore(0)
 {
 	const char* scoopImgStr = NULL;
 	const char* breakImgStr = NULL;
 	if (num == 1)
 	{
-		scoopImgStr = "data/PlayerScoop.png";
-		breakImgStr = "data/PlayerBreak.png";
-		mPositionX = 480;
-		mPositionY = 810;
+		scoopImgStr = "Img/PlayerScoop.png";
+		breakImgStr = "Img/PlayerBreak.png";
+		mPosition.x = 480.0f;
+		mPosition.y = 810.0f;
 		mPadNum = DX_INPUT_PAD1;
 	}
 	else if (num == 2)
 	{
-		scoopImgStr = "data/PlayerScoop2.png";
-		breakImgStr = "data/PlayerBreak2,png";
-		mPositionX = 1440;
-		mPositionY = 810;
+		scoopImgStr = "Img/PlayerScoop2.png";
+		breakImgStr = "Img/PlayerBreak2,png";
+		mPosition.x = 1440.0f;
+		mPosition.y = 810.0f;
 		mPadNum = DX_INPUT_PAD2;
 	}
 
-	LoadDivGraph(scoopImgStr, 5, 5, 1, (int)mScaleX, (int)mScaleY, mScoopImg);
-	LoadDivGraph(breakImgStr, 5, 5, 1, (int)mScaleX, (int)mScaleY, mBreakImg);
-	mHalfScaleX = mScaleX / 2.0f;
-	mHalfScaleY = mScaleY / 2.0f;
+	mScale.x    = 128.0f;
+	mScale.y    = 256.0f;
+	mHalfScaleX = mScale.x / 2.0f;
+	mHalfScaleY = mScale.y / 2.0f;
 	mIsBonus      = false;
 	mIsScoop      = false;
 	mIsFirstFrame = false;
 	mPrevInputA   = false;
+	mAlive = true;
+	LoadDivGraph(scoopImgStr, 5, 5, 1, (int)mScale.x, (int)mScale.y, mScoopImg);
+	LoadDivGraph(breakImgStr, 5, 5, 1, (int)mScale.x, (int)mScale.y, mBreakImg);
 	
 }
 
@@ -76,6 +83,11 @@ void Poi::UpdateObject(float deltaTime)
 
 	// 体力確認
 	CheckHP();
+
+	// ポイの修理
+	PoiRepair();
+
+
 }
 
 /// <summary>
@@ -83,7 +95,7 @@ void Poi::UpdateObject(float deltaTime)
 /// </summary>
 void Poi::Draw()
 {
-	DrawRotaGraph((int)mPositionX, (int)mPositionY, mScale, 0, mImage, TRUE);
+	DrawRotaGraph((int)mPosition.x, (int)mPosition.y, mFloatScale, 0, mImage, TRUE);
 }
 
 /// <summary>
@@ -98,25 +110,25 @@ void Poi::Move(float deltaTime)
 	// 右に倒れていたら
 	if (mInputX > 0)
 	{
-		mPositionX += mSpeed * deltaTime;
+		mPosition.x += mSpeed * deltaTime;
 	}
 
 	// 左に倒れていたら
 	if (mInputX < 0)
 	{
-		mPositionX -= mSpeed * deltaTime;
+		mPosition.x -= mSpeed * deltaTime;
 	}
 
 	// 上に倒れていたら
 	if (mInputY > 0)
 	{
-		mPositionY += mSpeed * deltaTime;
+		mPosition.y += mSpeed * deltaTime;
 	}
 
 	// 下に倒れていたら
 	if (mInputY < 0)
 	{
-		mPositionY -= mSpeed * deltaTime;
+		mPosition.y -= mSpeed * deltaTime;
 	}
 }
 
@@ -125,24 +137,24 @@ void Poi::Move(float deltaTime)
 /// </summary>
 void Poi::AdjustPosition()
 {
-	if (mPositionX - (mHalfScaleX * mScale) <= 0)
+	if (mPosition.x - (mHalfScaleX * mFloatScale) <= 0)
 	{
-		mPositionX = (mHalfScaleX * mScale);
+		mPosition.x = (mHalfScaleX * mFloatScale);
 	}
 
-	if (mPositionX + (mHalfScaleX * mScale) >= 1920)
+	if (mPosition.x + (mHalfScaleX * mFloatScale) >= 1920)
 	{
-		mPositionX = 1920 - (mHalfScaleX * mScale);
+		mPosition.x = 1920 - (mHalfScaleX * mFloatScale);
 	}
 
-	if (mPositionY - (mHalfScaleY * mScale) <= 0)
+	if (mPosition.y - (mHalfScaleY * mFloatScale) <= 0)
 	{
-		mPositionY = (mHalfScaleY * mScale);
+		mPosition.y = (mHalfScaleY * mFloatScale);
 	}
 
-	if (mPositionY >= 1080)
+	if (mPosition.y >= 1080)
 	{
-		mPositionY = 1080;
+		mPosition.y = 1080;
 	}
 }
 
@@ -152,20 +164,31 @@ void Poi::AdjustPosition()
 /// <param name="deltaTime">1フレームの経過時間</param>
 void Poi::BonusTime(float deltaTime)
 {
-	if (mIsBonus)
+	if (mBonusCount > 2)
 	{
-		mScale = 2.0f;
-		//mBonusCounter+=deltaTime;
+		mIsBonus = true;
 	}
 	else
 	{
-		mScale = 1.0f;
+		mIsBonus = false;
 	}
 
-	/*if (mBonusCounter > 5.0f)
+	if (mIsBonus)
+	{
+		mFloatScale = 2.0f;
+		mBonusCounter+=deltaTime;
+	}
+	else
+	{
+		mFloatScale = 1.0f;
+	}
+
+	if (mBonusCounter > 5.0f)
 	{
 		mBonusCounter = 0;
-	}*/
+		mBonusCount = 0;
+		mIsBonus = false;
+	}
 }
 
 /// <summary>
@@ -174,29 +197,52 @@ void Poi::BonusTime(float deltaTime)
 /// <param name="deltaTime">1フレームの経過時間</param>
 void Poi::Scoop(float deltaTime)
 {
+	// ボタンが押されていなかったら
 	if ((GetJoypadInputState(mPadNum) & PAD_INPUT_3) == 0)
 	{
+		// 前フレームで押されていないことにする
 		mPrevInputA = FALSE;
 	}
 	else
 	{
-		if (!mPrevInputA)
+		// 前フレームで押されておらず
+		// 掬っておらず
+		// 生きていたら
+		if (!mPrevInputA && !mIsScoop && mAlive)
 		{
-			if (!mIsScoop)
-			{
-				mIsScoop = TRUE;
-				mIsFirstFrame = TRUE;
-			}
+			// 掬っている状態にする
+			mIsScoop = TRUE;
+			// 掬い初めて1フレーム目
+			mIsFirstFrame = TRUE;
+			// 入水時の体力減少
+			mPoiHP -= 3;
+			// 押されていることにする
 			mPrevInputA = TRUE;
 		}
+		if (mPoiHP > 0)
+		{
+			mAlive = true;
+		}
+		else
+		{
+			mAlive = false;
+		}
+		
 	}
 
-	if (mIsScoop)
+	// ポイが生きていて掬っているなら
+	if (mAlive && mIsScoop)
 	{
+		// 1フレーム目なら
 		if (mIsFirstFrame)
 		{
+			// アニメーションのカウンタ初期化
 			mAnimCounter = 0;
 			mIsFirstFrame = FALSE;
+
+			// ポイと金魚の当たり判定を調べる
+			Coll();
+
 		}
 		mAnimNum = int(mAnimCounter * 8);
 		mImage = mScoopImg[mAnimNum];
@@ -239,4 +285,102 @@ void Poi::CheckHP()
 			mImage = mBreakImg[0];
 		}
 	}
+}
+
+/// <summary>
+/// スコア計算とHP処理
+/// </summary>
+/// <param name="tag">金魚の種類</param>
+void Poi::CalcScoreAndHP(Tag tag)
+{
+	// 1Pが赤い金魚を掬ったら
+	// 2Pが青い金魚を掬ったら
+	if ((tag == Tag::RedFish && mPadNum == DX_INPUT_PAD1) ||
+		(tag == Tag::BlueFish && mPadNum == DX_INPUT_PAD2))
+	{
+		mScore += 10;
+		mPoiHP -= 3;
+		mBonusCount++;
+	}
+	// お互いの色を掬ったら
+	else if ((tag == Tag::RedFish && mPadNum == DX_INPUT_PAD2) ||
+		(tag == Tag::BlueFish && mPadNum == DX_INPUT_PAD1))
+	{
+		mPoiHP -= 4;
+	}
+
+	// 金の金魚を掬ったら
+	if (tag == Tag::GoldFish)
+	{
+		mScore += 20;
+		mPoiHP -= 5;
+	}
+
+	// 黒の金魚を掬ったら
+	if (tag == Tag::BlackFish)
+	{
+		mScore += 15;
+		mPoiHP -= 4;
+	}
+
+	// 金魚以外を掬ったら
+	if (tag == Tag::FailureFish)
+	{
+		mPoiHP -= 6;
+	}
+}
+
+/// <summary>
+/// ポイの修理
+/// </summary>
+/// <param name="deltaTime"></param>
+void Poi::PoiRepair(float deltaTime)
+{
+	if (!mAlive)
+	{
+		deadTime += deltaTime;
+	}
+
+	if (deadTime > 3.0f)
+	{
+		deadTime = 0;
+		mAlive = true;
+		mPoiHP = 24;
+	}
+}
+
+/// <summary>
+/// 当たり判定
+/// </summary>
+void Poi::Coll()
+{
+	float pPosX   = mPosition.x - 64.0f;
+	float pPosY   = mPosition.y;
+	float pRadius = mHalfScaleX;
+
+
+	CollisionInfo tmpFish;
+	if (int i = 0; i < 30; i++)
+	{
+		tmpFish = FishManager::GetCollisionInfo(i);
+
+		float fPosX = tmpFish.pos.x;
+		float fPosY = tmpFish.pos.y;
+		float fRadius = 32.0f;
+
+		float vecX = pPosX - fPosX;
+		float vecY = pPosY - fPosY;
+		float vec = sqrt(vecX * vecX + vecY * vecY);
+
+		if (vec <= pRadius + fRadius)
+		{
+			// 当たっている
+			CalcScoreAndHP(tmpFish.tag);
+		}
+		else
+		{
+			// 当たっていない
+		}
+	}
+	
 }
