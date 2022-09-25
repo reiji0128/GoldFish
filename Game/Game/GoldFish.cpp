@@ -1,6 +1,5 @@
 #include "GoldFish.h"
 #include <DxLib.h>
-#include "FishStateBase.h"
 #include "Math.h"
 
 GoldFish::GoldFish(Tag tag)

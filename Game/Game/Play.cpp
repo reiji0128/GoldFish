@@ -1,5 +1,6 @@
 #include "Play.h"
 #include "DxLib.h"
+#include "FishManager.h"
 
 /// <summary>
 /// コンストラクタ.
@@ -43,6 +44,8 @@ void Play::Draw()
 {
 	// Backgroundクラスの描画処理.
 	mBg->Draw();
+	// FishManagerの描画処理
+	FishManager::Draw();
 }
 
 /// <summary>

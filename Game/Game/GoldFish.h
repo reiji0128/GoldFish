@@ -1,7 +1,5 @@
 #pragma once
 #include "Fish.h"
-#include "FishStateBase.h"
-
 
 class GoldFish : public Fish
 {
