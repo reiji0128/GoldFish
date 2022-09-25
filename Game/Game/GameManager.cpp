@@ -5,6 +5,7 @@
 #include "Play.h"
 #include "Result.h"
 
+#include "FishManager.h"
 //-----------------必要な時にヘッダーファイルをインクルードしてください.-------------------//
 
 /// <summary>
@@ -45,6 +46,7 @@ bool GameManager::Initialize()
 	// 1つしか実態を持たないクラスの生成.
 	// 例）UIManager::CreateInstance();
 	//     ActorManager::CreateInstance();
+	FishManager::CreateInstance();
 
 	// 問題がなければtrueを返す.
 	return true;
@@ -163,6 +165,8 @@ void GameManager::UpdateGame()
 
 	//----------------それぞれの更新処理---------------------
 
+	// FishManagerの更新処理
+	FishManager::Update(deltaTime);
 	//-------------------------------------
 
 	// fpsクラスを更新する.
