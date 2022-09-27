@@ -157,6 +157,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GoldFish.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="PoiBase.h" />
     <ClInclude Include="RedFish.h" />
     <ClInclude Include="Tag.h" />
     <ClInclude Include="Play.h" />
