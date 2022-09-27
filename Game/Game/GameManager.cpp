@@ -19,6 +19,8 @@ GameManager::GameManager()
 	,mNowScene(nullptr)                       // 現在のシーンを保存する変数.
 	,mReturnTag(SceneBase::mNowSceneTag)      // 次のシーンのタグを保存する変数.
 	,mFps(nullptr)                            // fpsクラスを保存する変数.
+	,mPoi1(nullptr)                           // プレイヤー1を保存する変数.
+	,mPoi2(nullptr)                           // プレイヤー2を保存する変数.
 {
 }
 
@@ -47,6 +49,10 @@ bool GameManager::Initialize()
 	// 例）UIManager::CreateInstance();
 	//     ActorManager::CreateInstance();
 	FishManager::CreateInstance();
+
+	// プレイヤーの生成
+	mPoi1 = new Poi(1);
+	mPoi2 = new Poi(2);
 
 	// 問題がなければtrueを返す.
 	return true;
@@ -99,6 +105,9 @@ void GameManager::terminate()
 	// その他単体のクラスを持つ変数の削除.
 	delete mNowScene;
 	delete mFps;
+
+	delete mPoi1;
+	delete mPoi2;
 
 	// Dxlibの終了処理.
 	DxLib_End();
@@ -171,6 +180,11 @@ void GameManager::UpdateGame()
 
 	// fpsクラスを更新する.
 	mFps->Update();
+
+	//-------------------------------------
+	// プレイヤーの更新.
+	mPoi1->Update(deltaTime);
+	mPoi2->Update(deltaTime);
 }
 
 /// <summary>
@@ -187,6 +201,10 @@ void GameManager::DrawGame()
 	mNowScene->Draw();
 
 	//---------------------------------------
+
+	// プレイヤーの描画.
+	mPoi1->Draw();
+	mPoi2->Draw();
 
 	// 裏スクリーンに描画したものを表に表示する.
 	ScreenFlip();

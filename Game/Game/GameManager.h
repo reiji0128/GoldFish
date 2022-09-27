@@ -1,6 +1,7 @@
 #pragma once
 #include "SceneBase.h"
 #include "FPS.h"
+#include "Poi.h"
 
 //------------------------------
 // ここにゲームプレイ中に必要なヘッダーをインクルードしてください.
@@ -69,6 +70,9 @@ private:
 	SceneBase::SceneTag mReturnTag;
 
 	FPS* mFps;
+
+	Poi* mPoi1;
+	Poi* mPoi2;
 
 public:
 	void SetFirstScene(SceneBase* firstScene)
