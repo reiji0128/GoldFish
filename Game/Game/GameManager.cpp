@@ -96,9 +96,12 @@ void GameManager::terminate()
 	// 例）UIManager::DeleteInstance();
 	//     ActorManager::DeleteInstance();
 
+	FishManager::DeleteInstance();
+
 	// その他単体のクラスを持つ変数の削除.
 	delete mNowScene;
 	delete mFps;
+
 
 	// Dxlibの終了処理.
 	DxLib_End();
