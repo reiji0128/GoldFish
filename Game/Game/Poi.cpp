@@ -3,7 +3,6 @@
 #include "FishManager.h"
 #include <math.h>
 
-
 /// <summary>
 /// コンストラクタ
 /// </summary>
@@ -85,7 +84,6 @@ void Poi::Update(float deltaTime)
 
 	// ポイの修理
 	PoiRepair(deltaTime);
-
 
 }
 
