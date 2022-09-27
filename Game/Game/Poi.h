@@ -1,18 +1,13 @@
 #pragma once
-#include "BaseObject.h"
 #include "Tag.h"
 
-/// <summary>
-/// ポイクラス
-/// BaseObjectを継承している
-/// </summary>
-class Poi : public BaseObject
+class Poi
 {
 public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	Poi(Tag tag, const int num);
+	Poi(const int num);
 
 	/// <summary>
 	/// デストラクタ
@@ -23,7 +18,7 @@ public:
 	/// オブジェクトの更新処理
 	/// </summary>
 	/// <param name="deltaTime">1フレームの経過時間</param>
-	void UpdateObject(float deltaTime)override;
+	void Update(float deltaTime);
 
 	/// <summary>
 	/// 描画処理
@@ -75,6 +70,12 @@ private:
 	/// 当たり判定
 	/// </summary>
 	void Coll();
+
+	float mPositionX;
+	float mPositionY;
+
+	float mScaleX;
+	float mScaleY;
 
 	// スケール（変動用）
 	float mFloatScale;

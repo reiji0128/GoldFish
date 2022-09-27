@@ -7,9 +7,8 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-Poi::Poi(Tag tag, const int num)
-	:BaseObject(tag)
-	,mImage(0)
+Poi::Poi(const int num)
+	:mImage(0)
 	,mFloatScale(1.0f)
 	,mPadNum(0)
 	,mInputX(0)
@@ -27,32 +26,32 @@ Poi::Poi(Tag tag, const int num)
 	const char* breakImgStr = NULL;
 	if (num == 1)
 	{
-		scoopImgStr = "Img/PlayerScoop.png";
-		breakImgStr = "Img/PlayerBreak.png";
-		mPosition.x = 480.0f;
-		mPosition.y = 810.0f;
+		scoopImgStr = "Img/Player/Scoop.png";
+		breakImgStr = "Img/Player/Break.png";
+		mPositionX = 480.0f;
+		mPositionY = 810.0f;
 		mPadNum = DX_INPUT_PAD1;
 	}
 	else if (num == 2)
 	{
-		scoopImgStr = "Img/PlayerScoop2.png";
-		breakImgStr = "Img/PlayerBreak2,png";
-		mPosition.x = 1440.0f;
-		mPosition.y = 810.0f;
+		scoopImgStr = "Img/Player/Scoop2.png";
+		breakImgStr = "Img/Player/Break2,png";
+		mPositionX = 1440.0f;
+		mPositionY = 810.0f;
 		mPadNum = DX_INPUT_PAD2;
 	}
 
-	mScale.x    = 128.0f;
-	mScale.y    = 256.0f;
-	mHalfScaleX = mScale.x / 2.0f;
-	mHalfScaleY = mScale.y / 2.0f;
+	mScaleX    = 128.0f;
+	mScaleY    = 256.0f;
+	mHalfScaleX = mScaleX / 2.0f;
+	mHalfScaleY = mScaleY / 2.0f;
 	mIsBonus      = false;
 	mIsScoop      = false;
 	mIsFirstFrame = false;
 	mPrevInputA   = false;
 	mAlive = true;
-	LoadDivGraph(scoopImgStr, 5, 5, 1, (int)mScale.x, (int)mScale.y, mScoopImg);
-	LoadDivGraph(breakImgStr, 5, 5, 1, (int)mScale.x, (int)mScale.y, mBreakImg);
+	LoadDivGraph(scoopImgStr, 5, 5, 1, (int)mScaleX, (int)mScaleY, mScoopImg);
+	LoadDivGraph(breakImgStr, 5, 5, 1, (int)mScaleX, (int)mScaleY, mBreakImg);
 	
 }
 
@@ -67,7 +66,7 @@ Poi::~Poi()
 /// オブジェクトの更新処理
 /// </summary>
 /// <param name="deltaTime">1フレームの経過時間</param>
-void Poi::UpdateObject(float deltaTime)
+void Poi::Update(float deltaTime)
 {
 	// 移動
 	Move(deltaTime);
@@ -85,7 +84,7 @@ void Poi::UpdateObject(float deltaTime)
 	CheckHP();
 
 	// ポイの修理
-	PoiRepair();
+	PoiRepair(deltaTime);
 
 
 }
@@ -95,7 +94,7 @@ void Poi::UpdateObject(float deltaTime)
 /// </summary>
 void Poi::Draw()
 {
-	DrawRotaGraph((int)mPosition.x, (int)mPosition.y, mFloatScale, 0, mImage, TRUE);
+	DrawRotaGraph((int)mPositionX, (int)mPositionY, mFloatScale, 0, mImage, TRUE);
 }
 
 /// <summary>
@@ -110,25 +109,25 @@ void Poi::Move(float deltaTime)
 	// 右に倒れていたら
 	if (mInputX > 0)
 	{
-		mPosition.x += mSpeed * deltaTime;
+		mPositionX += mSpeed * deltaTime;
 	}
 
 	// 左に倒れていたら
 	if (mInputX < 0)
 	{
-		mPosition.x -= mSpeed * deltaTime;
+		mPositionX -= mSpeed * deltaTime;
 	}
 
 	// 上に倒れていたら
 	if (mInputY > 0)
 	{
-		mPosition.y += mSpeed * deltaTime;
+		mPositionY += mSpeed * deltaTime;
 	}
 
 	// 下に倒れていたら
 	if (mInputY < 0)
 	{
-		mPosition.y -= mSpeed * deltaTime;
+		mPositionY -= mSpeed * deltaTime;
 	}
 }
 
@@ -137,24 +136,24 @@ void Poi::Move(float deltaTime)
 /// </summary>
 void Poi::AdjustPosition()
 {
-	if (mPosition.x - (mHalfScaleX * mFloatScale) <= 0)
+	if (mPositionX - (mHalfScaleX * mFloatScale) <= 0)
 	{
-		mPosition.x = (mHalfScaleX * mFloatScale);
+		mPositionX = (mHalfScaleX * mFloatScale);
 	}
 
-	if (mPosition.x + (mHalfScaleX * mFloatScale) >= 1920)
+	if (mPositionX + (mHalfScaleX * mFloatScale) >= 1920)
 	{
-		mPosition.x = 1920 - (mHalfScaleX * mFloatScale);
+		mPositionX = 1920 - (mHalfScaleX * mFloatScale);
 	}
 
-	if (mPosition.y - (mHalfScaleY * mFloatScale) <= 0)
+	if (mPositionY - (mHalfScaleY * mFloatScale) <= 0)
 	{
-		mPosition.y = (mHalfScaleY * mFloatScale);
+		mPositionY = (mHalfScaleY * mFloatScale);
 	}
 
-	if (mPosition.y >= 1080)
+	if (mPositionY >= 1080)
 	{
-		mPosition.y = 1080;
+		mPositionY = 1080;
 	}
 }
 
@@ -354,13 +353,13 @@ void Poi::PoiRepair(float deltaTime)
 /// </summary>
 void Poi::Coll()
 {
-	float pPosX   = mPosition.x - 64.0f;
-	float pPosY   = mPosition.y;
+	float pPosX   = mPositionX - 64.0f;
+	float pPosY   = mPositionY;
 	float pRadius = mHalfScaleX;
 
 
 	CollisionInfo tmpFish;
-	if (int i = 0; i < 30; i++)
+	for (int i = 0; i < 30; i++)
 	{
 		tmpFish = FishManager::GetCollisionInfo(i);
 

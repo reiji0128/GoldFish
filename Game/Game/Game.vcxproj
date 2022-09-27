@@ -179,6 +179,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Play.cpp" />
+    <ClCompile Include="Poi.cpp" />
     <ClCompile Include="RedFish.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="SceneBase.cpp" />
