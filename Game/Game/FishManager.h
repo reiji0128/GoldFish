@@ -79,7 +79,7 @@ public:
 	/// </summary>
 	/// <param name="i">æ“¾‚·‚é—v‘f”Ô†</param>
 	/// <returns>“–‚½‚è”»’èî•ñ</returns>
-	CollisionInfo GetCollisionInfo(int i);
+	static CollisionInfo GetCollisionInfo(int i);
 
 private:
 	/// <summary>

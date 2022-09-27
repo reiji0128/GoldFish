@@ -113,8 +113,8 @@ void FishManager::RemoveAll()
 /// <returns>“–‚½‚è”»’èî•ñ</returns>
 CollisionInfo FishManager::GetCollisionInfo(int i)
 {
-	mCollisionInfo.pos = mFishPool[i]->GetPosition();
-	mCollisionInfo.tag = mFishPool[i]->GetTag();
+	mInstance->mCollisionInfo.pos = mInstance->mFishPool[i]->GetPosition();
+	mInstance->mCollisionInfo.tag = mInstance->mFishPool[i]->GetTag();
 
-	return mCollisionInfo;
+	return mInstance->mCollisionInfo;
 }
