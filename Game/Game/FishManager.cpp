@@ -4,6 +4,7 @@
 #include "RedFish.h"
 #include "BlueFish.h"
 #include "GoldFish.h"
+#include "BlackFish.h"
 
 // FishManager実体へのポインタ定義
 FishManager* FishManager::mInstance = nullptr;
@@ -60,20 +61,25 @@ void FishManager::Draw()
 /// <param name="blackFishSize">生成する黒色の金魚の数</param>
 void FishManager::CreatePool(const int redFishSize, const int blueFishSize, const int goldFishSize, const int blackFishSize)
 {
-	for (int i = 0; redFishSize; i++)
+	for (int i = 0; i < redFishSize; i++)
 	{
 		mInstance->mRedFish = new RedFish(Tag::RedFish);
 		AddFish(mInstance->mRedFish);
 	}
-	for (int i = 0; blueFishSize; i++)
+	for (int i = 0; i < blueFishSize; i++)
 	{
 		mInstance->mBlueFish = new BlueFish(Tag::BlueFish);
 		AddFish(mInstance->mBlueFish);
 	}
-	for (int i = 0; goldFishSize; i++)
+	for (int i = 0; i < goldFishSize; i++)
 	{
 		mInstance->mGoldFish = new GoldFish(Tag::GoldFish);
 		AddFish(mInstance->mGoldFish);
+	}
+	for (int i = 0; i < blackFishSize; i++)
+	{
+		mInstance->mBlackFish = new BlackFish(Tag::BlackFish);
+		AddFish(mInstance->mBlackFish);
 	}
 }
 
