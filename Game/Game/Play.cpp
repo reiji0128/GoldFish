@@ -11,8 +11,6 @@ Play::Play()
 {
 	// Backgroundクラスのコンストラクタ、Playの背景を指定する.
 	mBg = new Background(BgImgName[BgImgFileNum::PlayBg]);
-
-	FishManager::CreatePool(1, 0, 0, 0);
 }
 
 /// <summary>
