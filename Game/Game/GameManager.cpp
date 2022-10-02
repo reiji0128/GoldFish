@@ -101,6 +101,7 @@ void GameManager::terminate()
 	// 1つしか実態を持たないクラスの削除.
 	// 例）UIManager::DeleteInstance();
 	//     ActorManager::DeleteInstance();
+	FishManager::DeleteInstance();
 
 	// その他単体のクラスを持つ変数の削除.
 	delete mNowScene;

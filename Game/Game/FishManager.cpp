@@ -9,26 +9,41 @@
 // FishManager実体へのポインタ定義
 FishManager* FishManager::mInstance = nullptr;
 
+/// <summary>
+/// コンストラクタ
+/// </summary>
 FishManager::FishManager()
 {
 	mInstance = nullptr;
 }
 
+/// <summary>
+/// デストラクタ
+/// </summary>
 FishManager::~FishManager()
 {
+	// プールの全要素を解放&削除
 	RemoveAll();
 }
 
+/// <summary>
+/// マネージャーのインスタンス作成
+/// </summary>
 void FishManager::CreateInstance()
 {
+	// nullptrなら生成
 	if (!mInstance)
 	{
 		mInstance = new FishManager;
 	}
 }
 
+/// <summary>
+/// マネージャーの削除
+/// </summary>
 void FishManager::DeleteInstance()
 {
+	// nullptrでなければ解放
 	if (mInstance)
 	{
 		delete mInstance;
@@ -36,6 +51,10 @@ void FishManager::DeleteInstance()
 	}
 }
 
+/// <summary>
+/// マネージャーの更新処理
+/// </summary>
+/// <param name="deltaTime">1フレームの経過時間</param>
 void FishManager::Update(float deltaTime)
 {
 	for (auto pool : mInstance->mFishPool)
@@ -44,6 +63,9 @@ void FishManager::Update(float deltaTime)
 	}
 }
 
+/// <summary>
+/// 描画処理
+/// </summary>
 void FishManager::Draw()
 {
 	for (auto pool : mInstance->mFishPool)
@@ -61,21 +83,28 @@ void FishManager::Draw()
 /// <param name="blackFishSize">生成する黒色の金魚の数</param>
 void FishManager::CreatePool(const int redFishSize, const int blueFishSize, const int goldFishSize, const int blackFishSize)
 {
+	// 赤色の金魚の追加
 	for (int i = 0; i < redFishSize; i++)
 	{
 		mInstance->mRedFish = new RedFish(Tag::RedFish);
 		AddFish(mInstance->mRedFish);
 	}
+
+	// 青色の金魚の追加
 	for (int i = 0; i < blueFishSize; i++)
 	{
 		mInstance->mBlueFish = new BlueFish(Tag::BlueFish);
 		AddFish(mInstance->mBlueFish);
 	}
+
+	// 金色の金魚の追加
 	for (int i = 0; i < goldFishSize; i++)
 	{
 		mInstance->mGoldFish = new GoldFish(Tag::GoldFish);
 		AddFish(mInstance->mGoldFish);
 	}
+
+	// 黒色の金魚の追加
 	for (int i = 0; i < blackFishSize; i++)
 	{
 		mInstance->mBlackFish = new BlackFish(Tag::BlackFish);
@@ -106,9 +135,11 @@ void FishManager::RemoveFish(Fish* addFish)
 /// </summary>
 void FishManager::RemoveAll()
 {
-	for (int i = 0; i < mInstance->mFishPool.size(); i++)
+	// プールの最後の要素をdeleteした後に削除
+	while (!mInstance->mFishPool.empty())
 	{
 		delete mInstance->mFishPool.back();
+		mInstance->mFishPool.pop_back();
 	}
 }
 
