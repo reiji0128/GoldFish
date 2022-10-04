@@ -1,6 +1,7 @@
 #include "Play.h"
 #include "DxLib.h"
 #include "FishManager.h"
+#include "PoiManager.h"
 
 /// <summary>
 /// コンストラクタ.
@@ -47,6 +48,9 @@ void Play::Draw()
 	mBg->Draw();
 	// FishManagerの描画処理
 	FishManager::Draw();
+
+	PoiManager::Draw();
+	
 }
 
 /// <summary>
