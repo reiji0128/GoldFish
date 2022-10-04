@@ -14,8 +14,21 @@ enum class FishState
 class Fish : public BaseObject
 {
 public:
+	/// <summary>
+	/// コンストラクタ
+	/// </summary>
+	/// <param name="tag">1フレームの経過時間</param>
 	Fish(Tag tag);
+
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
 	~Fish();
+
+	/// <summary>
+	/// 描画処理
+	/// </summary>
+	virtual void Draw() {};
 
 	/// <summary>
 	/// 止まっている処理
