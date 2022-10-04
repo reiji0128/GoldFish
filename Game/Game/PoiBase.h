@@ -44,12 +44,6 @@ protected:
     void Scoop(float deltaTime);
 
     /// <summary>
-    /// ‘Ì—ÍŒ¸­ˆ—
-    /// </summary>
-    /// <param name="num">Œ¸­‚³‚¹‚é”’l</param>
-    void DecHP(int num);
-
-    /// <summary>
     /// ‘Ì—ÍŠm”Fˆ—
     /// </summary>
     void CheckHP();
