@@ -158,10 +158,12 @@
     <ClInclude Include="GoldFish.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="PoiBase.h" />
+    <ClInclude Include="PoiBlue.h" />
+    <ClInclude Include="PoiManager.h" />
+    <ClInclude Include="PoiRed.h" />
     <ClInclude Include="RedFish.h" />
     <ClInclude Include="Tag.h" />
     <ClInclude Include="Play.h" />
-    <ClInclude Include="Poi.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="Title.h" />
@@ -180,8 +182,10 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Play.cpp" />
-    <ClCompile Include="Poi.cpp" />
     <ClCompile Include="PoiBase.cpp" />
+    <ClCompile Include="PoiBlue.cpp" />
+    <ClCompile Include="PoiManager.cpp" />
+    <ClCompile Include="PoiRed.cpp" />
     <ClCompile Include="RedFish.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="SceneBase.cpp" />
