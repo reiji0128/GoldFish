@@ -4,6 +4,13 @@
 class PoiBlue : public PoiBase
 {
 public:
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
     PoiBlue();
-    ~PoiBlue();
+
+    /// <summary>
+    /// デストラクタ
+    /// </summary>
+    virtual ~PoiBlue();
 };
