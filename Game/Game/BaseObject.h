@@ -31,7 +31,7 @@ public:
 	/// <summary>
 	/// •`‰æˆ—
 	/// </summary>
-	void Draw();
+	virtual void Draw();
 
 // ƒQƒbƒ^[ //
 
