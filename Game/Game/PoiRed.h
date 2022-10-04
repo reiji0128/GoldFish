@@ -4,7 +4,13 @@
 class PoiRed : public PoiBase
 {
 public:
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
     PoiRed();
-    ~PoiRed();
-private:
+
+    /// <summary>
+    /// デストラクタ
+    /// </summary>
+    virtual ~PoiRed();
 };

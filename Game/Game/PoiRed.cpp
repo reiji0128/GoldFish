@@ -1,6 +1,9 @@
 #include "PoiRed.h"
 #include "DxLib.h"
 
+/// <summary>
+/// コンストラクタ
+/// </summary>
 PoiRed::PoiRed()
 {
     mPadNum = DX_INPUT_PAD1;
@@ -10,6 +13,9 @@ PoiRed::PoiRed()
     LoadDivGraph("Img/Player/Break.png", 5, 5, 1, (int)mScaleX, (int)mScaleY, mBreakImg);
 }
 
+/// <summary>
+/// デストラクタ
+/// </summary>
 PoiRed::~PoiRed()
 {
 }
