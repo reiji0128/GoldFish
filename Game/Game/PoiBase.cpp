@@ -157,15 +157,12 @@ void PoiBase::Scoop(float deltaTime)
     else
     {
         // 前フレームでの入力がなく、掬っていない状態で、生きていたら
-        if (!mPrevInput)
+        if (!mPrevInput && !mIsScoop && mIsAlive)
         {
-            if (!mIsScoop)
-            {
-                // 掬っている状態を保存する
-                mIsScoop = true;
-                // 1フレーム目であることを保存する
-                mIsFirstFrame = true;
-            }
+            // 掬っている状態を保存する
+            mIsScoop = true;
+            // 1フレーム目であることを保存する
+            mIsFirstFrame = true;
             // 入力されたことを保存する
             mPrevInput = true;
             // 入水時の体力減少
@@ -194,7 +191,7 @@ void PoiBase::Scoop(float deltaTime)
             // 当たり判定を調べる
             //Coll();
         }
-
+        mAnimCounter += deltaTime;
         mAnimNum = int(mAnimCounter * 8);
         mImage = mScoopImg[mAnimNum];
         if (mAnimNum >= 4)
