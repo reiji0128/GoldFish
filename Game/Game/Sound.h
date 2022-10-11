@@ -3,9 +3,9 @@
 /// <summary>
 /// Soundファイル
 /// </summary>
-enum SoundFile : unsigned int
+enum SoundFile: unsigned int
 {
-    NULL = 0,
+    NULL=0,
     SCOOP,
 };
 
@@ -22,18 +22,18 @@ public:
     /// </summary>
     ~Sound();
 
-    /// <summary>
+	/// <summary>
     /// 読み込み関数.
     /// </summary>
     /// <param name="imgName">読み取り専用のchar*型のファイルパス.</param>
-    void Load(const char* soundName);
+	void Load(const char* soundName);
 
-    /// <summary>
-    /// 再生関数.
-    /// </summary>
-    void Play(int playTipe);
+	/// <summary>
+	/// 再生関数.
+	/// </summary>
+	void Play(int playTipe);
 
 private:
-    int mSoundHandle;		//サウンドの保存変数
+	int mSoundHandle;		//サウンドの保存変数
 };
 
