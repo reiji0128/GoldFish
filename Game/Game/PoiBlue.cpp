@@ -11,6 +11,10 @@ PoiBlue::PoiBlue()
     mPosY = 810.0f;
     LoadDivGraph("Img/Player/Scoop2.png", 5, 5, 1, (int)mScaleX, (int)mScaleY, mScoopImg);
     LoadDivGraph("Img/Player/Break2.png", 5, 5, 1, (int)mScaleX, (int)mScaleY, mBreakImg);
+    mIsScoop = false;
+    mIsFirstFrame = false;
+    mPrevInput = false;
+    mIsAlive = false;
 }
 
 /// <summary>
