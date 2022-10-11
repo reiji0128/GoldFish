@@ -19,16 +19,20 @@ public:
 	~Play();
 
 	/// <summary>
-	/// 更新関数、オーバーライド関数.
+	/// 更新処理、オーバーライド関数.
 	/// </summary>
-	/// <param name="deltaTime">float型のデルタタイムの引数.</param>
-	/// <returns>SCENE_TAG型のenumクラスをreturnとして返す.</returns>
-	SCENE_TAG Update(float deltaTime) override;
+	/// <returns>SceneBaseのenumClassであるSceneTag型を返す.</returns>
+	SceneTag Update() override;
 
 	/// <summary>
 	/// 描画関数、オーバーライド関数.
 	/// </summary>
 	void Draw() override;
+
+	/// <summary>
+	/// 入力処理関数、オーバーライド関数.
+	/// </summary>
+	void Input() override;
 
 private:
 };

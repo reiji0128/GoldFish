@@ -1,10 +1,21 @@
 #include "Title.h"
+#include "DxLib.h"
 
 /// <summary>
 /// コンストラクタ.
 /// </summary>
 Title::Title()
+	// SceneBaseクラスのコンストラクタ、SceneTagはTitleTagにする.
+	:SceneBase(SceneBase::SceneTag::TitleTag)
+	//,mStartButton(nullptr)
+	//,mExitButton(nullptr)
+	//,mStartFlag(false)
 {
+	// Backgroundクラスのコンストラクタ、引数にタイトルのBackgroundを指定する.
+	mBg = new Background(BgImgName[BgImgFileNum::TitleBg]);
+
+	//mStartButton = new Button(ButtonImgName[ButtonImgFileNum::START_BUTTON_IMG]);
+	//mExitButton = new Button(ButtonImgName[ButtonImgFileNum::EXIT_BUTTON_IMG]);
 }
 
 /// <summary>
@@ -17,24 +28,46 @@ Title::~Title()
 /// <summary>
 /// 更新関数.
 /// </summary>
-/// <param name="deltaTime">float型のデルタタイムの引数.</param>
-/// <returns>SCENE_TAG型のenumクラスを返す.</returns>
-SCENE_TAG Title::Update(float deltaTime)
+/// <returns>SceneTag型のenumクラスを返す.</returns>
+SceneBase::SceneTag Title::Update()
 {
-	// Backgroundクラスの更新関数を行う.
-	mBg->Update();
+	// mChangeSceneFlagがtrueだった時.
+	if (mChangeSceneFlag)
+	{
+		// PlayTagを返す.
+		return SceneTag::PlayTag;
+	}
 
-	// ボタンが押されたときにプレイシーンへ移行する処理@@@
-
-	// それ以外の場合はこのシーンを返す.
-	return SCENE_TAG::NONE_TAG;
+	// 現在のシーンタグを返す.
+	return mNowSceneTag;
 }
 
 /// <summary>
-/// 描画関数.
+/// 描画処理.
 /// </summary>
 void Title::Draw()
 {
-	// タイトルシーンの背景を描画.
+	// Backgroundクラスの描画処理.
 	mBg->Draw();
+}
+
+/// <summary>
+/// シーンを変える際の入力処理関数.
+/// </summary>
+void Title::Input()
+{
+	// 現在のパッドの押したボタンの入力状態を保存する変数.
+	int pad1Input;
+
+	// １つ目のJoyPadの押したボタンの入力状態を取得.
+	pad1Input = GetJoypadInputState(DX_INPUT_PAD1);
+
+	// １つ目のJoyPadがAボタンを押していた時.
+	// デバック用としてキーボードで8ボタンを押した時.
+	if (pad1Input & PAD_INPUT_1
+		|| CheckHitKey(KEY_INPUT_8))
+	{
+		// シーンを変えるフラグをtrueにする.
+		mChangeSceneFlag = true;
+	}
 }
