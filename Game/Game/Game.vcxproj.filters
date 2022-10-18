@@ -96,7 +96,6 @@
     <ClInclude Include="GameManager.h">
       <Filter>MainBranch\GameManager</Filter>
     </ClInclude>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseObject.cpp">
@@ -143,7 +142,6 @@
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>MainBranch\GameManager</Filter>
-    </ClCompile>
     </ClCompile>
   </ItemGroup>
 </Project>
