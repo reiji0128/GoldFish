@@ -101,7 +101,7 @@ protected:
     int mBreakImg[5] = { -1 };
 
     // ‹d‚¤·•ª
-    int mScoopImg[3] = { -1 };
+    int mScoopImg[6] = { -1 };
 
     // ‹d‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
     bool mIsScoop;
