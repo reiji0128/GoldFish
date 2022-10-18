@@ -7,15 +7,18 @@
 Title::Title()
 	// SceneBaseクラスのコンストラクタ、SceneTagはTitleTagにする.
 	:SceneBase(SceneBase::SceneTag::TitleTag)
-	//,mStartButton(nullptr)
-	//,mExitButton(nullptr)
-	//,mStartFlag(false)
+	// スタートボタンの初期化.
+	,mStartBtn(nullptr)
+	// ゲームを閉じるボタンの初期化.
+	,mExitBtn(nullptr)
 {
 	// Backgroundクラスのコンストラクタ、引数にタイトルのBackgroundを指定する.
 	mBg = new Background(BgImgName[BgImgFileNum::TitleBg]);
 
-	//mStartButton = new Button(ButtonImgName[ButtonImgFileNum::START_BUTTON_IMG]);
-	//mExitButton = new Button(ButtonImgName[ButtonImgFileNum::EXIT_BUTTON_IMG]);
+	// Buttonクラスのコンストラクタ.
+	mStartBtn = new Button(ButtonImgName[ButtonImgFileNum::StartBtn]);
+	mExitBtn = new Button(ButtonImgName[ButtonImgFileNum::ExitBtn]);
+
 }
 
 /// <summary>
@@ -23,6 +26,10 @@ Title::Title()
 /// </summary>
 Title::~Title()
 {
+	// メモリの削除.
+	delete mBg;
+	delete mStartBtn;
+	delete mExitBtn;
 }
 
 /// <summary>
@@ -31,15 +38,8 @@ Title::~Title()
 /// <returns>SceneTag型のenumクラスを返す.</returns>
 SceneBase::SceneTag Title::Updata()
 {
-	// mChangeSceneFlagがtrueだった時.
-	if (mChangeSceneFlag)
-	{
-		// PlayTagを返す.
-		return SceneTag::PlayTag;
-	}
-
-	// 現在のシーンタグを返す.
-	return mNowSceneTag;
+	// 入力処理.
+	return Input();
 }
 
 /// <summary>
@@ -49,12 +49,15 @@ void Title::Draw()
 {
 	// Backgroundクラスの描画処理.
 	mBg->Draw();
+
+	mStartBtn->Draw();
+	mExitBtn->Draw();
 }
 
 /// <summary>
 /// シーンを変える際の入力処理関数.
 /// </summary>
-void Title::Input()
+SceneBase::SceneTag Title::Input()
 {
 	// 現在のパッドの押したボタンの入力状態を保存する変数.
 	int pad1Input;
@@ -67,7 +70,20 @@ void Title::Input()
 	if (pad1Input & PAD_INPUT_1
 		|| CheckHitKey(KEY_INPUT_7))
 	{
-		// シーンを変えるフラグをtrueにする.
-		mChangeSceneFlag = true;
+		// もしボタンのステータスがStartだった時.
+		if (mNowBtnState == btnState::Start)
+		{
+			// チュートリアルシーンを返す.
+			return SceneTag::TutorialTag;
+		}
+		// もしボタンのステータスがExitだった時.
+		else if(mNowBtnState == btnState::Exit)
+		{
+			// ゲームを閉じるシーンタグを返す.
+			return SceneTag::ExitTag;
+		}
 	}
+
+	// それ以外は自分のシーンを返す.
+	return mNowSceneTag;
 }

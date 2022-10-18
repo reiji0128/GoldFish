@@ -35,6 +35,5 @@ public :
     void Input() override;
 
 private:
-
 };
 

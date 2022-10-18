@@ -23,7 +23,7 @@ public:
 	/// 更新関数、オーバーライド関数.
 	/// </summary>
 	/// <param name="deltaTime">float型のデルタタイムの引数.</param>
-	/// <returns>SCENE_TAG型のenumクラスを返す.</returns>
+	/// <returns>SceneTag型のenumクラスを返す.</returns>
 	SceneTag Updata() override;
 
 	/// <summary>

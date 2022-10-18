@@ -19,11 +19,13 @@ public:
 		TutorialTag,         // シーンがチュートリアルの時.
 		PlayTag,             // シーンがプレイの時.
 		ResultTag,           // シーンがリザルトの時.
+		ExitTag,             // シーンが閉じる時.
 	};
 
 	/// <summary>
 	/// コンストラクタ.
 	/// </summary>
+	/// <param name="nowTag">SceneTag型の引数.</param>
 	SceneBase(SceneTag nowTag);
 
 	/// <summary>
@@ -41,7 +43,7 @@ public:
 	/// <summary>
 	/// 入力処理関数、仮想関数.
 	/// </summary>
-	virtual void Input() = 0;
+	virtual SceneTag Input() = 0;
 
 	/// <summary>
 	/// 描画関数、仮想関数.

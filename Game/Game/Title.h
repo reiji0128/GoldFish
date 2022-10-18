@@ -23,22 +23,31 @@ public:
 	/// 更新関数、オーバーライド関数.
 	/// </summary>
 	/// <param name="deltaTime">float型のデルタタイムの引数.</param>
-	/// <returns>SCENE_TAG型のenumクラスを返す.</returns>
+	/// <returns>SceneTag型のenumクラスを返す.</returns>
 	SceneTag Updata() override;
 
 	/// <summary>
-	/// 描画処理.
+	/// 描画処理、オーバーライド関数.
 	/// </summary>
 	void Draw() override;
 
 	/// <summary>
 	/// 入力処理関数、オーバーライド関数.
 	/// </summary>
-	void Input() override;
+	SceneTag Input() override;
 
 private:
-	//Button* mStartButton;
-	//Button* mExitButton;
+	/// <summary>
+	/// ボタンのステータス.
+	/// 入っている値の型はunsigned short.
+	/// </summary>
+	enum class btnState : unsigned short
+	{
+		Start = 1,                   // Joypadがスタートボタンをオンマウス状態にあるとき.
+		Exit,                        // Joypadがとじるボタンをオンマウス状態にあるとき.
+	};
 
-	//bool mStartFlag;
+	Button* mStartBtn;               // チュートリアルに移行するButtonクラスの変数.
+	Button* mExitBtn;                // ゲームを閉じるButtonクラスの変数.
+	btnState mNowBtnState;           // 今Joypadがオンマウス状態にあるステータスの値を保存する変数.
 };

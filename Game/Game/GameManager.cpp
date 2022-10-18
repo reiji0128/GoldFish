@@ -2,6 +2,7 @@
 #include "DxLib.h"
 
 #include "Title.h"
+#include "Tutorial.h"
 #include "Play.h"
 #include "Result.h"
 
@@ -115,23 +116,34 @@ void GameManager::terminate()
 /// </summary>
 void GameManager::CreateScene()
 {
-	// 次のタグがタイトルシーンタグだった時.
+	// 次のタグがタイトルシーンのタグだった時.
 	if (mReturnTag == SceneBase::SceneTag::TitleTag)
 	{
 		// タイトルクラスを生成する.
 		mNowScene = new Title();
 	}
-	// 次のタグがプレイシーンタグだった時.
+	// 次のタグがチュートリアルシーンのタグだった時.
+	else if (mReturnTag == SceneBase::SceneTag::TutorialTag)
+	{
+		// チュートリアルクラスを生成する.
+		mNowScene = new Tutorial();
+	}
+	// 次のタグがプレイシーンのタグだった時.
 	else if (mReturnTag == SceneBase::SceneTag::PlayTag)
 	{
 		// プレイクラスを生成する.
 		mNowScene = new Play();
 	}
-	// 次のタグがリザルトシーンタグだった時.
+	// 次のタグがリザルトシーンのタグだった時.
 	else if (mReturnTag == SceneBase::SceneTag::ResultTag)
 	{
 		// リザルトクラスを生成する.
 		mNowScene = new Result();
+	}
+	else
+	{
+		// 前のシーンタグを現在のシーンタグへ代入する.@@@
+		mNowScene->mNowSceneTag = mReturnTag;
 	}
 }
 
@@ -148,10 +160,10 @@ void GameManager::ProcessInput()
 
 	// ウィンドウが閉じられた時
 	// またはESCキーが押された時
-	// またはXBoxコントローラーのメニューキーが押された時.
+	// または現在のシーンタグがExitTagだった時.
 	if (ProcessMessage() == -1
 		|| CheckHitKey(KEY_INPUT_ESCAPE)
-		|| pad1Input & PAD_INPUT_11)
+		|| mNowScene->mNowSceneTag == SceneBase::SceneTag::ExitTag)
 	{
 		// ゲームループを抜けるためにフラグをfalseにする.
 		mRunningFlag = false;
