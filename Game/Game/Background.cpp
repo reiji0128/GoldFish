@@ -4,20 +4,10 @@
 /// <summary>
 /// コンストラクタ.
 /// </summary>
-/// <param name="fileName">const char*型(文字列型)のファイルパス.</param>
+/// <param name="fileName">const char*型の画像ファイルパス.</param>
 Background::Background(const char* fileName)
-	// 座標保存変数の初期化.
-	:mPos(Vector2::Zero)
-	// 画像サイズ保存変数の初期化.
-	,mScale(Vector2::Zero)
-	// 画像ハンドル保存変数の初期化.
-	,mImgHandle(-1)
+	:ImageBase(fileName)
 {
-	// 画像ハンドルを読み込む.
-	mImgHandle = LoadGraph(fileName);
-
-	// 画像ハンドルのサイズの取得.
-	GetGraphSizeF(mImgHandle, &mScale.x, &mScale.y);
 }
 
 /// <summary>
@@ -41,7 +31,7 @@ Background::~Background()
 /// <summary>
 /// 更新関数.
 /// </summary>
-void Background::Update()
+void Background::Updata(float deltaTime)
 {
 }
 
@@ -51,5 +41,5 @@ void Background::Update()
 void Background::Draw()
 {
 	// 描画処理.
-	DrawGraph(mPos.x, mPos.y, mImgHandle, true);
+	DrawGraph((int)mPos.x, (int)mPos.y, mImgHandle, true);
 }

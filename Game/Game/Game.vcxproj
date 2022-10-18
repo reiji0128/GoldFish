@@ -156,6 +156,7 @@
     <ClInclude Include="FPS.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GoldFish.h" />
+    <ClInclude Include="ImageBase.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="PoiBase.h" />
     <ClInclude Include="PoiBlue.h" />
@@ -180,6 +181,7 @@
     <ClCompile Include="FPS.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GoldFish.cpp" />
+    <ClCompile Include="ImageBase.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Play.cpp" />

@@ -117,6 +117,9 @@
     <ClInclude Include="Tutorial.h">
       <Filter>MainBranch\Scene\Tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="ImageBase.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseObject.cpp">
@@ -167,9 +170,6 @@
     <ClCompile Include="BlackFish.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="PoiBase.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -187,6 +187,12 @@
     </ClCompile>
     <ClCompile Include="Tutorial.cpp">
       <Filter>MainBranch\Scene\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageBase.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>MainBranch\Button</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
