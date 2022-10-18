@@ -103,6 +103,12 @@ protected:
     // ‹d‚¤·•ª
     int mScoopImg[6] = { -1 };
 
+    int mBrokenImg;
+
+    int mBrokenImgF;
+
+    bool mIsFlash;
+
     // ‹d‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
     bool mIsScoop;
 
