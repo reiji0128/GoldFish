@@ -63,9 +63,9 @@ void Title::Input()
 	pad1Input = GetJoypadInputState(DX_INPUT_PAD1);
 
 	// １つ目のJoyPadがAボタンを押していた時.
-	// デバック用としてキーボードで8ボタンを押した時.
+	// デバッグ用としてキーボードで7ボタンを押した時.
 	if (pad1Input & PAD_INPUT_1
-		|| CheckHitKey(KEY_INPUT_8))
+		|| CheckHitKey(KEY_INPUT_7))
 	{
 		// シーンを変えるフラグをtrueにする.
 		mChangeSceneFlag = true;

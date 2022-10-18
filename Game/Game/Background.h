@@ -6,21 +6,23 @@
 /// </summary>
 enum BgImgFileNum : unsigned short
 {
-	NoneBg = 0,
-	TitleBg,
-	PlayBg,
-	ResultBg,
+	NoneBg = 0,      // 背景が何もない時.
+	TitleBg,         // 背景がタイトルの時.
+	TutorialBg,      // 背景がチュートリアル
+	PlayBg,          // 背景がプレイの時.
+	ResultBg,        // 背景がリザルトの時.
 
-	MaxBgNum,
+	MaxBgNum,        // 背景画像の最大枚数.
 };
 
 // 上記のenumクラスの順番で画像パスを保存する保存変数.
 static const char* BgImgName[BgImgFileNum::MaxBgNum] =
 {
-	"Img/Bg/none.png",
-	"Img/Bg/Title.png",
-	"Img/Bg/Play.png",
-	"Img/Bg/Result.png",
+	"Img/Bg/none.png",       // 何もない時の画像ファイルパス.
+	"Img/Bg/Title.png",      // タイトル時の画像ファイルパス.
+	"Img/Bg/Tutorial.png",   // チュートリアル時の画像ファイルパス.
+	"Img/Bg/Play.png",       // プレイ時の画像ファイルパス.
+	"Img/Bg/Result.png",     // リザルト時の画像ファイルパス.
 };
 
 /// <summary>

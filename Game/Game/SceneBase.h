@@ -16,6 +16,7 @@ public:
 		NoneTag = 0,         // シーンが無しの時.
 		InitTag,             // シーンが初期状態の時.
 		TitleTag,            // シーンがタイトルの時.
+		TutorialTag,         // シーンがチュートリアルの時.
 		PlayTag,             // シーンがプレイの時.
 		ResultTag,           // シーンがリザルトの時.
 	};
