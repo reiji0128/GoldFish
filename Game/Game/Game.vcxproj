@@ -148,25 +148,47 @@
   <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="BaseObject.h" />
+    <ClInclude Include="BlackFish.h" />
+    <ClInclude Include="BlueFish.h" />
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="Fish.h" />
+    <ClInclude Include="FishManager.h" />
+    <ClInclude Include="FPS.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="GoldFish.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="PoiBase.h" />
+    <ClInclude Include="PoiBlue.h" />
+    <ClInclude Include="PoiManager.h" />
+    <ClInclude Include="PoiRed.h" />
+    <ClInclude Include="RedFish.h" />
+    <ClInclude Include="Tag.h" />
     <ClInclude Include="Play.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="SceneBase.h" />
-    <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="Sound.h" />
     <ClInclude Include="Title.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="BaseObject.cpp" />
+    <ClCompile Include="BlackFish.cpp" />
+    <ClCompile Include="BlueFish.cpp" />
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Fish.cpp" />
+    <ClCompile Include="FishManager.cpp" />
+    <ClCompile Include="FPS.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="GoldFish.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Play.cpp" />
+    <ClCompile Include="PoiBase.cpp" />
+    <ClCompile Include="PoiBlue.cpp" />
+    <ClCompile Include="PoiManager.cpp" />
+    <ClCompile Include="PoiRed.cpp" />
+    <ClCompile Include="RedFish.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="SceneBase.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

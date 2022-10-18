@@ -1,15 +1,23 @@
+#include "DxLib.h"
 #include "Background.h"
-#include <DxLib.h>
 
 /// <summary>
 /// コンストラクタ.
 /// </summary>
-Background::Background()
+/// <param name="fileName">const char*型(文字列型)のファイルパス.</param>
+Background::Background(const char* fileName)
+	// 座標保存変数の初期化.
 	:mPos(Vector2::Zero)
-	,mWidth(0)
-	,mHeight(0)
+	// 画像サイズ保存変数の初期化.
+	,mScale(Vector2::Zero)
+	// 画像ハンドル保存変数の初期化.
 	,mImgHandle(-1)
 {
+	// 画像ハンドルを読み込む.
+	mImgHandle = LoadGraph(fileName);
+
+	// 画像ハンドルのサイズの取得.
+	GetGraphSizeF(mImgHandle, &mScale.x, &mScale.y);
 }
 
 /// <summary>
@@ -17,28 +25,17 @@ Background::Background()
 /// </summary>
 Background::~Background()
 {
-	// 既に画像ハンドルが-1の時はreturnを返す.
+	// すでに画像ハンドルが-1の時はreturnを返す
 	if (mImgHandle == -1)
 	{
 		return;
 	}
+
 	// 画像をメモリ上から削除する.
 	DeleteGraph(mImgHandle);
-	// 削除した後に-1を入力しておく.
+
+	// 削除した後に-1を代入する.
 	mImgHandle = -1;
-}
-
-/// <summary>
-/// 読み込み関数.
-/// </summary>
-/// <param name="imgName">char*型の画像のファイルパス.</param>
-void Background::Load(const char* imgName)
-{
-	// 画像読み込み.
-	mImgHandle = LoadGraph(imgName);
-
-	// 画像サイズの取得.
-	GetGraphSize(mImgHandle, &mWidth, &mHeight);
 }
 
 /// <summary>

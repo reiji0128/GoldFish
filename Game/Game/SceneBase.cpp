@@ -1,17 +1,17 @@
 #include "SceneBase.h"
-#include "Background.h"
+
+// 現在のシーンの初期化.
+SceneBase::SceneTag SceneBase::mNowSceneTag =
+SceneTag::InitTag;
 
 /// <summary>
 /// コンストラクタ.
 /// </summary>
-SceneBase::SceneBase()
+/// <param name="nowTag">現在のシーンタグ、enumClass型変数.</param>
+SceneBase::SceneBase(SceneTag nowTag)
+	:mChangeSceneFlag(false)         // シーンを変えるかどうかのフラグの初期化.
+	,mBg(nullptr)                    // Backgroundクラスの初期化.
 {
-	this->mBg = new Background();
-}
-
-/// <summary>
-/// デストラクタ.
-/// </summary>
-SceneBase::~SceneBase()
-{
+	// シーンタグの更新.
+	mNowSceneTag = nowTag;
 }
