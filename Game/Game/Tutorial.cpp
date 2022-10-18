@@ -23,7 +23,7 @@ Tutorial::~Tutorial()
 /// 更新関数.
 /// </summary>
 /// <returns>SceneTag型のenumクラスを返す.</returns>
-SceneBase::SceneTag Tutorial::Update()
+SceneBase::SceneTag Tutorial::Updata()
 {
     // mChangeSceneFlagがtrueだった時.
     if (mChangeSceneFlag)

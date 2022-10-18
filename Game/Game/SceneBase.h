@@ -35,8 +35,8 @@ public:
 	/// 更新関数、仮想関数.
 	/// </summary>
 	/// <param name="delteTime">float型のデルタタイムの引数.</param>
-	/// <returns>SCENE_TAG型のenumクラスを返す.</returns>
-	virtual SceneBase::SceneTag Update() = 0;
+	/// <returns>SceneTag型のenumクラスを返す.</returns>
+	virtual SceneBase::SceneTag Updata() = 0;
 
 	/// <summary>
 	/// 入力処理関数、仮想関数.

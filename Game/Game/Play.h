@@ -22,7 +22,7 @@ public:
 	/// 更新処理、オーバーライド関数.
 	/// </summary>
 	/// <returns>SceneBaseのenumClassであるSceneTag型を返す.</returns>
-	SceneTag Update() override;
+	SceneTag Updata() override;
 
 	/// <summary>
 	/// 描画関数、オーバーライド関数.

@@ -29,7 +29,7 @@ Title::~Title()
 /// 更新関数.
 /// </summary>
 /// <returns>SceneTag型のenumクラスを返す.</returns>
-SceneBase::SceneTag Title::Update()
+SceneBase::SceneTag Title::Updata()
 {
 	// mChangeSceneFlagがtrueだった時.
 	if (mChangeSceneFlag)
