@@ -70,7 +70,7 @@ private:
 	bool mRunningFlag;
 
 	// 現在のシーンクラスを持つ変数.
-	SceneBase* mNowScene;
+	SceneBase* mNowSceneClass;
 
 	// １ループ前のシーンタグを保存する変数.
 	SceneBase::SceneTag mReturnTag;
@@ -83,11 +83,11 @@ public:// ------------------セッター・ゲッター関数-------------------------
 	/// <summary>
 	/// 最初のシーンの代入.
 	/// </summary>
-	/// <param name="firstScene">SceneBase型の一番最初に表示するシーン.</param>
+	/// <param name="firstScene">SceneBase型の一番最初に表示するシーンクラス.</param>
 	void SetFirstScene(SceneBase* firstScene)
 	{
-		// 現在のシーンへと代入する.
-		mNowScene = firstScene;
+		// 現在のシーンクラスへと代入する.
+		mNowSceneClass = firstScene;
 	};
 };
 

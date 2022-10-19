@@ -18,7 +18,7 @@ GameManager::GameManager()
 	,MHeight(1080)                            // ウィンドウのy軸のサイズ.
 	,MColorBitNum(16)                         // ウィンドウのカラービットの数.
 	,mRunningFlag(true)                       // ゲームループを回すかどうかを保存するフラグ、trueならループが回りfalseならループから抜ける.
-	,mNowScene(nullptr)                       // 現在のシーンを保存する変数.
+	,mNowSceneClass(nullptr)                  // 現在のシーンクラスを保存する変数.
 	,mReturnTag(SceneBase::mNowSceneTag)      // 次のシーンのタグを保存する変数.
 	,mFps(nullptr)                            // fpsクラスを保存する変数.
 {
@@ -68,13 +68,13 @@ void GameManager::GameLoop()
 		ProcessInput();
 
 		// 現在のシーンを次のシーンを保存する変数に保存する.
-		mReturnTag = mNowScene->Updata();
+		mReturnTag = mNowSceneClass->Updata();
 
 		// 次のシーンが今のシーンと違ったとき.
 		if (mReturnTag != SceneBase::mNowSceneTag)
 		{
 			// 今のシーンを削除する.
-			delete mNowScene;
+			delete mNowSceneClass;
 
 			// 新しくシーンを生成する.
 			CreateScene();
@@ -104,7 +104,7 @@ void GameManager::terminate()
 	PoiManager::DeleteInstance();
 
 	// その他単体のクラスを持つ変数の削除.
-	delete mNowScene;
+	delete mNowSceneClass;
 	delete mFps;
 
 	// Dxlibの終了処理.
@@ -120,30 +120,30 @@ void GameManager::CreateScene()
 	if (mReturnTag == SceneBase::SceneTag::TitleTag)
 	{
 		// タイトルクラスを生成する.
-		mNowScene = new Title();
+		mNowSceneClass = new Title();
 	}
 	// 次のタグがチュートリアルシーンのタグだった時.
 	else if (mReturnTag == SceneBase::SceneTag::TutorialTag)
 	{
 		// チュートリアルクラスを生成する.
-		mNowScene = new Tutorial();
+		mNowSceneClass = new Tutorial();
 	}
 	// 次のタグがプレイシーンのタグだった時.
 	else if (mReturnTag == SceneBase::SceneTag::PlayTag)
 	{
 		// プレイクラスを生成する.
-		mNowScene = new Play();
+		mNowSceneClass = new Play();
 	}
 	// 次のタグがリザルトシーンのタグだった時.
 	else if (mReturnTag == SceneBase::SceneTag::ResultTag)
 	{
 		// リザルトクラスを生成する.
-		mNowScene = new Result();
+		mNowSceneClass = new Result();
 	}
 	else
 	{
 		// 前のシーンタグを現在のシーンタグへ代入する.@@@
-		mNowScene->mNowSceneTag = mReturnTag;
+		mNowSceneClass->mNowSceneTag = mReturnTag;
 	}
 }
 
@@ -163,14 +163,14 @@ void GameManager::ProcessInput()
 	// または現在のシーンタグがExitTagだった時.
 	if (ProcessMessage() == -1
 		|| CheckHitKey(KEY_INPUT_ESCAPE)
-		|| mNowScene->mNowSceneTag == SceneBase::SceneTag::ExitTag)
+		|| mNowSceneClass->mNowSceneTag == SceneBase::SceneTag::ExitTag)
 	{
 		// ゲームループを抜けるためにフラグをfalseにする.
 		mRunningFlag = false;
 	}
 
 	// 現在のシーン別の入力処理.
-	mNowScene->Input();
+	mNowSceneClass->Input();
 }
 
 /// <summary>
@@ -205,7 +205,7 @@ void GameManager::DrawGame()
 	//------------------それぞれの描画処理---------------------
 
 	// 現在のシーンを描画する.
-	mNowScene->Draw();
+	mNowSceneClass->Draw();
 
 	//---------------------------------------
 
