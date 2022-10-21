@@ -1,6 +1,6 @@
 #pragma once
 #include "Math.h"
-#include "ImageBase.h"
+#include "Image.h"
 
 /// <summary>
 /// 画像ファイルの順番.
@@ -29,7 +29,7 @@ static const char* BgImgName[BgImgFileNum::MaxBgNum] =
 /// <summary>
 /// 背景クラス.
 /// </summary>
-class Background : public ImageBase
+class Background : public Image
 {
 public:
 	/// <summary>
