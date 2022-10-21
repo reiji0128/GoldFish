@@ -47,10 +47,10 @@ SceneBase::SceneTag Title::Updata()
 	if (mChangeSceneFlag)
 	{
 		// タイトルシーンのタグを返す.
-		return SceneTag::TitleTag;
+		return SceneTag::TutorialTag;
 	}
 	// ゲームを終わらせるフラグがtrueの時.
-	else if (mExitGameFlag)
+	else if (mGameExitFlag)
 	{
 		// ゲームループを終了させるタグを返す.
 		return SceneTag::ExitTag;
@@ -102,17 +102,19 @@ void Title::Input()
 	if (pad1Input & PAD_INPUT_1
 		|| CheckHitKey(KEY_INPUT_7))
 	{
-		// もしボタンのステータスがStartだった時.
-		if (mNowBtnState == btnState::Start)
-		{
-			// チュートリアルシーンを返す.
-			mChangeSceneFlag = true;
-		}
-		// もしボタンのステータスがExitだった時.
-		else if(mNowBtnState == btnState::Exit)
-		{
-			// ゲームを閉じるシーンタグを返す.
-			mExitGameFlag = true;
-		}
+		mChangeSceneFlag = true;
+
+		//// もしボタンのステータスがStartだった時.
+		//if (mNowBtnState == btnState::Start)
+		//{
+		//	// チュートリアルシーンを返す.
+		//	mChangeSceneFlag = true;
+		//}
+		//// もしボタンのステータスがExitだった時.
+		//else if(mNowBtnState == btnState::Exit)
+		//{
+		//	// ゲームを閉じるシーンタグを返す.
+		//	mGameExitFlag = true;
+		//}
 	}
 }

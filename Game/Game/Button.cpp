@@ -2,12 +2,18 @@
 #include "DxLib.h"
 
 /// <summary>
-/// 
+/// コンストラクタ.
 /// </summary>
-/// <param name="fileName"></param>
-Button::Button(const char* fileName)
-	:ImageBase(fileName)
+/// <param name="fileName">const char*型の画像ファイルパス.</param>
+Button::Button(const char* fileName, BtnState state)
+	// 画像クラスの初期化をする.
+	:Image(fileName)
+	// 押したかどうかのフラグの初期化.
+	,mPushBtnFlag(false)
+	// 
+	,mState(BtnState::None)
 {
+	mState = state;
 }
 
 /// <summary>
@@ -34,8 +40,7 @@ Button::~Button()
 /// <param name="deltaTime"></param>
 void Button::Updata(float deltaTime)
 {
-	// オンマウス？(ぶっちゃけパッドなのでマウスとかではない)のときの挙動.
-	//if()
+	if()
 }
 
 /// <summary>

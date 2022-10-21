@@ -37,17 +37,17 @@ public:
 	void Input() override;
 
 private:
-	/// <summary>
-	/// ボタンのステータス.
-	/// 入っている値の型はunsigned short.
-	/// </summary>
-	enum class btnState : unsigned short
-	{
-		Start = 1,                   // Joypadがスタートボタンをオンマウス状態にあるとき.
-		Exit,                        // Joypadがとじるボタンをオンマウス状態にあるとき.
-	};
+	///// <summary>
+	///// ボタンのステータス.
+	///// 入っている値の型はunsigned short.
+	///// </summary>
+	//enum class btnState : unsigned short
+	//{
+	//	Start = 1,                   // Joypadがスタートボタンをオンマウス状態にあるとき.
+	//	Exit,                        // Joypadがとじるボタンをオンマウス状態にあるとき.
+	//};
 
 	Button* mStartBtn;               // チュートリアルに移行するButtonクラスの変数.
 	Button* mExitBtn;                // ゲームを閉じるButtonクラスの変数.
-	btnState mNowBtnState;           // 今Joypadがオンマウス状態にあるステータスの値を保存する変数.
+	//btnState mNowBtnState;           // 今Joypadがオンマウス状態にあるステータスの値を保存する変数.
 };
