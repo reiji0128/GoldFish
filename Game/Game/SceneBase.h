@@ -43,7 +43,7 @@ public:
 	/// <summary>
 	/// 入力処理関数、仮想関数.
 	/// </summary>
-	virtual SceneTag Input() = 0;
+	virtual void Input() = 0;
 
 	/// <summary>
 	/// 描画関数、仮想関数.
@@ -54,5 +54,4 @@ public:
 
 protected:
 	Background* mBg;                     // 背景の生成.
-	bool mChangeSceneFlag;               // シーン移動フラグ.
 };

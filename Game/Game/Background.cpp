@@ -6,7 +6,7 @@
 /// </summary>
 /// <param name="fileName">const char*型の画像ファイルパス.</param>
 Background::Background(const char* fileName)
-	:ImageBase(fileName)
+	:Image(fileName)
 {
 }
 

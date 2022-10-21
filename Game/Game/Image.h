@@ -4,19 +4,19 @@
 /// <summary>
 /// 画像関連クラス.
 /// </summary>
-class ImageBase
+class Image
 {
 public :
     /// <summary>
     /// コンストラクタ.
     /// </summary>
     /// <param name="fileName">const char*型の画像ファイルパス.</param>
-    ImageBase(const char* fileName);
+    Image(const char* fileName);
 
     /// <summary>
     /// デストラクタ.
     /// </summary>
-    virtual ~ImageBase() {};
+    virtual ~Image() {};
 
     /// <summary>
     /// 更新関数、仮想関数.
