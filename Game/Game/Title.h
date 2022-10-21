@@ -34,7 +34,7 @@ public:
 	/// <summary>
 	/// 入力処理関数、オーバーライド関数.
 	/// </summary>
-	void Input() override;
+	SceneTag Input() override;
 
 private:
 	/// <summary>
