@@ -10,6 +10,7 @@ enum ButtonImgFileNum : unsigned short
 	NoneBtn = 0,              // ボタン画像が何もない時.
 	StartBtn,                 // ボタン画像が始める時.
 	ExitBtn,                  // ボタン画像が閉じる時.
+	TutorialSkip,             // ボタン画像がチュートリアルをスキップの時.
 
 	MaxBtnFileNum,            // ボタン画像の最大枚数.
 };
@@ -31,6 +32,7 @@ enum class BtnState :unsigned short
 	Start,                    // オンマウスした画像がスタートの時.
 	Retry,                    // オンマウスした画像がリトライの時.
 	Exit,                     // オンマウスした画像がゲーム終了の時.
+	TutoSkip,                 // オンマウスした画像がチュートリアルをスキップする時.
 
 	MaxStateNum,              // ボタンステータスの最大数.
 };
