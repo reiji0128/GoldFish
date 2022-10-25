@@ -11,14 +11,22 @@ Title::Title()
 	,mStartBtn(nullptr)
 	// ゲームを閉じるボタンの初期化.
 	,mExitBtn(nullptr)
+	// 現在オンマウス状態にあるボタンの初期化.
+	, mNowOnBtn(BtnState::None)
 {
 	// Backgroundクラスのコンストラクタ、引数にタイトルのBackgroundを指定する.
 	mBg = new Background(BgImgName[BgImgFileNum::TitleBg]);
 
 	// Buttonクラスのコンストラクタ.
-	mStartBtn = new Button(ButtonImgName[ButtonImgFileNum::StartBtn]);
-	mExitBtn = new Button(ButtonImgName[ButtonImgFileNum::ExitBtn]);
+	mStartBtn = new Button(ButtonImgName[ButtonImgFileNum::StartBtn],BtnState::Start);
+	mExitBtn = new Button(ButtonImgName[ButtonImgFileNum::ExitBtn],BtnState::Exit);
 
+	// Buttonクラスの座標設定.@@@(仮)
+	mStartBtn->SetPosition(Vector2(100, 100));
+	mExitBtn->SetPosition(Vector2(200, 200));
+
+	// 現在オンマウス状態にあるボタンのステータスを代入.
+	mNowOnBtn = mStartBtn->GetBtnState();
 }
 
 /// <summary>
@@ -83,16 +91,20 @@ void Title::Input()
 	pad1Input = GetJoypadInputState(DX_INPUT_PAD1);
 
 	// １つ目のJoyPadが左キーボタンを押していた時.
-	if (pad1Input & PAD_INPUT_LEFT)
+	// かつ今のオンマウスした画像が別のステータスを持っていた時.
+	if (pad1Input & PAD_INPUT_LEFT
+		&& this->mNowOnBtn != mStartBtn->GetBtnState())
 	{
 		// ボタンのステータスをStartに変更する.
-		mNowBtnState = btnState::Start;
+		this->mNowOnBtn = mStartBtn->GetBtnState();
 	}
 	// １つ目のJoyPadが右キーボタンを押していた時.
-	else if (pad1Input & PAD_INPUT_RIGHT)
+	// かつ今のオンマウスした画像が別のステータスを持っていた時.
+	else if (pad1Input & PAD_INPUT_RIGHT
+		&& this->mNowOnBtn != mExitBtn->GetBtnState())
 	{
 		// ボタンのステータスをExitに変更する.
-		mNowBtnState = btnState::Exit;
+		this->mNowOnBtn = mExitBtn->GetBtnState();
 	}
 
 	// １つ目のJoyPadがAボタンを押していた時.
@@ -100,19 +112,17 @@ void Title::Input()
 	if (pad1Input & PAD_INPUT_1
 		|| CheckHitKey(KEY_INPUT_7))
 	{
-		mChangeSceneFlag = true;
-
-		//// もしボタンのステータスがStartだった時.
-		//if (mNowBtnState == btnState::Start)
-		//{
-		//	// チュートリアルシーンを返す.
-		//	mChangeSceneFlag = true;
-		//}
-		//// もしボタンのステータスがExitだった時.
-		//else if(mNowBtnState == btnState::Exit)
-		//{
-		//	// ゲームを閉じるシーンタグを返す.
-		//	mGameExitFlag = true;
-		//}
+		// もしボタンのステータスがStartだった時.
+		if (mNowOnBtn == mStartBtn->GetBtnState())
+		{
+			// チュートリアルシーンを返す.
+			mChangeSceneFlag = true;
+		}
+		// もしボタンのステータスがExitだった時.
+		else if(mNowOnBtn == mExitBtn->GetBtnState())
+		{
+			// ゲームを閉じるシーンタグを返す.
+			mGameExitFlag = true;
+		}
 	}
 }

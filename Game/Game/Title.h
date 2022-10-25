@@ -34,20 +34,11 @@ public:
 	/// <summary>
 	/// 入力処理関数、オーバーライド関数.
 	/// </summary>
-	SceneTag Input() override;
+	void Input() override;
 
 private:
-	///// <summary>
-	///// ボタンのステータス.
-	///// 入っている値の型はunsigned short.
-	///// </summary>
-	//enum class btnState : unsigned short
-	//{
-	//	Start = 1,                   // Joypadがスタートボタンをオンマウス状態にあるとき.
-	//	Exit,                        // Joypadがとじるボタンをオンマウス状態にあるとき.
-	//};
-
 	Button* mStartBtn;               // チュートリアルに移行するButtonクラスの変数.
 	Button* mExitBtn;                // ゲームを閉じるButtonクラスの変数.
-	//btnState mNowBtnState;           // 今Joypadがオンマウス状態にあるステータスの値を保存する変数.
+
+	BtnState mNowOnBtn;              // 現在オンマウスしているボタンのステータスを取得する.
 };

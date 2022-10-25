@@ -5,6 +5,7 @@
 #include "Tutorial.h"
 #include "Play.h"
 #include "Result.h"
+#include "Exit.h"
 
 #include "FishManager.h"
 #include "PoiManager.h"
@@ -140,6 +141,10 @@ void GameManager::CreateScene()
 		// リザルトクラスを生成する.
 		mNowSceneClass = new Result();
 	}
+	else if (mReturnTag == SceneBase::SceneTag::ExitTag)
+	{
+		mNowSceneClass = new Exit();
+	}
 	else
 	{
 		// 前のシーンタグを現在のシーンタグへ代入する.@@@
@@ -152,12 +157,6 @@ void GameManager::CreateScene()
 /// </summary>
 void GameManager::ProcessInput()
 {
-	// 一つ目のXBoxコントローラーが押されたボタンの番号を保存する変数.
-	int pad1Input;
-
-	// 一つ目のXBoxコントローラーの押されたボタンの番号を保存する.
-	pad1Input = GetJoypadInputState(DX_INPUT_PAD1);
-
 	// ウィンドウが閉じられた時
 	// またはESCキーが押された時
 	// または現在のシーンタグがExitTagだった時.
@@ -168,9 +167,11 @@ void GameManager::ProcessInput()
 		// ゲームループを抜けるためにフラグをfalseにする.
 		mRunningFlag = false;
 	}
-
-	// 現在のシーン別の入力処理.
-	mNowSceneClass->Input();
+	else
+	{
+		// 現在のシーン別の入力処理.
+		mNowSceneClass->Input();
+	}
 }
 
 /// <summary>

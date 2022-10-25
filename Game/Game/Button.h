@@ -15,7 +15,7 @@ enum ButtonImgFileNum : unsigned short
 };
 
 // 上記のenumクラスの順番で画像ファイルパスを保存する変数.
-const char* ButtonImgName[ButtonImgFileNum::MaxBtnFileNum] =
+static const char* ButtonImgName[ButtonImgFileNum::MaxBtnFileNum] =
 {
 	"img/Button/None.png",    // 何もない時の画像ファイルパス.
 	"img/Button/Start.png",   // 始める時の画像ファイルパス.
@@ -27,16 +27,17 @@ const char* ButtonImgName[ButtonImgFileNum::MaxBtnFileNum] =
 /// </summary>
 enum class BtnState :unsigned short
 {
-	None = 0,
-	Start,
-	Retry,
-	Exit,
+	None = 0,                 // オンマウスした画像が何もない時.
+	Start,                    // オンマウスした画像がスタートの時.
+	Retry,                    // オンマウスした画像がリトライの時.
+	Exit,                     // オンマウスした画像がゲーム終了の時.
 
-	MaxStateNum,
+	MaxStateNum,              // ボタンステータスの最大数.
 };
 
 /// <summary>
-/// ボタン画像や処理を行うクラス.
+/// ボタン処理を行うクラス.
+/// Imageクラスを継承.
 /// </summary>
 class Button : public Image
 {
@@ -58,10 +59,10 @@ public:
 	/// <param name="deltaTime">float型のデルタタイムの引数.</param>
 	void Updata(float deltaTime) override;
 
-	/// <summary>
-	/// 入力処理関数.
-	/// </summary>
-	void Input(BtnState state);
+	///// <summary>
+	///// 入力処理関数.
+	///// </summary>
+	//void Input(BtnState state);
 
 	/// <summary>
 	/// 描画関数、オーバーライド関数.
@@ -71,17 +72,13 @@ public:
 private:
 	BtnState mState;                     // それぞれのボタンに振り分けられているステータスを保存する変数.
 
-	bool mChangeSceneFlag;               // シーン移動フラグ、trueの時はシーンを変えてfalseの時はシーンを変えない.
-	bool mGameExitFlag;                  // ゲーム終了フラグ、trueの時はゲームを終了させてfalseの時はゲームを続ける.
-
 	// 一度キーを押したかどうかのフラグ（長押し防止用フラグ）、trueの時はキーを一度押したとしてfalseの時はキーを押していないとする.
 	bool mPushBtnFlag; 
 
 public:// ------------------セッター・ゲッター関数-------------------------
-
 	/// <summary>
-	/// 現在のシーンを変えるフラグを取得する関数.
+	/// そのボタンのステータスを取得する関数.
 	/// </summary>
-	/// <returns>bool型のシーン移動フラグを返す.</returns>
-	bool GetChangeSceneFlag() { return mChangeSceneFlag; }
+	/// <returns>BtnStateクラスの変数.</returns>
+	BtnState GetBtnState() { return mState; }
 };
