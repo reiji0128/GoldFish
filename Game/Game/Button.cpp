@@ -10,9 +10,10 @@ Button::Button(const char* fileName, BtnState state)
 	:Image(fileName)
 	// 押したかどうかのフラグの初期化.
 	,mPushBtnFlag(false)
-	// 
+	// そのボタンの持っているステータスの初期化.
 	,mState(BtnState::None)
 {
+	// ステータスの代入.
 	mState = state;
 }
 
@@ -40,7 +41,22 @@ Button::~Button()
 /// <param name="deltaTime"></param>
 void Button::Updata(float deltaTime)
 {
-	if()
+}
+
+/// <summary>
+/// 入力処理関数.
+/// </summary>
+/// <param name="state">BtnStateの変数.</param>
+void Button::Input(BtnState state)
+{
+	if (state == BtnState::Start)
+	{
+		mChangeSceneFlag = true;
+	}
+	else if (state == BtnState::Exit)
+	{
+		mGameExitFlag = true;
+	}
 }
 
 /// <summary>

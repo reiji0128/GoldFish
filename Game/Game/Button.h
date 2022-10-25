@@ -59,6 +59,11 @@ public:
 	void Updata(float deltaTime) override;
 
 	/// <summary>
+	/// 入力処理関数.
+	/// </summary>
+	void Input(BtnState state);
+
+	/// <summary>
 	/// 描画関数、オーバーライド関数.
 	/// </summary>
 	void Draw() override;
