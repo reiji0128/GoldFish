@@ -21,8 +21,8 @@ public:
 	/// <summary>
 	/// 更新処理、オーバーライド関数.
 	/// </summary>
-	/// <returns>SceneBaseのenumClassであるSceneTag型を返す.</returns>
-	SceneTag Update() override;
+	/// <returns>SceneTag型のenumクラスを返す.</returns>
+	SceneTag Updata() override;
 
 	/// <summary>
 	/// 描画関数、オーバーライド関数.

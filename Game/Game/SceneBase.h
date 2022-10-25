@@ -16,13 +16,16 @@ public:
 		NoneTag = 0,         // シーンが無しの時.
 		InitTag,             // シーンが初期状態の時.
 		TitleTag,            // シーンがタイトルの時.
+		TutorialTag,         // シーンがチュートリアルの時.
 		PlayTag,             // シーンがプレイの時.
 		ResultTag,           // シーンがリザルトの時.
+		ExitTag,             // シーンが閉じる時.
 	};
 
 	/// <summary>
 	/// コンストラクタ.
 	/// </summary>
+	/// <param name="nowTag">SceneTag型の引数.</param>
 	SceneBase(SceneTag nowTag);
 
 	/// <summary>
@@ -34,8 +37,8 @@ public:
 	/// 更新関数、仮想関数.
 	/// </summary>
 	/// <param name="delteTime">float型のデルタタイムの引数.</param>
-	/// <returns>SCENE_TAG型のenumクラスを返す.</returns>
-	virtual SceneBase::SceneTag Update() = 0;
+	/// <returns>SceneTag型のenumクラスを返す.</returns>
+	virtual SceneBase::SceneTag Updata() = 0;
 
 	/// <summary>
 	/// 入力処理関数、仮想関数.
@@ -51,5 +54,4 @@ public:
 
 protected:
 	Background* mBg;                     // 背景の生成.
-	bool mChangeSceneFlag;               // シーン移動フラグ.
 };

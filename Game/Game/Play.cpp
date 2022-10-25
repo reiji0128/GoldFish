@@ -26,7 +26,7 @@ Play::~Play()
 /// XVˆ—.
 /// </summary>
 /// <returns>SceneBase‚ÌenumClass‚Å‚ ‚éSceneTagŒ^‚ğ•Ô‚·.</returns>
-SceneBase::SceneTag Play::Update()
+SceneBase::SceneTag Play::Updata()
 {
 	// mChangeSceneFlag‚ªtrue‚¾‚Á‚½
 	if (mChangeSceneFlag)

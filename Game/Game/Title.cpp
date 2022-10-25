@@ -7,15 +7,18 @@
 Title::Title()
 	// SceneBaseクラスのコンストラクタ、SceneTagはTitleTagにする.
 	:SceneBase(SceneBase::SceneTag::TitleTag)
-	//,mStartButton(nullptr)
-	//,mExitButton(nullptr)
-	//,mStartFlag(false)
+	// スタートボタンの初期化.
+	,mStartBtn(nullptr)
+	// ゲームを閉じるボタンの初期化.
+	,mExitBtn(nullptr)
 {
 	// Backgroundクラスのコンストラクタ、引数にタイトルのBackgroundを指定する.
 	mBg = new Background(BgImgName[BgImgFileNum::TitleBg]);
 
-	//mStartButton = new Button(ButtonImgName[ButtonImgFileNum::START_BUTTON_IMG]);
-	//mExitButton = new Button(ButtonImgName[ButtonImgFileNum::EXIT_BUTTON_IMG]);
+	// Buttonクラスのコンストラクタ.
+	mStartBtn = new Button(ButtonImgName[ButtonImgFileNum::StartBtn]);
+	mExitBtn = new Button(ButtonImgName[ButtonImgFileNum::ExitBtn]);
+
 }
 
 /// <summary>
@@ -23,22 +26,35 @@ Title::Title()
 /// </summary>
 Title::~Title()
 {
+	// メモリの削除.
+	delete mBg;
+	delete mStartBtn;
+	delete mExitBtn;
 }
 
 /// <summary>
 /// 更新関数.
 /// </summary>
 /// <returns>SceneTag型のenumクラスを返す.</returns>
-SceneBase::SceneTag Title::Update()
+SceneBase::SceneTag Title::Updata()
 {
-	// mChangeSceneFlagがtrueだった時.
+	// 入力処理.
+	Input();
+
+	// シーンを変えるフラグがtrueの時.
 	if (mChangeSceneFlag)
 	{
-		// PlayTagを返す.
-		return SceneTag::PlayTag;
+		// タイトルシーンのタグを返す.
+		return SceneTag::TutorialTag;
+	}
+	// ゲームを終わらせるフラグがtrueの時.
+	else if (mGameExitFlag)
+	{
+		// ゲームループを終了させるタグを返す.
+		return SceneTag::ExitTag;
 	}
 
-	// 現在のシーンタグを返す.
+	// それ以外の時は現在のシーンタグを返す.
 	return mNowSceneTag;
 }
 
@@ -49,6 +65,10 @@ void Title::Draw()
 {
 	// Backgroundクラスの描画処理.
 	mBg->Draw();
+
+	// buttonクラスの描画処理.
+	mStartBtn->Draw();
+	mExitBtn->Draw();
 }
 
 /// <summary>
@@ -62,12 +82,37 @@ void Title::Input()
 	// １つ目のJoyPadの押したボタンの入力状態を取得.
 	pad1Input = GetJoypadInputState(DX_INPUT_PAD1);
 
-	// １つ目のJoyPadがAボタンを押していた時.
-	// デバック用としてキーボードで8ボタンを押した時.
-	if (pad1Input & PAD_INPUT_1
-		|| CheckHitKey(KEY_INPUT_8))
+	// １つ目のJoyPadが左キーボタンを押していた時.
+	if (pad1Input & PAD_INPUT_LEFT)
 	{
-		// シーンを変えるフラグをtrueにする.
+		// ボタンのステータスをStartに変更する.
+		mNowBtnState = btnState::Start;
+	}
+	// １つ目のJoyPadが右キーボタンを押していた時.
+	else if (pad1Input & PAD_INPUT_RIGHT)
+	{
+		// ボタンのステータスをExitに変更する.
+		mNowBtnState = btnState::Exit;
+	}
+
+	// １つ目のJoyPadがAボタンを押していた時.
+	// デバッグ用としてキーボードで7ボタンを押した時.
+	if (pad1Input & PAD_INPUT_1
+		|| CheckHitKey(KEY_INPUT_7))
+	{
 		mChangeSceneFlag = true;
+
+		//// もしボタンのステータスがStartだった時.
+		//if (mNowBtnState == btnState::Start)
+		//{
+		//	// チュートリアルシーンを返す.
+		//	mChangeSceneFlag = true;
+		//}
+		//// もしボタンのステータスがExitだった時.
+		//else if(mNowBtnState == btnState::Exit)
+		//{
+		//	// ゲームを閉じるシーンタグを返す.
+		//	mGameExitFlag = true;
+		//}
 	}
 }
