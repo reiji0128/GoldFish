@@ -151,6 +151,7 @@
     <ClInclude Include="BlackFish.h" />
     <ClInclude Include="BlueFish.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="FishManager.h" />
     <ClInclude Include="FPS.h" />
@@ -174,6 +175,7 @@
     <ClCompile Include="BlackFish.cpp" />
     <ClCompile Include="BlueFish.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Fish.cpp" />
     <ClCompile Include="FishManager.cpp" />
     <ClCompile Include="FPS.cpp" />
