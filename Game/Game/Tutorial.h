@@ -1,5 +1,6 @@
 #pragma once
 #include "SceneBase.h"
+#include "Button.h"
 
 /// <summary>
 /// シーンのチュートリアルクラス.
@@ -35,5 +36,6 @@ public :
     void Input() override;
 
 private:
+    Button* mTutorialSkipBtn;                  // チュートリアルをスキップするButtonクラスの変数.
 };
 
