@@ -11,8 +11,6 @@ Title::Title()
 	,mStartBtn(nullptr)
 	// ゲームを閉じるボタンの初期化.
 	,mExitBtn(nullptr)
-	// 現在Joypadがオンマウス状態にある変数の初期化.
-	,mNowBtnState(btnState::Start)
 {
 	// Backgroundクラスのコンストラクタ、引数にタイトルのBackgroundを指定する.
 	mBg = new Background(BgImgName[BgImgFileNum::TitleBg]);
