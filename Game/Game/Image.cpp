@@ -1,11 +1,11 @@
-#include "ImageBase.h"
+#include "Image.h"
 #include "DxLib.h"
 
 /// <summary>
 /// コンストラクタ.
 /// </summary>
 /// <param name="fileName">const char*型の画像のファイルパス.</param>
-ImageBase::ImageBase(const char* fileName)
+Image::Image(const char* fileName)
     // 座標保存変数の初期化.
     :mPos(Vector2::Zero)
     // 画像サイズを保存する変数の初期化.
