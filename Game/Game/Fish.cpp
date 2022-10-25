@@ -10,12 +10,13 @@ Fish::Fish(Tag tag)
     ,mNowCount(0)
 	,mAnimationCount(0)
     ,mStateNumber(0)
+	,mSinWaveX(0.0f)
+	,mXerr(0.0f)
+	,mYerr(0.0f)
+	,mSinWaveAngle(0.0f)
+	,mSpeed(10.0f)
     ,mIsSwim(false)
 {
-	// 座標を最小値から最大値の間でランダムに初期化
-	mPosition.x = (rand() % (mMaxPosX - -mMinPosX + 1)) + -mMinPosX;
-	mPosition.y = (rand() % (mMaxPosY - -mMinPosY + 1)) + -mMinPosY;
-
 	mAngle = 45;
 }
 
@@ -23,110 +24,56 @@ Fish::~Fish()
 {
 }
 
-void Fish::StopProces()
+void Fish::Init()
 {
-	//現在時刻を取得
-	mNowTime = GetNowCount() / 1000;
-	// 経過時間を計算 
-	mElapsedTime= (mNowTime - mStartTime);
+	// 座標を最小値から最大値の間でランダムに初期化
+	int randPosX = mMinPosX + rand() % (mMaxPosX - mMinPosX + 1);
+	int randPosY = mMinPosX + rand() % (mMaxPosY - mMinPosY + 1);
+	mPosition.x = randPosX;
+	mPosition.y = randPosY;
 
-	// 経過時間が５秒以下なら止まる
-	// ５秒経過したらほかのステートに移行
-	if (mElapsedTime < 5)
-	{
-		mPosition.x += 0;
-		mPosition.y += 0;
-	}
-	else
-	{
-		mStateNumber = rand() % 10;
-		if (mStateNumber == 0)
-		{
-			mNowState = FishState::Turn;
-		}
-		else
-		{
-			mNowState = FishState::Swim;
-		}
-	}
+	// アクティブ状態にセット
+	mNowState = State::Active;
 }
 
-void Fish::SwimProces()
+void Fish::MoveSinWave()
 {
-	if (!mIsSwim)
-	{
-		// スタート時間のセット
-		mStartTime = GetNowCount() / 1000;
-		mIsSwim = true;
-	}
-	//現在時刻を取得
-	mNowTime = GetNowCount() / 1000;
-	// 経過時間を計算 
-	mElapsedTime = (mNowTime - mStartTime);
+	float delx = mSpeed * std::cos(mAngle - Math::PiOver2) + mXerr;
+	float dely = mSpeed * std::sin(mAngle - Math::PiOver2) + mYerr;
+	
+	mPosition.x += std::lround(delx);
+	mPosition.y += std::lround(dely);
+	
+	mXerr = delx - std::lround(delx);
+	mYerr = delx - std::lround(dely);
 
-	// 制限された座標を超えていたらステートをターンに移行
-	if (OverLimitPos())
+	if (mSinWaveX == 0.0f)
 	{
-		mNowState = FishState::Turn;
-		mTargetAngle = mAngle;
-	}
-	else
-	{
-		// 経過時間が目標時間を超えるまで移動
-		// 目標時間を超えたら次のステートに移行
-		if (mElapsedTime < mTargetTime)
-		{
-			// 画像の回転角から移動量を計算
-			double delx = -1 * std::cos(Math::Pi / 4);
-			double dely = -1 * std::sin(Math::Pi / 4);
-			mPosition.x += std::lround(delx);
-			mPosition.y += std::lround(dely);
-		}
-		else
-		{
-			mStateNumber = rand() % 2;
-			if (mStateNumber == 0)
-			{
-				mNowState = FishState::Stop;
-			}
-			else
-			{
-				mNowState = FishState::Turn;
-			}
-			mIsSwim = false;
-		}
+		mSinWaveAngle = mAngle;
 	}
 
+	// 傾きを算出
+	float slope = -mAmplitude * (2.0 * Math::Pi / mWwaveLength) *
+		          std::sin((2.0 * Math::Pi / mWwaveLength) * mSinWaveX);
+
+	mSinWaveX += mSpeed / (Math::Sqrt(slope * slope + 1));
+	mAngle = mSinWaveAngle + std::atan(slope);
 }
 
-void Fish::TurnProces()
+void Fish::SetMovement(float paramerter1, float parameter2,float angle)
 {
-	if (mAngle < mTargetAngle)
-	{
-		mAngle += 1;
-	}
-	else
-	{
-		mStateNumber = rand() % 10;
-		if (mStateNumber == 0)
-		{
-			mNowState = FishState::Stop;
-		}
-		else
-		{
-			mNowState = FishState::Swim;
-		}
-		mAngle = 0;
-	}
+	mAmplitude = paramerter1;
+	mWwaveLength = parameter2;
+	mAngle = angle;
 }
 
 bool Fish::OverLimitPos()
 {
 	// 制限された座標を超えていたら
-	if (mMinPosX > mPosition.x ||
-		mMaxPosX < mPosition.x ||
-		mMinPosY > mPosition.y ||
-		mMaxPosY < mPosition.y)
+	if (mWindowLeftUpPos.x > mPosition.x ||
+		mWindowRightDownPos.x < mPosition.x ||
+		mWindowLeftUpPos.y > mPosition.y ||
+		mWindowRightDownPos.y < mPosition.y)
 	{
 		return true;
 	}
