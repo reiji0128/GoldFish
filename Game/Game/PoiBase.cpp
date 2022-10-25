@@ -2,6 +2,10 @@
 #include "DxLib.h"
 #include "FishManager.h"
 #include <math.h>
+#include "Sound.h"
+#include"Score.h"
+
+Score* score = new Score();
 
 /// <summary>
 /// コンストラクタ
@@ -34,6 +38,7 @@ PoiBase::PoiBase()
     ,deadTime(0)
     ,mScore(0)
 {
+    sound = new Sound(SoundName[SoundFile::SCOOP]);
 }
 
 /// <summary>
@@ -170,6 +175,8 @@ void PoiBase::Scoop(float deltaTime)
             mPrevInput = true;
             // 入水時の体力減少
             hp -= 3;
+            //サウンドの再生
+            sound->Play(DX_PLAYTYPE_BACK);
         }
         if (hp > 0)
         {
@@ -300,7 +307,7 @@ void PoiBase::CalcScore(Tag tag)
     if ((tag == Tag::RedFish) && mPadNum == DX_INPUT_PAD1 ||
         (tag == Tag::BlueFish && mPadNum == DX_INPUT_PAD2))
     {
-        mScore += 10;
+        score->IncreaseScore(10);
         hp -= 3;
         mBonusCount++;
     }

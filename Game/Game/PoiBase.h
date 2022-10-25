@@ -1,6 +1,9 @@
 #pragma once
 #include "Tag.h"
 
+class Sound;
+class Score;
+
 class PoiBase
 {
 public:
@@ -138,4 +141,7 @@ protected:
     // ÉXÉRÉA
     int mScore;
 
+protected:
+    //SoundÇÃê∂ê¨
+    Sound* sound;
 };
