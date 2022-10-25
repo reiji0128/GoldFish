@@ -59,7 +59,11 @@ void FishManager::Update(float deltaTime)
 {
 	for (auto pool : mInstance->mFishPool)
 	{
-		pool->Update(deltaTime);
+		// アクティブ状態なら更新
+		if (pool->GetState() == State::Active)
+		{
+			pool->Update(deltaTime);
+		}
 	}
 }
 
@@ -70,7 +74,11 @@ void FishManager::Draw()
 {
 	for (auto pool : mInstance->mFishPool)
 	{
-		pool->Draw();
+		// アクティブ状態なら更新
+		if(pool->GetState() == State::Active)
+		{ 
+			pool->Draw();
+		}
 	}
 }
 
@@ -87,6 +95,7 @@ void FishManager::CreatePool(const int redFishSize, const int blueFishSize, cons
 	for (int i = 0; i < redFishSize; i++)
 	{
 		mInstance->mRedFish = new RedFish(Tag::RedFish);
+		mInstance->mRedFish->SetMovement(50, 50, Math::PiOver2);
 		AddFish(mInstance->mRedFish);
 	}
 
@@ -94,6 +103,7 @@ void FishManager::CreatePool(const int redFishSize, const int blueFishSize, cons
 	for (int i = 0; i < blueFishSize; i++)
 	{
 		mInstance->mBlueFish = new BlueFish(Tag::BlueFish);
+		mInstance->mBlueFish->SetMovement(100, 100, -Math::PiOver2);
 		AddFish(mInstance->mBlueFish);
 	}
 
@@ -101,6 +111,7 @@ void FishManager::CreatePool(const int redFishSize, const int blueFishSize, cons
 	for (int i = 0; i < goldFishSize; i++)
 	{
 		mInstance->mGoldFish = new GoldFish(Tag::GoldFish);
+		mInstance->mGoldFish->SetMovement(100, 100, Math::PiOver2);
 		AddFish(mInstance->mGoldFish);
 	}
 
@@ -108,7 +119,19 @@ void FishManager::CreatePool(const int redFishSize, const int blueFishSize, cons
 	for (int i = 0; i < blackFishSize; i++)
 	{
 		mInstance->mBlackFish = new BlackFish(Tag::BlackFish);
+		mInstance->mBlackFish->SetMovement(100, 100, -Math::PiOver2);
 		AddFish(mInstance->mBlackFish);
+	}
+}
+
+/// <summary>
+/// プールの初期化
+/// </summary>
+void FishManager::InitPool()
+{
+	for (auto pool : mInstance->mFishPool)
+	{
+		pool->Init();
 	}
 }
 

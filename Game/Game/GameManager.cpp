@@ -50,6 +50,7 @@ bool GameManager::Initialize()
 	// ó·ÅjUIManager::CreateInstance();
 	//     ActorManager::CreateInstance();
 	FishManager::CreateInstance();
+	FishManager::CreatePool(1, 1, 1, 1);
 
 	PoiManager::CreateInstance();
 
