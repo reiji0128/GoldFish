@@ -90,39 +90,45 @@ void Title::Input()
 	// １つ目のJoyPadの押したボタンの入力状態を取得.
 	pad1Input = GetJoypadInputState(DX_INPUT_PAD1);
 
-	// １つ目のJoyPadが左キーボタンを押していた時.
-	// かつ今のオンマウスした画像が別のステータスを持っていた時.
-	if (pad1Input & PAD_INPUT_LEFT
-		&& this->mNowOnBtn != mStartBtn->GetBtnState())
+	// オンマウスした画像のステータスを取得する処理.
 	{
-		// ボタンのステータスをStartに変更する.
-		this->mNowOnBtn = mStartBtn->GetBtnState();
-	}
-	// １つ目のJoyPadが右キーボタンを押していた時.
-	// かつ今のオンマウスした画像が別のステータスを持っていた時.
-	else if (pad1Input & PAD_INPUT_RIGHT
-		&& this->mNowOnBtn != mExitBtn->GetBtnState())
-	{
-		// ボタンのステータスをExitに変更する.
-		this->mNowOnBtn = mExitBtn->GetBtnState();
+		// １つ目のJoyPadが左キーボタンを押していた時.
+		// かつ今のオンマウスした画像が別のステータスを持っていた時.
+		if (pad1Input & PAD_INPUT_LEFT
+			&& this->mNowOnBtn != this->mStartBtn->GetBtnState())
+		{
+			// ボタンのステータスをStartに変更する.
+			this->mNowOnBtn = this->mStartBtn->GetBtnState();
+		}
+		// １つ目のJoyPadが右キーボタンを押していた時.
+		// かつ今のオンマウスした画像が別のステータスを持っていた時.
+		else if (pad1Input & PAD_INPUT_RIGHT
+			&& this->mNowOnBtn != mExitBtn->GetBtnState())
+		{
+			// ボタンのステータスをExitに変更する.
+			this->mNowOnBtn = mExitBtn->GetBtnState();
+		}
 	}
 
-	// １つ目のJoyPadがAボタンを押していた時.
-	// デバッグ用としてキーボードで7ボタンを押した時.
-	if (pad1Input & PAD_INPUT_1
-		|| CheckHitKey(KEY_INPUT_7))
+	// 現在オンマウスしているボタン画像のステータスによって変わる処理.
 	{
-		// もしボタンのステータスがStartだった時.
-		if (mNowOnBtn == mStartBtn->GetBtnState())
+		// １つ目のJoyPadがAボタンを押していた時.
+		// デバッグ用としてキーボードで7ボタンを押した時.
+		if (pad1Input & PAD_INPUT_1
+			|| CheckHitKey(KEY_INPUT_7))
 		{
-			// チュートリアルシーンを返す.
-			mChangeSceneFlag = true;
-		}
-		// もしボタンのステータスがExitだった時.
-		else if(mNowOnBtn == mExitBtn->GetBtnState())
-		{
-			// ゲームを閉じるシーンタグを返す.
-			mGameExitFlag = true;
+			// もしボタンのステータスがStartだった時.
+			if (mNowOnBtn == mStartBtn->GetBtnState())
+			{
+				// チュートリアルシーンを返す.
+				mChangeSceneFlag = true;
+			}
+			// もしボタンのステータスがExitだった時.
+			else if (mNowOnBtn == mExitBtn->GetBtnState())
+			{
+				// ゲームを閉じるシーンタグを返す.
+				mGameExitFlag = true;
+			}
 		}
 	}
 }
