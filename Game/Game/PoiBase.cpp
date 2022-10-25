@@ -1,6 +1,8 @@
 #include "PoiBase.h"
 #include "DxLib.h"
 #include "FishManager.h"
+#include "Fish.h"
+#include "BlueFish.h"
 #include <math.h>
 
 /// <summary>
@@ -21,7 +23,8 @@ PoiBase::PoiBase()
     ,mImage(0)
     ,mBrokenImg(0)
     ,mBrokenImgF(0)
-    ,mIsFlash(false)
+    ,flashInterval(0.25f)
+    ,mFlash(false)
     ,mIsScoop(false)
     ,mIsFirstFrame(false)
     ,mPrevInput(false)
@@ -70,7 +73,6 @@ void PoiBase::Update(float deltaTime)
     CheckHP();
 
     Repair(deltaTime);
-
 }
 
 /// <summary>
@@ -247,6 +249,22 @@ void PoiBase::Repair(float deltaTime)
     if (!mIsAlive)
     {
         deadTime += deltaTime;
+        flashInterval -= deltaTime;
+
+        if (flashInterval < 0)
+        {
+            mFlash = !mFlash;
+            flashInterval = 0.5f;
+        }
+
+        if (mFlash)
+        {
+            mImage = mBrokenImg;
+        }
+        else
+        {
+            mImage = mBrokenImgF;
+        }
     }
 
     if (deadTime > 3.0f)
@@ -343,7 +361,7 @@ void PoiBase::Coll()
     float mRadius = mHalfScaleX;
 
     CollisionInfo tmpFish;
-    for (int i = 0; i < 30; i++)
+    for (int i = 0; i < 4; i++)
     {
         tmpFish = FishManager::GetCollisionInfo(i);
 
