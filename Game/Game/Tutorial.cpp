@@ -7,9 +7,16 @@
 Tutorial::Tutorial()
      // SceneBaseクラスのコンストラクタ、SceneTagはTutorialTagにする.
     :SceneBase(SceneBase::SceneTag::TutorialTag)
+    // 長押ししたときの値の最大値の初期化.
+    ,MCOUNT(100)
+    // チュートリアルスキップボタンの初期化.
+    ,mTutorialSkipBtn(nullptr)
 {
-    // Backgroundクラスのコンストラクタ、引数にタイトルのBackgroundを指定する.
+    // Backgroundクラスのコンストラクタ、引数にタイトル画像を指定する.
     mBg = new Background(BgImgName[BgImgFileNum::TutorialBg]);
+
+    // Buttonクラスのコンストラクタ、引数にボタン画像とステータスを指定する.
+    mTutorialSkipBtn = new Button(ButtonImgName[ButtonImgFileNum::TutorialSkip],BtnState::TutoSkip);
 }
 
 /// <summary>
@@ -17,6 +24,9 @@ Tutorial::Tutorial()
 /// </summary>
 Tutorial::~Tutorial()
 {
+    // メモリ削除.
+    delete mBg;
+    delete mTutorialSkipBtn;
 }
 
 /// <summary>
@@ -43,6 +53,9 @@ void Tutorial::Draw()
 {
     // Backgroundクラスの描画処理.
     mBg->Draw();
+
+    // Buttonクラスの描画処理.
+    mTutorialSkipBtn->Draw();
 }
 
 /// <summary>
@@ -55,6 +68,11 @@ void Tutorial::Input()
 
     // 一つ目のJoyPadの押したボタンの入力情報を取得.
     pad1Input = GetJoypadInputState(DX_INPUT_PAD1);
+
+    {
+        if(pad1Input & PAD_INPUT_1
+            && this->mNowBtnState)
+    }
 
     // 一つ目のJoyPadがAボタンを押していた時
     // またはデバッグ用としてキーボードで８ボタンを押したとき.
