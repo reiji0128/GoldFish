@@ -13,4 +13,6 @@ public:
     /// デストラクタ
     /// </summary>
     virtual ~PoiBlue();
+
+    void Update(float deltaTime) override;
 };

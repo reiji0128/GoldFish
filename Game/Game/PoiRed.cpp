@@ -1,5 +1,6 @@
 #include "PoiRed.h"
 #include "DxLib.h"
+#include "Collision.h"
 
 /// <summary>
 /// コンストラクタ
@@ -11,12 +12,14 @@ PoiRed::PoiRed()
     mPosY = 810.0f;
     LoadDivGraph("Img/Player/Break.png", 5, 5, 1, (int)mScaleX, (int)mScaleY, mBreakImg);
     LoadDivGraph("Img/Player/Scoop.png", 6, 6, 1, (int)mScaleX, (int)mScaleY, mScoopImg);
-    mBrokenImg = LoadGraph("Img/Player/Broken.png");
-    mBrokenImgF = mBrokenImg;
+    const char* brokenGraph = "Img/Player/Broken.png";
+    mBrokenImg = LoadGraph(brokenGraph);
+    mBrokenImgF = LoadGraph(brokenGraph);
+    GraphFilter(mBrokenImgF, DX_GRAPH_FILTER_HSB, 0, 0, 0, 150);
     mIsScoop = false;
     mIsFirstFrame = false;
     mPrevInput = false;
-    mIsAlive = false;
+    mIsAlive = true;
 }
 
 /// <summary>
@@ -24,4 +27,21 @@ PoiRed::PoiRed()
 /// </summary>
 PoiRed::~PoiRed()
 {
+}
+
+void PoiRed::Update(float deltaTime)
+{
+    Move(deltaTime);
+
+    AdjustPos();
+
+    Bonus(deltaTime);
+
+    Scoop(deltaTime);
+
+    CheckHP();
+
+    Repair(deltaTime);
+
+    Collision::CollUpdateP(mPosX, mPosY, mHalfScaleX, 0);
 }
