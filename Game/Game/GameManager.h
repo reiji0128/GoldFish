@@ -8,6 +8,10 @@
 // ここにゲームプレイ中に必要なヘッダーをインクルードしてください.
 
 
+// コンスタント変数(static).
+static const int MWidth;
+static const int MHeight;
+
 /// <summary>
 /// ゲームマネージャークラス.
 /// </summary>
@@ -62,8 +66,6 @@ private:
 	void DrawGame();
 
 	// コンスタント変数.
-	const int MWidth;
-	const int MHeight;
 	const int MColorBitNum;
 
 	// ループを抜けるかどうかのbool型変数、trueの場合はループを続ける、falseの場合はループを抜ける.
