@@ -23,11 +23,11 @@ public:
 	/// 更新関数、オーバーライド関数.
 	/// </summary>
 	/// <param name="deltaTime">float型のデルタタイムの引数.</param>
-	/// <returns>SCENE_TAG型のenumクラスを返す.</returns>
-	SceneTag Update() override;
+	/// <returns>SceneTag型のenumクラスを返す.</returns>
+	SceneTag Updata() override;
 
 	/// <summary>
-	/// 描画処理.
+	/// 描画処理、オーバーライド関数.
 	/// </summary>
 	void Draw() override;
 
@@ -37,8 +37,8 @@ public:
 	void Input() override;
 
 private:
-	//Button* mStartButton;
-	//Button* mExitButton;
+	Button* mStartBtn;               // チュートリアルに移行するButtonクラスの変数.
+	Button* mExitBtn;                // ゲームを閉じるButtonクラスの変数.
 
-	//bool mStartFlag;
+	BtnState mNowOnBtn;              // 現在オンマウスしているボタンのステータスを取得する.
 };

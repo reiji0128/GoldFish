@@ -19,6 +19,9 @@ PoiBase::PoiBase()
     ,mInputY(0)
     ,mSpeed(400.0f)
     ,mImage(0)
+    ,mBrokenImg(0)
+    ,mBrokenImgF(0)
+    ,mIsFlash(false)
     ,mIsScoop(false)
     ,mIsFirstFrame(false)
     ,mPrevInput(false)
@@ -44,7 +47,7 @@ PoiBase::~PoiBase()
     {
         DeleteGraph(mBreakImg[i]);
     }
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 6; i++)
     {
         DeleteGraph(mScoopImg[i]);
     }
@@ -192,9 +195,9 @@ void PoiBase::Scoop(float deltaTime)
             //Coll();
         }
         mAnimCounter += deltaTime;
-        mAnimNum = int(mAnimCounter * 8);
+        mAnimNum = int(mAnimCounter * 12);
         mImage = mScoopImg[mAnimNum];
-        if (mAnimNum >= 4)
+        if (mAnimNum >= 6)
         {
             mIsScoop = false;
         }

@@ -23,7 +23,7 @@ Result::~Result()
 /// 更新関数.
 /// </summary>
 /// <returns>SceneTag型のenumクラスを返す.</returns>
-SceneBase::SceneTag Result::Update()
+SceneBase::SceneTag Result::Updata()
 {
 	// mChangeSceneFlagがtrueの時.
 	if (mChangeSceneFlag)

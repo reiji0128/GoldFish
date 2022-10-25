@@ -1,39 +1,84 @@
 #pragma once
 #include "Math.h"
+#include "Image.h"
 
 /// <summary>
 /// 画像ファイルの順番.
 /// </summary>
-static enum ButtonImgFileNum
+enum ButtonImgFileNum : unsigned short
 {
-	NONE_BUTTON_IMG = 0,
-	START_BUTTON_IMG,
-	EXIT_BUTTON_IMG,
+	NoneBtn = 0,              // ボタン画像が何もない時.
+	StartBtn,                 // ボタン画像が始める時.
+	ExitBtn,                  // ボタン画像が閉じる時.
 
-	MAX_BUTTON_FILE_NUM,
+	MaxBtnFileNum,            // ボタン画像の最大枚数.
 };
 
-// 上記のenumクラスから
-static const char* ButtonImgName[ButtonImgFileNum::MAX_BUTTON_FILE_NUM] =
+// 上記のenumクラスの順番で画像ファイルパスを保存する変数.
+static const char* ButtonImgName[ButtonImgFileNum::MaxBtnFileNum] =
 {
-	"img/Button/None.png",
-	"img/Button/Start.png",
-	"img/Button/Exit.png",
+	"img/Button/None.png",    // 何もない時の画像ファイルパス.
+	"img/Button/Start.png",   // 始める時の画像ファイルパス.
+	"img/Button/Exit.png",    // 閉じる時の画像ファイルパス.
 };
 
-class Button
+/// <summary>
+/// enumClassのボタンのステータス、型はunsigned short.
+/// </summary>
+enum class BtnState :unsigned short
+{
+	None = 0,                 // オンマウスした画像が何もない時.
+	Start,                    // オンマウスした画像がスタートの時.
+	Retry,                    // オンマウスした画像がリトライの時.
+	Exit,                     // オンマウスした画像がゲーム終了の時.
+
+	MaxStateNum,              // ボタンステータスの最大数.
+};
+
+/// <summary>
+/// ボタン処理を行うクラス.
+/// Imageクラスを継承.
+/// </summary>
+class Button : public Image
 {
 public:
-	Button(const char* fileName);
+	/// <summary>
+	/// コンストラクタ.
+	/// </summary>
+	/// <param name="fileName">const char*型のボタン画像のファイルパス.</param>
+	Button(const char* fileName, BtnState state);
+
+	/// <summary>
+	/// デストラクタ.
+	/// </summary>
 	~Button();
 
-	void Update(float deltaTime);
+	/// <summary>
+	/// 更新関数、オーバーライド関数.
+	/// </summary>
+	/// <param name="deltaTime">float型のデルタタイムの引数.</param>
+	void Updata(float deltaTime) override;
 
-	void Draw();
+	///// <summary>
+	///// 入力処理関数.
+	///// </summary>
+	//void Input(BtnState state);
+
+	/// <summary>
+	/// 描画関数、オーバーライド関数.
+	/// </summary>
+	void Draw() override;
 
 private:
-	Vector2 mPos;
-	Vector2 mScale;
-	int mImgHandle;
-};
+	BtnState mState;                     // それぞれのボタンに振り分けられているステータスを保存する変数.
 
+	// 一度キーを押したかどうかのフラグ（長押し防止用フラグ）、trueの時はキーを一度押したとしてfalseの時はキーを押していないとする.
+	bool mPushBtnFlag; 
+
+public:// ------------------セッター・ゲッター関数-------------------------
+	/// <summary>
+	/// そのボタンのステータスを取得する関数.
+	/// </summary>
+	/// <returns>BtnStateクラスの変数.</returns>
+	BtnState GetBtnState() { return mState; }
+};

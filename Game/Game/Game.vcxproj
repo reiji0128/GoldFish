@@ -151,11 +151,13 @@
     <ClInclude Include="BlackFish.h" />
     <ClInclude Include="BlueFish.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Exit.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="FishManager.h" />
     <ClInclude Include="FPS.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GoldFish.h" />
+    <ClInclude Include="Image.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="PoiBase.h" />
     <ClInclude Include="PoiBlue.h" />
@@ -167,6 +169,7 @@
     <ClInclude Include="Result.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="Title.h" />
+    <ClInclude Include="Tutorial.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
@@ -174,11 +177,13 @@
     <ClCompile Include="BlackFish.cpp" />
     <ClCompile Include="BlueFish.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Exit.cpp" />
     <ClCompile Include="Fish.cpp" />
     <ClCompile Include="FishManager.cpp" />
     <ClCompile Include="FPS.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GoldFish.cpp" />
+    <ClCompile Include="Image.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Play.cpp" />
@@ -190,6 +195,7 @@
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="Title.cpp" />
+    <ClCompile Include="Tutorial.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,8 +2,10 @@
 #include "DxLib.h"
 
 #include "Title.h"
+#include "Tutorial.h"
 #include "Play.h"
 #include "Result.h"
+#include "Exit.h"
 
 #include "FishManager.h"
 #include "PoiManager.h"
@@ -17,7 +19,7 @@ GameManager::GameManager()
 	,MHeight(1080)                            // ウィンドウのy軸のサイズ.
 	,MColorBitNum(16)                         // ウィンドウのカラービットの数.
 	,mRunningFlag(true)                       // ゲームループを回すかどうかを保存するフラグ、trueならループが回りfalseならループから抜ける.
-	,mNowScene(nullptr)                       // 現在のシーンを保存する変数.
+	,mNowSceneClass(nullptr)                  // 現在のシーンクラスを保存する変数.
 	,mReturnTag(SceneBase::mNowSceneTag)      // 次のシーンのタグを保存する変数.
 	,mFps(nullptr)                            // fpsクラスを保存する変数.
 {
@@ -68,13 +70,13 @@ void GameManager::GameLoop()
 		ProcessInput();
 
 		// 現在のシーンを次のシーンを保存する変数に保存する.
-		mReturnTag = mNowScene->Update();
+		mReturnTag = mNowSceneClass->Updata();
 
 		// 次のシーンが今のシーンと違ったとき.
 		if (mReturnTag != SceneBase::mNowSceneTag)
 		{
 			// 今のシーンを削除する.
-			delete mNowScene;
+			delete mNowSceneClass;
 
 			// 新しくシーンを生成する.
 			CreateScene();
@@ -104,7 +106,7 @@ void GameManager::terminate()
 	PoiManager::DeleteInstance();
 
 	// その他単体のクラスを持つ変数の削除.
-	delete mNowScene;
+	delete mNowSceneClass;
 	delete mFps;
 
 	// Dxlibの終了処理.
@@ -116,23 +118,38 @@ void GameManager::terminate()
 /// </summary>
 void GameManager::CreateScene()
 {
-	// 次のタグがタイトルシーンタグだった時.
+	// 次のタグがタイトルシーンのタグだった時.
 	if (mReturnTag == SceneBase::SceneTag::TitleTag)
 	{
 		// タイトルクラスを生成する.
-		mNowScene = new Title();
+		mNowSceneClass = new Title();
 	}
-	// 次のタグがプレイシーンタグだった時.
+	// 次のタグがチュートリアルシーンのタグだった時.
+	else if (mReturnTag == SceneBase::SceneTag::TutorialTag)
+	{
+		// チュートリアルクラスを生成する.
+		mNowSceneClass = new Tutorial();
+	}
+	// 次のタグがプレイシーンのタグだった時.
 	else if (mReturnTag == SceneBase::SceneTag::PlayTag)
 	{
 		// プレイクラスを生成する.
-		mNowScene = new Play();
+		mNowSceneClass = new Play();
 	}
-	// 次のタグがリザルトシーンタグだった時.
+	// 次のタグがリザルトシーンのタグだった時.
 	else if (mReturnTag == SceneBase::SceneTag::ResultTag)
 	{
 		// リザルトクラスを生成する.
-		mNowScene = new Result();
+		mNowSceneClass = new Result();
+	}
+	else if (mReturnTag == SceneBase::SceneTag::ExitTag)
+	{
+		mNowSceneClass = new Exit();
+	}
+	else
+	{
+		// 前のシーンタグを現在のシーンタグへ代入する.@@@
+		mNowSceneClass->mNowSceneTag = mReturnTag;
 	}
 }
 
@@ -141,25 +158,21 @@ void GameManager::CreateScene()
 /// </summary>
 void GameManager::ProcessInput()
 {
-	// 一つ目のXBoxコントローラーが押されたボタンの番号を保存する変数.
-	int pad1Input;
-
-	// 一つ目のXBoxコントローラーの押されたボタンの番号を保存する.
-	pad1Input = GetJoypadInputState(DX_INPUT_PAD1);
-
 	// ウィンドウが閉じられた時
 	// またはESCキーが押された時
-	// またはXBoxコントローラーのメニューキーが押された時.
+	// または現在のシーンタグがExitTagだった時.
 	if (ProcessMessage() == -1
 		|| CheckHitKey(KEY_INPUT_ESCAPE)
-		|| pad1Input & PAD_INPUT_11)
+		|| mNowSceneClass->mNowSceneTag == SceneBase::SceneTag::ExitTag)
 	{
 		// ゲームループを抜けるためにフラグをfalseにする.
 		mRunningFlag = false;
 	}
-
-	// 現在のシーン別の入力処理.
-	mNowScene->Input();
+	else
+	{
+		// 現在のシーン別の入力処理.
+		mNowSceneClass->Input();
+	}
 }
 
 /// <summary>
@@ -194,7 +207,7 @@ void GameManager::DrawGame()
 	//------------------それぞれの描画処理---------------------
 
 	// 現在のシーンを描画する.
-	mNowScene->Draw();
+	mNowSceneClass->Draw();
 
 	//---------------------------------------
 

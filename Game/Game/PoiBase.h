@@ -101,7 +101,13 @@ protected:
     int mBreakImg[5] = { -1 };
 
     // ãdÇ§ç∑ï™
-    int mScoopImg[3] = { -1 };
+    int mScoopImg[6] = { -1 };
+
+    int mBrokenImg;
+
+    int mBrokenImgF;
+
+    bool mIsFlash;
 
     // ãdÇ¡ÇƒÇ¢ÇÈÇ©Ç«Ç§Ç©
     bool mIsScoop;
