@@ -9,7 +9,7 @@ Button::Button(const char* fileName, BtnState state)
 	// 画像クラスの初期化をする.
 	:Image(fileName)
 	// 押したかどうかのフラグの初期化.
-	,mPushBtnFlag(false)
+	//,mPushedBtnFlag(false)
 	// そのボタンの持っているステータスの初期化.
 	,mState(BtnState::None)
 {
