@@ -44,22 +44,6 @@ void Button::Updata(float deltaTime)
 }
 
 /// <summary>
-/// 入力処理関数.
-/// </summary>
-/// <param name="state">BtnStateの変数.</param>
-void Button::Input(BtnState state)
-{
-	if (state == BtnState::Start)
-	{
-		mChangeSceneFlag = true;
-	}
-	else if (state == BtnState::Exit)
-	{
-		mGameExitFlag = true;
-	}
-}
-
-/// <summary>
 /// 描画関数、オーバーライド関数.
 /// </summary>
 void Button::Draw()
