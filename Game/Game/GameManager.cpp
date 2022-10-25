@@ -15,9 +15,7 @@
 /// コンストラクタ.
 /// </summary>
 GameManager::GameManager()
-	:MWidth(1920)                             // ウィンドウのx軸のサイズ.
-	,MHeight(1080)                            // ウィンドウのy軸のサイズ.
-	,MColorBitNum(16)                         // ウィンドウのカラービットの数.
+	:MColorBitNum(16)                         // ウィンドウのカラービットの数.
 	,mRunningFlag(true)                       // ゲームループを回すかどうかを保存するフラグ、trueならループが回りfalseならループから抜ける.
 	,mNowSceneClass(nullptr)                  // 現在のシーンクラスを保存する変数.
 	,mReturnTag(SceneBase::mNowSceneTag)      // 次のシーンのタグを保存する変数.
