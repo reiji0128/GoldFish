@@ -54,4 +54,7 @@ public:
 
 protected:
 	Background* mBg;                     // 背景の生成.
+
+	bool mChangeSceneFlag;               // シーン移動フラグ、trueの時はシーンを変えてfalseの時はシーンを変えない.
+	bool mGameExitFlag;                  // ゲーム終了フラグ、trueの時はゲームを終了させてfalseの時はゲームを続ける.
 };
