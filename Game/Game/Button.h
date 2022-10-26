@@ -18,9 +18,10 @@ enum ButtonImgFileNum : unsigned short
 // 上記のenumクラスの順番で画像ファイルパスを保存する変数.
 static const char* ButtonImgName[ButtonImgFileNum::MaxBtnFileNum] =
 {
-	"img/Button/None.png",    // 何もない時の画像ファイルパス.
-	"img/Button/Start.png",   // 始める時の画像ファイルパス.
-	"img/Button/Exit.png",    // 閉じる時の画像ファイルパス.
+	"img/Button/None.png",              // 何もない時の画像ファイルパス.
+	"img/Button/Start.png",             // 始める時の画像ファイルパス.
+	"img/Button/Exit.png",              // 閉じる時の画像ファイルパス.
+	"img/Button/TutorialSkip.png",      // スキップの画像ファイルパス.
 };
 
 /// <summary>
@@ -61,21 +62,8 @@ public:
 	/// <param name="deltaTime">float型のデルタタイムの引数.</param>
 	void Updata(float deltaTime) override;
 
-	///// <summary>
-	///// 入力処理関数.
-	///// </summary>
-	//void Input(BtnState state);
-
-	/// <summary>
-	/// 描画関数、オーバーライド関数.
-	/// </summary>
-	void Draw() override;
-
 private:
 	BtnState mState;                     // それぞれのボタンに振り分けられているステータスを保存する変数.
-
-	//// 一度キーを押したかどうかのフラグ（長押し防止用フラグ）、trueの時はキーを一度押したとしてfalseの時はキーを押していないとする.
-	//bool mPushedBtnFlag; 
 
 public:// ------------------セッター・ゲッター関数-------------------------
 	/// <summary>
@@ -83,16 +71,4 @@ public:// ------------------セッター・ゲッター関数-------------------------
 	/// </summary>
 	/// <returns>BtnStateクラスの変数.</returns>
 	BtnState GetBtnState() { return mState; }
-
-	///// <summary>
-	///// ボタンが押されているかどうかのフラグを設定する関数.
-	///// </summary>
-	///// <param name="flag">設定するbool型変数または真偽値.</param>
-	//void SetPushedBtnFlag(bool flag) { mPushedBtnFlag = flag; }
-
-	///// <summary>
-	///// ボタンが押されているかどうかのフラグを取得する関数.
-	///// </summary>
-	///// <returns>現在そのボタンが押されているときはtrue、押されていないときはfalseを返す.</returns>
-	//bool GetPushedBtnFlag() { return mPushedBtnFlag; }
 };

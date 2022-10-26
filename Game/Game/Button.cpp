@@ -42,11 +42,3 @@ Button::~Button()
 void Button::Updata(float deltaTime)
 {
 }
-
-/// <summary>
-/// 描画関数、オーバーライド関数.
-/// </summary>
-void Button::Draw()
-{
-	DrawGraph((int)mPos.x, (int)mPos.y, mImgHandle, true);
-}
