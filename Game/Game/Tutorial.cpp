@@ -8,15 +8,20 @@ Tutorial::Tutorial()
      // SceneBaseクラスのコンストラクタ、SceneTagはTutorialTagにする.
     :SceneBase(SceneBase::SceneTag::TutorialTag)
     // 長押ししたときの値の最大値の初期化.
-    ,MCOUNT(100)
+    ,MCOUNT_MAX(100)
     // チュートリアルスキップボタンの初期化.
     ,mTutorialSkipBtn(nullptr)
+    // 長押しした時のみ増加する変数の初期化.
+    ,mCount(0)
+    // シーン中にオンマウスしているボタンのステータスを保存する変数の初期化.
+    ,mNowOnBtn()
 {
     // Backgroundクラスのコンストラクタ、引数にタイトル画像を指定する.
     mBg = new Background(BgImgName[BgImgFileNum::TutorialBg]);
 
     // Buttonクラスのコンストラクタ、引数にボタン画像とステータスを指定する.
     mTutorialSkipBtn = new Button(ButtonImgName[ButtonImgFileNum::TutorialSkip],BtnState::TutoSkip);
+    mTutorialSkipBtn->SetPosition(Vector2(300.0f,300.0f));
 }
 
 /// <summary>
@@ -52,10 +57,10 @@ SceneBase::SceneTag Tutorial::Updata()
 void Tutorial::Draw()
 {
     // Backgroundクラスの描画処理.
-    mBg->Draw();
+    mBg->Draw(ViewState::Normal);
 
     // Buttonクラスの描画処理.
-    mTutorialSkipBtn->Draw();
+    mTutorialSkipBtn->Draw(ViewState::CircleGauge);
 }
 
 /// <summary>
@@ -69,15 +74,22 @@ void Tutorial::Input()
     // 一つ目のJoyPadの押したボタンの入力情報を取得.
     pad1Input = GetJoypadInputState(DX_INPUT_PAD1);
 
+    // 一つ目のJoyPadがAボタンを押していた時.
+    if (pad1Input & PAD_INPUT_1)
     {
-        if(pad1Input & PAD_INPUT_1
-            && this->mNowBtnState)
+        // 長押し変数を増加する
+        mCount++;
+
+        // 長押しカウントが既定値を超えた時.
+        if (mCount > MCOUNT_MAX)
+        {
+            // プレイシーンを返す.
+            mChangeSceneFlag = true;
+        }
     }
 
-    // 一つ目のJoyPadがAボタンを押していた時
     // またはデバッグ用としてキーボードで８ボタンを押したとき.
-    if (pad1Input & PAD_INPUT_1
-        || CheckHitKey(KEY_INPUT_8))
+    if (CheckHitKey(KEY_INPUT_8))
     {
         // シーンを変えるフラグをtrueにする.
         mChangeSceneFlag = true;
