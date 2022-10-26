@@ -45,7 +45,8 @@ SceneBase::SceneTag Play::Updata()
 void Play::Draw()
 {
 	// BackgroundƒNƒ‰ƒX‚Ì•`‰æˆ—.
-	mBg->Draw();
+	mBg->Draw(ViewState::Normal);
+
 	// FishManager‚Ì•`‰æˆ—
 	FishManager::Draw();
 

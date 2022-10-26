@@ -42,7 +42,7 @@ SceneBase::SceneTag Result::Updata()
 void Result::Draw()
 {
 	// BackgroundƒNƒ‰ƒX‚Ì•`‰æŠÖ”.
-	mBg->Draw();
+	mBg->Draw(ViewState::Normal);
 }
 
 /// <summary>

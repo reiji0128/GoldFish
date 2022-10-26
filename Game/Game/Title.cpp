@@ -72,11 +72,11 @@ SceneBase::SceneTag Title::Updata()
 void Title::Draw()
 {
 	// BackgroundƒNƒ‰ƒX‚Ì•`‰æˆ—.
-	mBg->Draw();
+	mBg->Draw(ViewState::Normal);
 
 	// buttonƒNƒ‰ƒX‚Ì•`‰æˆ—.
-	mStartBtn->Draw();
-	mExitBtn->Draw();
+	mStartBtn->Draw(ViewState::Normal);
+	mExitBtn->Draw(ViewState::Normal);
 }
 
 /// <summary>
