@@ -46,9 +46,4 @@ public:
 	/// XVŠÖ”.
 	/// </summary>
  	void Updata(float deltaTime) override;
-
-	/// <summary>
-	/// •`‰æŠÖ”.
-	/// </summary>
-	void Draw() override;
 };

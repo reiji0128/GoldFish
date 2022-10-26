@@ -34,12 +34,3 @@ Background::~Background()
 void Background::Updata(float deltaTime)
 {
 }
-
-/// <summary>
-/// •`‰æŠÖ”.
-/// </summary>
-void Background::Draw()
-{
-	// •`‰æˆ—.
-	DrawGraph((int)mPos.x, (int)mPos.y, mImgHandle, true);
-}
