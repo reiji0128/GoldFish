@@ -11,6 +11,7 @@ enum ButtonImgFileNum : unsigned short
 	StartBtn,                 // ボタン画像が始める時.
 	ExitBtn,                  // ボタン画像が閉じる時.
 	TutorialSkip,             // ボタン画像がチュートリアルをスキップの時.
+	TitleBtn,                 // ボタン画像がタイトルの時.
 
 	MaxBtnFileNum,            // ボタン画像の最大枚数.
 };
@@ -21,7 +22,8 @@ static const char* ButtonImgName[ButtonImgFileNum::MaxBtnFileNum] =
 	"img/Button/None.png",              // 何もない時の画像ファイルパス.
 	"img/Button/Start.png",             // 始める時の画像ファイルパス.
 	"img/Button/Exit.png",              // 閉じる時の画像ファイルパス.
-	"img/Button/TutorialSkip.png",      // スキップの画像ファイルパス.
+	"img/Button/TutorialSkip2.png",     // スキップの画像ファイルパス.
+	"img/Button/Title.png",             // タイトルの画像ファイルパス.
 };
 
 /// <summary>
@@ -34,6 +36,7 @@ enum class BtnState :unsigned short
 	Retry,                    // オンマウスした画像がリトライの時.
 	Exit,                     // オンマウスした画像がゲーム終了の時.
 	TutoSkip,                 // オンマウスした画像がチュートリアルをスキップする時.
+	Title,                    // オンマウスした画像がタイトルの時.
 
 	MaxStateNum,              // ボタンステータスの最大数.
 };
