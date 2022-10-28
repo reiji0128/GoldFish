@@ -11,8 +11,8 @@ Title::Title()
 	,mStartBtn(nullptr)
 	// ゲームを閉じるボタンの初期化.
 	,mExitBtn(nullptr)
-	// 現在オンマウス状態にあるボタンの初期化.
-	, mNowOnBtn(BtnState::None)
+	// 現在オンマウス状態にあるボタンのステータスの初期化.
+	,mNowOnBtn(BtnState::None)
 {
 	// Backgroundクラスのコンストラクタ、引数にタイトルのBackgroundを指定する.
 	mBg = new Background(BgImgName[BgImgFileNum::TitleBg]);
@@ -74,7 +74,7 @@ void Title::Draw()
 	// Backgroundクラスの描画処理.
 	mBg->Draw(ViewState::Normal);
 
-	// buttonクラスの描画処理.
+	// Buttonクラスの描画処理.
 	mStartBtn->Draw(ViewState::Normal);
 	mExitBtn->Draw(ViewState::Normal);
 }
@@ -103,10 +103,10 @@ void Title::Input()
 		// １つ目のJoyPadが右キーボタンを押していた時.
 		// かつ今のオンマウスした画像が別のステータスを持っていた時.
 		else if (pad1Input & PAD_INPUT_RIGHT
-			&& this->mNowOnBtn != mExitBtn->GetBtnState())
+			&& this->mNowOnBtn != this->mExitBtn->GetBtnState())
 		{
 			// ボタンのステータスをExitに変更する.
-			this->mNowOnBtn = mExitBtn->GetBtnState();
+			this->mNowOnBtn = this->mExitBtn->GetBtnState();
 		}
 	}
 
@@ -120,13 +120,13 @@ void Title::Input()
 			// もしボタンのステータスがStartだった時.
 			if (mNowOnBtn == mStartBtn->GetBtnState())
 			{
-				// チュートリアルシーンを返す.
+				// チュートリアルシーンをtrueにする.
 				mChangeSceneFlag = true;
 			}
 			// もしボタンのステータスがExitだった時.
 			else if (mNowOnBtn == mExitBtn->GetBtnState())
 			{
-				// ゲームを閉じるシーンタグを返す.
+				// ゲームを閉じるシーンフラグをtrueにする.
 				mGameExitFlag = true;
 			}
 		}
