@@ -21,6 +21,8 @@ Tutorial::Tutorial()
 
     // Buttonクラスのコンストラクタ、引数にボタン画像とステータスを指定する.
     mTutorialSkipBtn = new Button(ButtonImgName[ButtonImgFileNum::TutorialSkip],BtnState::TutoSkip);
+
+    // Buttonクラスの座標設定.@@@(仮)
     mTutorialSkipBtn->SetPosition(Vector2(300.0f,300.0f));
 }
 
