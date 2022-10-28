@@ -1,6 +1,6 @@
 #pragma once
 #include "SceneBase.h"
-#include "Background.h"
+#include "Button.h"
 
 /// <summary>
 /// シーンのリザルトクラス.
@@ -37,5 +37,8 @@ public:
 	void Input() override;
 
 private:
-};
+	Button* mTitleBtn;            // タイトルに移行するButtonクラスの変数.
+	Button* mExitBtn;             // ゲームを閉じるButtonクラスの変数.
 
+	BtnState mNowOnBtn;           // 現在オンマウス状態にあるボタンのステータスを取得する.
+};
