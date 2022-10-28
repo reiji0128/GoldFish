@@ -47,6 +47,7 @@ protected:
     int mImgHandle;          // 画像ハンドル保存変数.
 
     double mCircePercent;    // 円形のゲージをどの程度まで表示するのかを代入する変数(double型).
+    double mCircePercentAdd; // 円形のゲージが増えていく値を保存する変数(double型).
 
 public :// -------------------セッター・ゲッター関数--------------------
 

@@ -38,7 +38,7 @@ void Image::Draw(ViewState state)
     else if (state == ViewState::CircleGauge)
     {
         // ‰~Œ`‚ÌƒQ[ƒW‚ğ•Û‘¶‚·‚é•Ï”‚Ì‘ã“ü.
-        mCircePercent += 0.1f;
+        mCircePercent += 0.3f;
         // •`‰æˆ—.
         DrawCircleGaugeF(mPos.x, mPos.y, mCircePercent, mImgHandle, true);
     }
