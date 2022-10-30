@@ -20,6 +20,11 @@ Play::Play()
 /// </summary>
 Play::~Play()
 {
+	// ƒƒ‚ƒŠ‚Ìíœ.
+	delete mBg;
+
+	// ƒƒ‚ƒŠ‚Ì‰Šú‰».
+	mBg = nullptr;
 }
 
 /// <summary>

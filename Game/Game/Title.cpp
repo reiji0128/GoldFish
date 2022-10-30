@@ -24,9 +24,6 @@ Title::Title()
 	// Buttonクラスの座標設定.@@@(仮)
 	mStartBtn->SetPosition(Vector2(100, 100));
 	mExitBtn->SetPosition(Vector2(200, 200));
-
-	// 現在オンマウス状態にあるボタンのステータスを代入.
-	mNowOnBtn = mStartBtn->GetBtnState();
 }
 
 /// <summary>
@@ -38,6 +35,11 @@ Title::~Title()
 	delete mBg;
 	delete mStartBtn;
 	delete mExitBtn;
+	
+	// メモリの初期化.
+	mBg = nullptr;
+	mStartBtn = nullptr;
+	mExitBtn = nullptr;
 }
 
 /// <summary>

@@ -34,6 +34,10 @@ Tutorial::~Tutorial()
     // ƒƒ‚ƒŠíœ.
     delete mBg;
     delete mTutorialSkipBtn;
+
+    // ƒƒ‚ƒŠ‚Ì‰Šú‰».
+    mBg = nullptr;
+    mTutorialSkipBtn = nullptr;
 }
 
 /// <summary>
