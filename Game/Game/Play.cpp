@@ -51,6 +51,8 @@ void Play::Draw()
 
 	PoiManager::Draw();
 	
+	//UIƒNƒ‰ƒX‚Ì•`‰æ
+	ui->Draw();
 }
 
 /// <summary>
