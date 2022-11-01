@@ -13,4 +13,6 @@ public:
     /// デストラクタ
     /// </summary>
     virtual ~PoiRed();
+
+    void Update(float deltaTime) override;
 };
