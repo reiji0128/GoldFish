@@ -21,7 +21,7 @@ public:
     /// 更新処理
     /// </summary>
     /// <param name="deltaTime">1フレームの経過時間</param>
-    void Update(float deltaTime);
+    virtual void Update(float deltaTime);
 
     /// <summary>
     /// 描画処理
@@ -110,7 +110,7 @@ protected:
 
     int mBrokenImgF;
 
-    bool mIsFlash;
+    float flashInterval;
 
     // 掬っているかどうか
     bool mIsScoop;

@@ -25,7 +25,7 @@ PoiBase::PoiBase()
     ,mImage(0)
     ,mBrokenImg(0)
     ,mBrokenImgF(0)
-    ,mIsFlash(false)
+    ,flashInterval(0.25f)
     ,mIsScoop(false)
     ,mIsFirstFrame(false)
     ,mPrevInput(false)
@@ -251,16 +251,30 @@ void PoiBase::CheckHP()
 /// <param name="deltaTime">1ÉtÉåÅ[ÉÄÇÃåoâﬂéûä‘</param>
 void PoiBase::Repair(float deltaTime)
 {
-    if (!mIsAlive)
+    if (mBonusCount > 2)
     {
-        deadTime += deltaTime;
+        mIsBonus = true;
+    }
+    else
+    {
+        mIsBonus = false;
     }
 
-    if (deadTime > 3.0f)
+    if (mIsBonus)
     {
-        deadTime = 0;
-        mIsAlive = true;
-        hp = 24;
+        mFloatScale = 2.0f;
+        mBonusTimer += deltaTime;
+    }
+    else
+    {
+        mFloatScale = 1.0f;
+    }
+
+    if (mBonusTimer > 5.0f)
+    {
+        mBonusTimer = 0;
+        mBonusCount = 0;
+        mIsBonus = false;
     }
 }
 

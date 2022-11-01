@@ -9,6 +9,7 @@
 
 #include "FishManager.h"
 #include "PoiManager.h"
+#include "Collision.h"
 //-----------------必要な時にヘッダーファイルをインクルードしてください.-------------------//
 
 /// <summary>
@@ -51,6 +52,8 @@ bool GameManager::Initialize()
 	FishManager::CreatePool(1, 1, 1, 1);
 
 	PoiManager::CreateInstance();
+
+	Collision::CreateInstance();
 
 	// 問題がなければtrueを返す.
 	return true;
@@ -102,6 +105,8 @@ void GameManager::terminate()
 	FishManager::DeleteInstance();
 
 	PoiManager::DeleteInstance();
+
+	Collision::DeleteInstance();
 
 	// その他単体のクラスを持つ変数の削除.
 	delete mNowSceneClass;
@@ -188,6 +193,8 @@ void GameManager::UpdateGame()
 	//-------------------------------------
 
 	PoiManager::Update(deltaTime);
+
+	//Collision::CollCheck();
 
 	// fpsクラスを更新する.
 	mFps->Update();
