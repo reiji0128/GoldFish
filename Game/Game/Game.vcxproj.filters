@@ -43,6 +43,15 @@
     <Filter Include="MainBranch\GameManager">
       <UniqueIdentifier>{df5a1d20-3c1a-4280-b924-546f0f35bfc5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainBranch\Scene\Tutorial">
+      <UniqueIdentifier>{58a7089b-2d59-40fb-9cdf-4cab15289449}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainBranch\Image">
+      <UniqueIdentifier>{112e6bfe-bd62-4c15-9396-e45308169b56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainBranch\Scene\Exit">
+      <UniqueIdentifier>{cca7c9f4-2746-49a9-aaf0-53b4fd6eaaf2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseObject.h">
@@ -116,14 +125,19 @@
     </ClInclude>
     <ClInclude Include="Score.h">
       <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Tutorial.h">
+      <Filter>MainBranch\Scene\Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>MainBranch\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Exit.h">
+      <Filter>MainBranch\Scene\Exit</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseObject.cpp">
       <Filter>MainBranch</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneBase.cpp">
-      <Filter>MainBranch\Scene</Filter>
     </ClCompile>
     <ClCompile Include="FPS.cpp">
       <Filter>MainBranch\FPS</Filter>
@@ -167,9 +181,11 @@
     <ClCompile Include="BlackFish.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+
     <ClCompile Include="Button.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+
     <ClCompile Include="PoiBase.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -185,11 +201,28 @@
     <ClCompile Include="RedFish.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+
     <ClCompile Include="Sound.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Score.cpp">
       <Filter>ソース ファイル</Filter>
+
+    <ClCompile Include="Tutorial.cpp">
+      <Filter>MainBranch\Scene\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>MainBranch\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBase.cpp">
+      <Filter>MainBranch\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>MainBranch\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Exit.cpp">
+      <Filter>MainBranch\Scene\Exit</Filter>
+
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -4,11 +4,10 @@
 
 class FishStateBase;
 
-enum class FishState
+enum class State
 {
-	Stop,
-	Swim,
-	Turn
+	Active,
+	Inacive
 };
 
 class Fish : public BaseObject
@@ -25,6 +24,8 @@ public:
 	/// </summary>
 	~Fish();
 
+	void Init();
+
 	/// <summary>
 	/// 描画処理
 	/// </summary>
@@ -35,15 +36,20 @@ public:
 	/// </summary>
 	void StopProces();
 
-	/// <summary>
-	/// 泳ぐ処理
-	/// </summary>
-	void SwimProces();
+	// 正弦波の動き
+	void MoveSinWave();
+
+// セッター //
+
+	void SetMovement(float paramerter1, float parameter2,float angle);
+
+// ゲッター　//
 
 	/// <summary>
-	/// 曲がる処理
+	/// 現在の状態の取得
 	/// </summary>
-	void TurnProces();
+	/// <returns>現在の状態</returns>
+	State const GetState() { return mNowState; }
 
 protected:
 
@@ -70,8 +76,21 @@ protected:
 	int mAnimationCount;
 	// ステートの番号
 	int mStateNumber;
-	// 目標時間(秒)
-	const int mTargetTime = 2;
+
+	// 正弦波のX
+	float mSinWaveX;
+	// 正弦波の角度
+	float mSinWaveAngle;
+	// 振幅
+	float mAmplitude;
+	// 波長
+	float mWwaveLength;
+
+	// スピード
+	float mSpeed;
+	float mXerr;
+	float mYerr;
+
 	// 目標角度
 	int mTargetAngle;
 	// 泳いでる状態か
@@ -82,6 +101,10 @@ protected:
 	// 座標の最大値(画面から出ないようにフルスクリーンのサイズより小さい値)
 	const int mMaxPosX = 1900;
 	const int mMaxPosY = 1750;
+
+	const Vector2 mWindowLeftUpPos = Vector2(0, 0);
+	const Vector2 mWindowRightDownPos = Vector2(1920, 1080);
+
 	// 現在の状態
-	FishState mNowState;
+	State mNowState;
 };

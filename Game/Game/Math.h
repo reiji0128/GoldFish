@@ -842,18 +842,18 @@ public:
 	//	return Matrix4(temp);
 	//}
 
-	// Create "Simple" View-Projection Matrix from Chapter 6
-	static Matrix4 CreateSimpleViewProj(float width, float height)
-	{
-		float temp[4][4] =
-		{
-			{ 2.0f/width, 0.0f, 0.0f, 0.0f },
-			{ 0.0f, 2.0f/height, 0.0f, 0.0f },
-			{ 0.0f, 0.0f, 1.0f, 0.0f },
-			{ 0.0f, 0.0f, 1.0f, 1.0f }
-		};
-		return Matrix4(temp);
-	}
+	//// Create "Simple" View-Projection Matrix from Chapter 6
+	//static Matrix4 CreateSimpleViewProj(float width, float height)
+	//{
+	//	float temp[4][4] =
+	//	{
+	//		{ 2.0f/width, 0.0f, 0.0f, 0.0f },
+	//		{ 0.0f, 2.0f/height, 0.0f, 0.0f },
+	//		{ 0.0f, 0.0f, 1.0f, 0.0f },
+	//		{ 0.0f, 0.0f, 1.0f, 1.0f }
+	//	};
+	//	return Matrix4(temp);
+	//}
 	
 	static const Matrix4 Identity;
 };

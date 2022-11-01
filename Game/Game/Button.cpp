@@ -1,16 +1,25 @@
 #include "Button.h"
 #include "DxLib.h"
 
-Button::Button(const char* fileName)
-	:mPos(Vector2::Zero)
-	, mScale(Vector2::Zero)
-	, mImgHandle(-1)
+/// <summary>
+/// コンストラクタ.
+/// </summary>
+/// <param name="fileName">const char*型の画像ファイルパス.</param>
+Button::Button(const char* fileName, BtnState state)
+	// 画像クラスの初期化をする.
+	:Image(fileName)
+	// 押したかどうかのフラグの初期化.
+	//,mPushedBtnFlag(false)
+	// そのボタンの持っているステータスの初期化.
+	,mState(BtnState::None)
 {
-	mImgHandle = LoadGraph(fileName);
-
-	GetGraphSizeF(mImgHandle, &mScale.x, &mScale.y);
+	// ステータスの代入.
+	mState = state;
 }
 
+/// <summary>
+/// デストラクタ.
+/// </summary>
 Button::~Button()
 {
 	// すでに画像ハンドルが-1の時はreturnを返す
@@ -26,13 +35,18 @@ Button::~Button()
 	mImgHandle = -1;
 }
 
-void Button::Update(float deltaTime)
+/// <summary>
+/// 更新関数、オーバーライド関数.
+/// </summary>
+/// <param name="deltaTime"></param>
+void Button::Updata(float deltaTime)
 {
-	// オンマウス？(ぶっちゃけパッドなのでマウスとかではない)のときの挙動.
-	//if()
 }
 
+/// <summary>
+/// 描画関数、オーバーライド関数.
+/// </summary>
 void Button::Draw()
 {
-	DrawGraph(mPos.x, mPos.y, mImgHandle, true);
+	DrawGraph((int)mPos.x, (int)mPos.y, mImgHandle, true);
 }

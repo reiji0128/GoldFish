@@ -8,6 +8,10 @@
 // ここにゲームプレイ中に必要なヘッダーをインクルードしてください.
 
 
+// コンスタント変数(static).
+static const int MWidth = 1920;
+static const int MHeight = 1080;
+
 /// <summary>
 /// ゲームマネージャークラス.
 /// </summary>
@@ -61,21 +65,31 @@ private:
 	/// </summary>
 	void DrawGame();
 
-	const int MWidth;
-	const int MHeight;
+	// コンスタント変数.
 	const int MColorBitNum;
 
+	// ループを抜けるかどうかのbool型変数、trueの場合はループを続ける、falseの場合はループを抜ける.
 	bool mRunningFlag;
 
-	SceneBase* mNowScene;
+	// 現在のシーンクラスを持つ変数.
+	SceneBase* mNowSceneClass;
+
+	// １ループ前のシーンタグを保存する変数.
 	SceneBase::SceneTag mReturnTag;
 
+	// FPSクラスを持つ変数.
 	FPS* mFps;
 
-public:
+public:// ------------------セッター・ゲッター関数-------------------------
+
+	/// <summary>
+	/// 最初のシーンの代入.
+	/// </summary>
+	/// <param name="firstScene">SceneBase型の一番最初に表示するシーンクラス.</param>
 	void SetFirstScene(SceneBase* firstScene)
 	{
-		mNowScene = firstScene;
+		// 現在のシーンクラスへと代入する.
+		mNowSceneClass = firstScene;
 	};
 };
 
