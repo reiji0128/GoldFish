@@ -2,6 +2,10 @@
 #include "Math.h"
 #include "Background.h"
 
+// コンスタント変数(static).
+static const int MWidth = 1920;
+static const int MHeight = 1080;
+
 /// <summary>
 /// シーンの基底クラス.
 /// </summary>
@@ -38,7 +42,7 @@ public:
 	/// </summary>
 	/// <param name="delteTime">float型のデルタタイムの引数.</param>
 	/// <returns>SceneTag型のenumクラスを返す.</returns>
-	virtual SceneBase::SceneTag Updata() = 0;
+	virtual SceneBase::SceneTag Updata(float deltaTime) = 0;
 
 	/// <summary>
 	/// 入力処理関数、仮想関数.
