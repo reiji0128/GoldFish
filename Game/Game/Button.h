@@ -19,7 +19,7 @@ enum ButtonImgFileNum : unsigned short
 // 上記のenumクラスの順番で画像ファイルパスを保存する変数.
 static const char* ButtonImgName[ButtonImgFileNum::MaxBtnFileNum] =
 {
-	"img/Button/None.png",              // 何もない時の画像ファイルパス.
+	"img/None.png",                     // 何もない時の画像ファイルパス.
 	"img/Button/Start.png",             // 始める時の画像ファイルパス.
 	"img/Button/Exit.png",              // 閉じる時の画像ファイルパス.
 	"img/Button/TutorialSkip2.png",     // スキップの画像ファイルパス.
@@ -63,7 +63,7 @@ public:
 	/// 更新関数、オーバーライド関数.
 	/// </summary>
 	/// <param name="deltaTime">float型のデルタタイムの引数.</param>
-	void Updata(float deltaTime) override;
+	void Updata(float deltaTime, ViewState state) override;
 
 private:
 	BtnState mState;                     // それぞれのボタンに振り分けられているステータスを保存する変数.

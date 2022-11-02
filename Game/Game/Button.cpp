@@ -39,6 +39,20 @@ Button::~Button()
 /// 更新関数、オーバーライド関数.
 /// </summary>
 /// <param name="deltaTime"></param>
-void Button::Updata(float deltaTime)
+void Button::Updata(float deltaTime, ViewState state)
 {
+	// 変数の代入.
+	Image::mState = state;
+
+	// 表示ステータスが円形に表示するとき.
+	if (Image::mState == ViewState::CircleGauge)
+	{
+		// 円形のゲージを保存する変数の代入.
+		mCirclePercent += mCirclePercentAdd;
+	}
+	// 表示ステータスがボタンの時.
+	else if (Image::mState == ViewState::Button)
+	{
+		mPos.y += Math::Cos(0.5f);
+	}
 }
