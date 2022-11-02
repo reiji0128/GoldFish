@@ -9,6 +9,7 @@ enum class ViewState : unsigned short
     None = 0,                 // 画像の描画処理がない時.
     Normal,                   // 画像の描画処理が普通に表示される時.
     CircleGauge,              // 画像の描画処理が円形に表示される時.
+    Button,                   // 画像の描画処理がボタンとして表示される時.
 
     MaxDrawState,             // 画像の描画処理のパターン数.
 };
@@ -34,17 +35,19 @@ public :
     /// 更新関数、仮想関数.
     /// </summary>
     /// <param name="deltaTime">float型のデルタタイムの引数.</param>
-    virtual void Updata(float deltaTime) {};
+    virtual void Updata(float deltaTime, ViewState state) {};
 
     /// <summary>
     /// ステータス別の描画関数、仮想関数.
     /// </summary>
-    void Draw(ViewState state);
+    void Draw();
 
 protected:
-    Vector2 mPos;            // 座標保存変数.
-    Vector2 mScale;          // 画像の大きさを保存する変数.
-    int mImgHandle;          // 画像ハンドル保存変数.
+    Vector2 mPos;             // 座標保存変数.
+    Vector2 mScale;           // 画像の大きさを保存する変数.
+    int mImgHandle;           // 画像ハンドル保存変数.
+
+    ViewState mState;          // 描画の際に使用するステータスを保存する変数.
 
     double mCirclePercent;    // 円形のゲージをどの程度まで表示するのかを代入する変数(double型).
     double mCirclePercentAdd; // 円形のゲージが増えていく値を保存する変数(double型).

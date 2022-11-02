@@ -12,6 +12,8 @@ Image::Image(const char* fileName)
     , mScale(Vector2::Zero)
     // 画像ハンドル保存変数の初期化.
     , mImgHandle(-1)
+    // 描画の際に使用するステータスを保存する変数.
+    , mState(ViewState::None)
     // 円形のゲージを表示する変数の初期化.
     , mCirclePercent(0.0f)
     // 円形のゲージを動かす為の変数の初期化.
@@ -29,22 +31,18 @@ Image::Image(const char* fileName)
 /// <summary>
 /// ステータス別の描画関数.
 /// </summary>
-/// <param name="state">ViewState型のenum classの変数.</param>
-void Image::Draw(ViewState state)
+void Image::Draw()
 {
-    // ステータスが通常の時.
-    if (state == ViewState::Normal)
-    {
-        // 描画処理.
-        DrawGraph((int)mPos.x, (int)mPos.y, mImgHandle, true);
-    }
     // ステータスが円形のゲージ状の時.
-    else if (state == ViewState::CircleGauge
-        && this->mCircleMoveFlag)
+    if (mState == ViewState::CircleGauge
+        && mCircleMoveFlag)
     {
-        // 円形のゲージを保存する変数の代入.
-        mCirclePercent += mCirclePercentAdd;
         // 描画処理.
         DrawCircleGaugeF(mPos.x, mPos.y, mCirclePercent, mImgHandle, true);
+    }
+    // それ以外の時.
+    else
+    {
+        DrawGraph(mPos.x, mPos.y, mImgHandle, true);
     }
 }
