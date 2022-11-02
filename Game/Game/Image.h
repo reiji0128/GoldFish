@@ -46,8 +46,9 @@ protected:
     Vector2 mScale;          // 画像の大きさを保存する変数.
     int mImgHandle;          // 画像ハンドル保存変数.
 
-    double mCircePercent;    // 円形のゲージをどの程度まで表示するのかを代入する変数(double型).
-    double mCircePercentAdd; // 円形のゲージが増えていく値を保存する変数(double型).
+    double mCirclePercent;    // 円形のゲージをどの程度まで表示するのかを代入する変数(double型).
+    double mCirclePercentAdd; // 円形のゲージが増えていく値を保存する変数(double型).
+    bool mCircleMoveFlag;     // 円形のゲージが増えていくかどうかのフラグ、trueなら動きfalseなら動かない.
 
 public :// -------------------セッター・ゲッター関数--------------------
 
@@ -68,4 +69,22 @@ public :// -------------------セッター・ゲッター関数--------------------
     /// </summary>
     /// <returns>Vector2型の画像の大きさを保存している変数を返す.</returns>
     Vector2 GetScale() { return this->mScale; }
+
+    /// <summary>
+    /// ゲージが増える量の設定.
+    /// </summary>
+    /// <param name="add">double型のゲージ増加変数.</param>
+    void SetCirclePercentAdd(double add) { this->mCirclePercentAdd = add; }
+
+    /// <summary>
+    /// ゲージが増える量の取得.
+    /// </summary>
+    /// <returns>double型のゲージ増加変数.</returns>
+    double GetCirclePercentAdd() { return this->mCirclePercentAdd; }
+
+    /// <summary>
+    /// ゲージが増えるかどうかのフラグの設定.
+    /// </summary>
+    /// <param name="flag">bool型の変数.</param>
+    void SetCircleFlag(bool flag) { this->mCircleMoveFlag = flag; }
 };
