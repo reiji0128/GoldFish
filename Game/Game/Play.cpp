@@ -28,10 +28,11 @@ Play::~Play()
 }
 
 /// <summary>
-/// 更新処理.
+/// 更新関数、オーバーライド関数.
 /// </summary>
-/// <returns>SceneBaseのenumClassであるSceneTag型を返す.</returns>
-SceneBase::SceneTag Play::Updata()
+/// <param name="deltaTime">float型のデルタタイム.</param>
+/// <returns>SceneTag型のenumクラスを返す.</returns>
+SceneBase::SceneTag Play::Updata(float deltaTime)
 {
 	// mChangeSceneFlagがtrueだった時
 	if (mChangeSceneFlag)
@@ -50,7 +51,7 @@ SceneBase::SceneTag Play::Updata()
 void Play::Draw()
 {
 	// Backgroundクラスの描画処理.
-	mBg->Draw(ViewState::Normal);
+	mBg->Draw();
 
 	// FishManagerの描画処理
 	FishManager::Draw();
