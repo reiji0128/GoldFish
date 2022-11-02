@@ -67,7 +67,7 @@ void GameManager::GameLoop()
 		ProcessInput();
 
 		// 現在のシーンを次のシーンを保存する変数に保存する.
-		mReturnTag = mNowSceneClass->Updata();
+		mReturnTag = mNowSceneClass->Updata(mFps->GetDeltaTime());
 
 		// 次のシーンが今のシーンと違ったとき.
 		if (mReturnTag != SceneBase::mNowSceneTag)

@@ -8,9 +8,6 @@
 // ここにゲームプレイ中に必要なヘッダーをインクルードしてください.
 
 
-// コンスタント変数(static).
-static const int MWidth = 1920;
-static const int MHeight = 1080;
 
 /// <summary>
 /// ゲームマネージャークラス.
