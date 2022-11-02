@@ -44,11 +44,18 @@ Tutorial::~Tutorial()
 }
 
 /// <summary>
-/// 更新関数.
+/// 更新関数、オーバーライド関数.
 /// </summary>
+/// <param name="deltaTime">float型のデルタタイム.</param>
 /// <returns>SceneTag型のenumクラスを返す.</returns>
-SceneBase::SceneTag Tutorial::Updata()
+SceneBase::SceneTag Tutorial::Updata(float deltaTime)
 {
+    // 入力処理.
+    Input();
+
+    // Buttonクラスの更新関数.
+    mTutorialSkipBtn->Updata(deltaTime, ViewState::Button);
+
     // mChangeSceneFlagがtrueだった時.
     if (mChangeSceneFlag)
     {
@@ -66,10 +73,10 @@ SceneBase::SceneTag Tutorial::Updata()
 void Tutorial::Draw()
 {
     // Backgroundクラスの描画処理.
-    mBg->Draw(ViewState::Normal);
+    mBg->Draw();
 
     // Buttonクラスの描画処理.
-    mTutorialSkipBtn->Draw(ViewState::CircleGauge);
+    mTutorialSkipBtn->Draw();
 }
 
 /// <summary>

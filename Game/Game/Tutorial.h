@@ -18,12 +18,13 @@ public :
     /// デストラクタ.
     /// </summary>
     ~Tutorial();
-
+     
     /// <summary>
     /// 更新関数、オーバーライド関数.
     /// </summary>
+    /// <param name="deltaTime">float型のデルタタイム.</param>
     /// <returns>SceneTag型のenumクラスを返す.</returns>
-    SceneTag Updata() override;
+    SceneTag Updata(float deltaTime) override;
 
     /// <summary>
     /// 描画処理.
