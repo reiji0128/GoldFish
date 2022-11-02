@@ -35,11 +35,11 @@ public :
     /// </summary>
     void Input() override;
 
-    const int MCOUNT_MAX;                      // 長押ししたときに増加し続ける値の最大値.
+    const double MCOUNT_MAX;                   // 長押ししたときに増加し続ける値の最大値.
 
 private:
     Button* mTutorialSkipBtn;                  // チュートリアルをスキップするButtonクラスの変数.
     BtnState mNowOnBtn;                        // このシーン中にオンマウス状態にあるボタンのステータス.
 
-    int mCount;                                // 長押しした時のみ増加するカウンター.
+    double mCount;                             // 長押しした時のみ増加するカウンター.
 };

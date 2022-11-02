@@ -8,13 +8,13 @@ Tutorial::Tutorial()
      // SceneBaseクラスのコンストラクタ、SceneTagはTutorialTagにする.
     :SceneBase(SceneBase::SceneTag::TutorialTag)
     // 長押ししたときの値の最大値の初期化.
-    ,MCOUNT_MAX(100)
+    ,MCOUNT_MAX(100.0f)
     // チュートリアルスキップボタンの初期化.
     ,mTutorialSkipBtn(nullptr)
     // 長押しした時のみ増加する変数の初期化.
-    ,mCount(0)
+    ,mCount(0.0f)
     // シーン中にオンマウスしているボタンのステータスを保存する変数の初期化.
-    ,mNowOnBtn()
+    ,mNowOnBtn(BtnState::None)
 {
     // Backgroundクラスのコンストラクタ、引数にタイトル画像を指定する.
     mBg = new Background(BgImgName[BgImgFileNum::TutorialBg]);
@@ -24,6 +24,9 @@ Tutorial::Tutorial()
 
     // Buttonクラスの座標設定.@@@(仮)
     mTutorialSkipBtn->SetPosition(Vector2(300.0f,300.0f));
+
+    // チュートリアルスキップボタンのゲージが増加する量の設定.
+    mTutorialSkipBtn->SetCirclePercentAdd(0.5f);
 }
 
 /// <summary>
@@ -84,14 +87,20 @@ void Tutorial::Input()
     if (pad1Input & PAD_INPUT_1)
     {
         // 長押し変数を増加する
-        mCount++;
+        mCount += mTutorialSkipBtn->GetCirclePercentAdd();
+        mTutorialSkipBtn->SetCircleFlag(true);
 
         // 長押しカウントが既定値を超えた時.
         if (mCount > MCOUNT_MAX)
         {
+            mTutorialSkipBtn->SetCircleFlag(false);
             // プレイシーンを返す.
             mChangeSceneFlag = true;
         }
+    }
+    else
+    {
+        mTutorialSkipBtn->SetCircleFlag(false);
     }
 
     // またはデバッグ用としてキーボードで８ボタンを押したとき.
