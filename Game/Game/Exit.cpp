@@ -19,7 +19,7 @@ Exit::~Exit()
 /// 更新関数.
 /// </summary>
 /// <returns>SceneTag型のenumクラスの変数を返す</returns>
-SceneBase::SceneTag Exit::Updata()
+SceneBase::SceneTag Exit::Updata(float deltaTime)
 {
     // 入力処理.
     Input();

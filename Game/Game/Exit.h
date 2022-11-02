@@ -8,7 +8,7 @@ public:
 
     ~Exit();
 
-    SceneTag Updata() override;
+    SceneTag Updata(float deltaTime) override;
 
     void Input() override;
 
