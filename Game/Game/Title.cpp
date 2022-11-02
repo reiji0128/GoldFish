@@ -21,9 +21,9 @@ Title::Title()
 	mStartBtn = new Button(ButtonImgName[ButtonImgFileNum::StartBtn],BtnState::Start);
 	mExitBtn = new Button(ButtonImgName[ButtonImgFileNum::ExitBtn],BtnState::Exit);
 
-	// Buttonクラスの座標設定.@@@(仮)
-	mStartBtn->SetPosition(Vector2(100, 100));
-	mExitBtn->SetPosition(Vector2(200, 200));
+	// Buttonクラスの座標設定.
+	mStartBtn->SetPosition(Vector2(MWidth - mStartBtn->GetScale().x - 50, MHeight - mStartBtn->GetScale().y - 100));
+	mExitBtn->SetPosition(Vector2(MWidth - mExitBtn->GetScale().x - 50, 50));
 }
 
 /// <summary>
@@ -43,13 +43,18 @@ Title::~Title()
 }
 
 /// <summary>
-/// 更新関数.
+/// 更新関数、オーバーライド関数.
 /// </summary>
+/// <param name="deltaTime">float型のデルタタイム.</param>
 /// <returns>SceneTag型のenumクラスを返す.</returns>
-SceneBase::SceneTag Title::Updata()
+SceneBase::SceneTag Title::Updata(float deltaTime)
 {
 	// 入力処理.
 	Input();
+
+	// Buttonクラスの更新処理.
+	mStartBtn->Updata(deltaTime, ViewState::Button);
+	mExitBtn->Updata(deltaTime, ViewState::Button);
 
 	// シーンを変えるフラグがtrueの時.
 	if (mChangeSceneFlag)
@@ -74,11 +79,11 @@ SceneBase::SceneTag Title::Updata()
 void Title::Draw()
 {
 	// Backgroundクラスの描画処理.
-	mBg->Draw(ViewState::Normal);
+	mBg->Draw();
 
 	// Buttonクラスの描画処理.
-	mStartBtn->Draw(ViewState::Normal);
-	mExitBtn->Draw(ViewState::Normal);
+	mStartBtn->Draw();
+	mExitBtn->Draw();
 }
 
 /// <summary>
@@ -96,7 +101,7 @@ void Title::Input()
 	{
 		// １つ目のJoyPadが左キーボタンを押していた時.
 		// かつ今のオンマウスした画像が別のステータスを持っていた時.
-		if (pad1Input & PAD_INPUT_LEFT
+		if (pad1Input & PAD_INPUT_DOWN
 			&& this->mNowOnBtn != this->mStartBtn->GetBtnState())
 		{
 			// ボタンのステータスをStartに変更する.
@@ -104,7 +109,8 @@ void Title::Input()
 		}
 		// １つ目のJoyPadが右キーボタンを押していた時.
 		// かつ今のオンマウスした画像が別のステータスを持っていた時.
-		else if (pad1Input & PAD_INPUT_RIGHT
+		else if ((pad1Input & PAD_INPUT_RIGHT
+			|| pad1Input & PAD_INPUT_UP)
 			&& this->mNowOnBtn != this->mExitBtn->GetBtnState())
 		{
 			// ボタンのステータスをExitに変更する.
