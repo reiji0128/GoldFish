@@ -29,8 +29,12 @@ Background::~Background()
 }
 
 /// <summary>
-/// 更新関数.
+/// 更新関数、オーバーライド関数.
 /// </summary>
-void Background::Updata(float deltaTime)
+/// <param name="deltaTime">float型のデルタタイム.</param>
+/// <param name="state">どう表示するかViewState型のenum classの変数.</param>
+void Background::Updata(float deltaTime, ViewState state)
 {
+	// ステータスを保存.
+	Image::mState = state;
 }

@@ -42,8 +42,10 @@ public:
 	/// </summary>
 	~Background();
 
-	/// <summary>
-	/// 更新関数.
-	/// </summary>
- 	void Updata(float deltaTime) override;
+ 	/// <summary>
+ 	/// 更新関数、オーバーライド関数.
+ 	/// </summary>
+ 	/// <param name="deltaTime">float型のデルタタイム.</param>
+ 	/// <param name="state">どう表示するかViewState型のenum classの変数.</param>
+ 	void Updata(float deltaTime, ViewState state) override;
 };
