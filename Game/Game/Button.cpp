@@ -45,7 +45,8 @@ void Button::Updata(float deltaTime, ViewState state)
 	Image::mState = state;
 
 	// 表示ステータスが円形に表示するとき.
-	if (Image::mState == ViewState::CircleGauge)
+	if (Image::mState == ViewState::CircleGauge
+		&& mCircleMoveFlag)
 	{
 		// 円形のゲージを保存する変数の代入.
 		mCirclePercent += mCirclePercentAdd;
@@ -53,6 +54,6 @@ void Button::Updata(float deltaTime, ViewState state)
 	// 表示ステータスがボタンの時.
 	else if (Image::mState == ViewState::Button)
 	{
-		mPos.y += Math::Cos(0.5f);
+		mPos.y = Math::Cos(0.5f);//@@@
 	}
 }
