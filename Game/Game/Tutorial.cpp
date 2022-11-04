@@ -23,7 +23,7 @@ Tutorial::Tutorial()
     mTutorialSkipBtn = new Button(ButtonImgName[ButtonImgFileNum::TutorialSkip],BtnState::TutoSkip);
 
     // Buttonクラスの座標設定.@@@(仮)
-    mTutorialSkipBtn->SetPosition(Vector2(300.0f,300.0f));
+    mTutorialSkipBtn->SetPosition(Vector2((mTutorialSkipBtn->GetScale().x / 2) + 50, (mTutorialSkipBtn->GetScale().y / 2) + 50));
 
     // チュートリアルスキップボタンのゲージが増加する量の設定.
     mTutorialSkipBtn->SetCirclePercentAdd(0.5f);
@@ -54,7 +54,7 @@ SceneBase::SceneTag Tutorial::Updata(float deltaTime)
     Input();
 
     // Buttonクラスの更新関数.
-    mTutorialSkipBtn->Updata(deltaTime, ViewState::Button);
+    mTutorialSkipBtn->Updata(deltaTime, ViewState::CircleGauge);
 
     // mChangeSceneFlagがtrueだった時.
     if (mChangeSceneFlag)
@@ -95,18 +95,24 @@ void Tutorial::Input()
     {
         // 長押し変数を増加する
         mCount += mTutorialSkipBtn->GetCirclePercentAdd();
+
+        // ゲージを表示するためにフラグをtrueにする.
         mTutorialSkipBtn->SetCircleFlag(true);
 
         // 長押しカウントが既定値を超えた時.
         if (mCount > MCOUNT_MAX)
         {
+            // ゲージを増やすフラグをfalseにする.
             mTutorialSkipBtn->SetCircleFlag(false);
+
             // プレイシーンを返す.
             mChangeSceneFlag = true;
         }
     }
+    // それ以外の時.
     else
     {
+        // ゲージを増やすフラグをfalseにする.
         mTutorialSkipBtn->SetCircleFlag(false);
     }
 
