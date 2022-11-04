@@ -34,15 +34,15 @@ Image::Image(const char* fileName)
 void Image::Draw()
 {
     // ステータスが円形のゲージ状の時.
-    if (mState == ViewState::CircleGauge
-        && mCircleMoveFlag)
+    if (mState == ViewState::CircleGauge)
     {
         // 描画処理.
         DrawCircleGaugeF(mPos.x, mPos.y, mCirclePercent, mImgHandle, true);
     }
-    // それ以外の時.
+    // ステータスが円形のゲージ状以外の時.
     else
     {
+        // 描画処理.
         DrawGraph(mPos.x, mPos.y, mImgHandle, true);
     }
 }
