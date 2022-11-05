@@ -165,7 +165,7 @@
     <ClInclude Include="PoiManager.h" />
     <ClInclude Include="PoiRed.h" />
     <ClInclude Include="RedFish.h" />
-    <ClInclude Include="Score.h" />
+    <ClInclude Include="UI.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Tag.h" />
     <ClInclude Include="Play.h" />
@@ -198,7 +198,7 @@
     <ClCompile Include="RedFish.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="SceneBase.cpp" />
-    <ClCompile Include="Score.cpp" />
+    <ClCompile Include="UI.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="Tutorial.cpp" />

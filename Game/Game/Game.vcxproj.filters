@@ -123,8 +123,9 @@
     <ClInclude Include="Sound.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Score.h">
+    <ClInclude Include="UI.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
     <ClInclude Include="Tutorial.h">
       <Filter>MainBranch\Scene\Tutorial</Filter>
     </ClInclude>
@@ -184,11 +185,9 @@
     <ClCompile Include="BlackFish.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-
     <ClCompile Include="Button.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-
     <ClCompile Include="PoiBase.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -204,13 +203,12 @@
     <ClCompile Include="RedFish.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-
     <ClCompile Include="Sound.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Score.cpp">
+    <ClCompile Include="UI.cpp">
       <Filter>ソース ファイル</Filter>
-
+    </ClCompile>
     <ClCompile Include="Tutorial.cpp">
       <Filter>MainBranch\Scene\Tutorial</Filter>
     </ClCompile>
@@ -225,7 +223,6 @@
     </ClCompile>
     <ClCompile Include="Exit.cpp">
       <Filter>MainBranch\Scene\Exit</Filter>
-
     </ClCompile>
     <ClCompile Include="Collision.cpp">
       <Filter>ソース ファイル</Filter>

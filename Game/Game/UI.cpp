@@ -9,7 +9,6 @@ UI::UI()
     ,timerImgY(0)
     ,timer(30)
     ,timerCounter(1)
-    ,scoreImgX(0)
     ,scoreImgY(20)
     ,nowScore(0)
 {

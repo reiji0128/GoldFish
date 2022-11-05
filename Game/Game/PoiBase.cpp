@@ -3,9 +3,7 @@
 #include "FishManager.h"
 #include <math.h>
 #include "Sound.h"
-#include"Score.h"
-
-Score* score = new Score();
+#include"UI.h"
 
 /// <summary>
 /// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
@@ -36,7 +34,6 @@ PoiBase::PoiBase()
     ,hp(24)
     ,mIsAlive(true)
     ,deadTime(0)
-    ,mScore(0)
 {
     sound = new Sound(SoundName[SoundFile::SCOOP]);
 }
@@ -321,7 +318,8 @@ void PoiBase::CalcScore(Tag tag)
     if ((tag == Tag::RedFish) && mPadNum == DX_INPUT_PAD1 ||
         (tag == Tag::BlueFish && mPadNum == DX_INPUT_PAD2))
     {
-        score->IncreaseScore(10);
+        
+        mScore[mPadNum] = ui->IncreaseScore(10);
         hp -= 3;
         mBonusCount++;
     }
@@ -336,20 +334,21 @@ void PoiBase::CalcScore(Tag tag)
     // ‹à‚Ì‹à‹›‚ð‹d‚Á‚½‚ç
     if (tag == Tag::GoldFish)
     {
-        mScore += 20;
+        mScore[mPadNum] =ui->IncreaseScore(20);
         hp -= 5;
     }
 
     // •‚Ì‹à‹›‚ð‹d‚Á‚½‚ç
     if (tag == Tag::BlackFish)
     {
-        mScore += 15;
+        mScore[mPadNum] =ui->IncreaseScore(15);
         hp -= 4;
     }
 
     // ‹à‹›ˆÈŠO‚ð‹d‚Á‚½‚ç
     if (tag == Tag::FailureFish)
     {
+        mScore[mPadNum] = ui->DecreaseScore(5);
         hp -= 6;
     }
 }
