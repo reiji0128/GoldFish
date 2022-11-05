@@ -2,7 +2,7 @@
 #include "Tag.h"
 
 class Sound;
-class Score;
+class UI*ui;
 
 class PoiBase
 {
@@ -139,7 +139,7 @@ protected:
     float deadTime;
 
     // ÉXÉRÉA
-    int mScore;
+    int mScore[2] = { 0 };
 
 protected:
     //SoundÇÃê∂ê¨

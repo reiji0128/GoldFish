@@ -51,16 +51,13 @@ private:
     float timerCounter;
 
     //描画座標X
-    int scoreImgX;
+    int scoreImgX[2] = {0};
 
     //描画座標Y
     int scoreImgY;
 
     //現在のスコア
     int nowScore;
-
-    //スコアナンバー
-    int ScoreNum;
 
     PoiBase* poiBase;
 };
