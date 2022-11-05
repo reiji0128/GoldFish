@@ -27,5 +27,5 @@ void UI::Update(float deltaTime)
 
 void UI::Draw()
 {
-    DrawFormatString(timerImgX, timerImgY, GetColor(255, 255, 255), "%d", timer);
+    //DrawFormatString(timerImgX, timerImgY, GetColor(255, 255, 255), "%d", timer);
 }

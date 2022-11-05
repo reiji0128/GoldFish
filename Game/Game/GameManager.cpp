@@ -194,7 +194,7 @@ void GameManager::UpdateGame()
 
 	PoiManager::Update(deltaTime);
 
-	//Collision::CollCheck();
+	Collision::CollCheck();
 
 	// fpsクラスを更新する.
 	mFps->Update();

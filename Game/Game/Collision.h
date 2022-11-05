@@ -21,7 +21,7 @@ public:
 
     static void FishCollUpdate(float x, float y, float r);
 
-    static void AddFishColl(Circle* fish);
+    static void AddFishColl(Circle fish);
 
     static void RemoveFishColl(int i);
 
@@ -36,9 +36,11 @@ private:
 
     static Circle plyColl[2];
 
-    std::vector<Circle*> fishColl;
+    std::vector<Circle> fishColl;
 
     static int fishCount;
 
-    Circle* fishCollInit;
+    Circle fishCollInit;
+
+    static int poolSize;
 };
