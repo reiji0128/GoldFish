@@ -2,7 +2,7 @@
 #include "Tag.h"
 
 class Sound;
-class UI*ui;
+class UI;
 
 class PoiBase
 {
@@ -112,6 +112,8 @@ protected:
 
     float flashInterval;
 
+    bool mFlash;
+
     // ãdÇ¡ÇƒÇ¢ÇÈÇ©Ç«Ç§Ç©
     bool mIsScoop;
 
@@ -144,4 +146,6 @@ protected:
 protected:
     //SoundÇÃê∂ê¨
     Sound* sound;
+
+    UI* ui;
 };
