@@ -67,6 +67,8 @@ public:
 
 private:
 	BtnState mState;                     // それぞれのボタンに振り分けられているステータスを保存する変数.
+	float mRad;                          // 上下の動きをする際の振れ幅の大きさ(float型).
+	const float M_SPEED;                 // 上下の動きのスピード(const float型).
 
 public:// ------------------セッター・ゲッター関数-------------------------
 	/// <summary>

@@ -8,10 +8,12 @@
 Button::Button(const char* fileName, BtnState state)
 	// 画像クラスの初期化をする.
 	:Image(fileName)
-	// 押したかどうかのフラグの初期化.
-	//,mPushedBtnFlag(false)
 	// そのボタンの持っているステータスの初期化.
 	,mState(BtnState::None)
+	// 上下の振れ幅の大きさ.
+	,mRad(0.0f)
+	// 上下の振れるスピード.
+	,M_SPEED(50.0f)
 {
 	// ステータスの代入.
 	mState = state;
@@ -48,12 +50,16 @@ void Button::Updata(float deltaTime, ViewState state)
 	if (Image::mState == ViewState::CircleGauge
 		&& mCircleMoveFlag)
 	{
+		mCirclePercentAdd = MPercentAdd * deltaTime;
+
 		// 円形のゲージを保存する変数の代入.
 		mCirclePercent += mCirclePercentAdd;
 	}
 	// 表示ステータスがボタンの時.
 	else if (Image::mState == ViewState::Button)
 	{
-		mPos.y = Math::Cos(0.5f);//@@@
+		mRad += 0.03f;
+
+		mPos.y += Math::Cos(mRad) * M_SPEED *  deltaTime;
 	}
 }
