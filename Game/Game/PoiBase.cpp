@@ -57,26 +57,6 @@ PoiBase::~PoiBase()
 }
 
 /// <summary>
-/// 更新処理
-/// </summary>
-/// <param name="deltaTime">1フレームの経過時間</param>
-void PoiBase::Update(float deltaTime)
-{
-    Move(deltaTime);
-
-    AdjustPos();
-
-    Bonus(deltaTime);
-
-    Scoop(deltaTime);
-
-    CheckHP();
-
-    Repair(deltaTime);
-
-}
-
-/// <summary>
 /// 描画処理
 /// </summary>
 void PoiBase::Draw()
@@ -195,9 +175,6 @@ void PoiBase::Scoop(float deltaTime)
             // アニメーションのカウンタ初期化
             mAnimCounter = 0;
             mIsFirstFrame = false;
-
-            // 当たり判定を調べる
-            //Coll();
         }
         mAnimCounter += deltaTime;
         mAnimNum = int(mAnimCounter * 12);
@@ -353,34 +330,5 @@ void PoiBase::CalcScore(Tag tag)
     {
         mScore[mPadNum] = ui->DecreaseScore(5);
         hp -= 6;
-    }
-}
-
-/// <summary>
-/// 当たり判定
-/// </summary>
-void PoiBase::Coll()
-{
-    float pPosX = mPosX - 64.0f;
-    float pPosY = mPosY;
-    float mRadius = mHalfScaleX;
-
-    CollisionInfo tmpFish;
-    for (int i = 0; i < 30; i++)
-    {
-        tmpFish = FishManager::GetCollisionInfo(i);
-
-        float fPosX = tmpFish.pos.x;
-        float fPosY = tmpFish.pos.y;
-        float fRadius = 32.0f;
-
-        float vecX = pPosX - fPosX;
-        float vecY = pPosY - fPosY;
-        float vec = sqrt(vecX * vecX + vecY * vecY);
-
-        if (vec <= fRadius + fRadius)
-        {
-            CalcScore(tmpFish.tag);
-        }
     }
 }

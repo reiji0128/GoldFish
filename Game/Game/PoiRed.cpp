@@ -43,5 +43,5 @@ void PoiRed::Update(float deltaTime)
 
     Repair(deltaTime);
 
-    Collision::PlayerCollUpdate(mPosX, mPosY, mHalfScaleX, 0);
+    Collision::PlayerCollUpdate(mPosX, mPosY, mHalfScaleX, mIsScoop, 0);
 }

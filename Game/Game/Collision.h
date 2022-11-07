@@ -17,7 +17,7 @@ public:
 
     static void DeleteInstance();
 
-    static void PlayerCollUpdate(float x, float y, float r, int num);
+    static void PlayerCollUpdate(float x, float y, float r, bool flag, int num);
 
     static void FishCollUpdate(float x, float y, float r);
 
@@ -35,6 +35,8 @@ private:
     static Collision* instance;
 
     static Circle plyColl[2];
+
+    static bool scoop[2];
 
     std::vector<Circle> fishColl;
 

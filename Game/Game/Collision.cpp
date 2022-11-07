@@ -5,6 +5,8 @@ Collision* Collision::instance = nullptr;
 
 Collision::Circle Collision::plyColl[2] = { NULL };
 
+bool Collision::scoop[2];
+
 int Collision::fishCount;
 
 int Collision::poolSize;
@@ -43,11 +45,12 @@ void Collision::DeleteInstance()
     }
 }
 
-void Collision::PlayerCollUpdate(float x, float y, float r, int num)
+void Collision::PlayerCollUpdate(float x, float y, float r, bool flag, int num)
 {
     plyColl[num].x = x + 64;
     plyColl[num].y = y;
     plyColl[num].r = r;
+    scoop[num] = flag;
 }
 
 void Collision::FishCollUpdate(float x, float y, float r)
@@ -79,17 +82,21 @@ void Collision::CollCheck()
 {
     for (int i = 0; i < 2; i++)
     {
-        for (int j = 0; j < instance->fishColl.size(); j++)
+        if (scoop[i])
         {
-            auto box = instance->fishColl[j];
-
-            float vecX = plyColl[i].x - box.x;
-            float vecY = plyColl[i].y - box.y;
-            float vec = (float)sqrt(vecX * vecX + vecY * vecY);
-
-            if (vec <= plyColl[i].r + box.r)
+            for (int j = 0; j < instance->fishColl.size(); j++)
             {
-                // “–‚½‚Á‚Ä‚¢‚é
+                auto box = instance->fishColl[j];
+
+                float vecX = plyColl[i].x - box.x;
+                float vecY = plyColl[i].y - box.y;
+                float vec = (float)sqrt(vecX * vecX + vecY * vecY);
+
+                if (vec <= plyColl[i].r + box.r)
+                {
+                    // “–‚½‚Á‚Ä‚¢‚é
+                    int tmp = 0;
+                }
             }
         }
     }
