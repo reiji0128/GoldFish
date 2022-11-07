@@ -47,11 +47,13 @@ protected:
     Vector2 mScale;           // 画像の大きさを保存する変数.
     int mImgHandle;           // 画像ハンドル保存変数.
 
-    ViewState mState;          // 描画の際に使用するステータスを保存する変数.
+    ViewState mState;         // 描画の際に使用するステータスを保存する変数.
 
     double mCirclePercent;    // 円形のゲージをどの程度まで表示するのかを代入する変数(double型).
     double mCirclePercentAdd; // 円形のゲージが増えていく値を保存する変数(double型).
     bool mCircleMoveFlag;     // 円形のゲージが増えていくかどうかのフラグ、trueなら動きfalseなら動かない.
+    bool mCircleMaxFlag;      // 円形のゲージが最大になったかどうかのフラグ、trueなら360度描画されておりfalseなら360度の描画はされていない.
+    const double MPercentAdd; // ゲージを増やす定数量(double型).
 
 public :// -------------------セッター・ゲッター関数--------------------
 
@@ -74,10 +76,16 @@ public :// -------------------セッター・ゲッター関数--------------------
     Vector2 GetScale() { return this->mScale; }
 
     /// <summary>
-    /// ゲージが増える量の設定.
+    /// ゲージが増える量の指定数の設定
     /// </summary>
-    /// <param name="add">double型のゲージ増加変数.</param>
-    void SetCirclePercentAdd(double add) { this->mCirclePercentAdd = add; }
+    /// <param name="setNum">ゲージが増える量(double型)、最大100.</param>
+    void SetCirclePercent(double setNum) { this->mCirclePercent = setNum; }
+
+    ///// <summary>
+    ///// ゲージが増える量の設定.
+    ///// </summary>
+    ///// <param name="add">double型のゲージ増加変数.</param>
+    //void SetCirclePercentAdd(double add) { this->mCirclePercentAdd = add; }
 
     /// <summary>
     /// ゲージが増える量の取得.

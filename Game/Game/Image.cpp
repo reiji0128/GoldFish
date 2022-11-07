@@ -20,6 +20,8 @@ Image::Image(const char* fileName)
     , mCirclePercentAdd(0.0f)
     // 円形のゲージを動かすかどうかの変数の初期化.
     , mCircleMoveFlag(false)
+    // 円形のゲージが増える量(deltaTimeは含まれない).
+    , MPercentAdd(50.0f)
 {
     // 画像ハンドルを読み込む.
     mImgHandle = LoadGraph(fileName);
@@ -43,6 +45,6 @@ void Image::Draw()
     else
     {
         // 描画処理.
-        DrawGraph(mPos.x, mPos.y, mImgHandle, true);
+        DrawGraphF(mPos.x, mPos.y, mImgHandle, true);
     }
 }
