@@ -8,7 +8,7 @@ Tutorial::Tutorial()
      // SceneBaseクラスのコンストラクタ、SceneTagはTutorialTagにする.
     :SceneBase(SceneBase::SceneTag::TutorialTag)
     // 長押ししたときの値の最大値の初期化.
-    ,MCOUNT_MAX(100.0f)
+    ,MCOUNT_MAX(200.0f)
     // チュートリアルスキップボタンの初期化.
     ,mTutorialSkipBtn(nullptr)
     // 長押しした時のみ増加する変数の初期化.
@@ -17,16 +17,13 @@ Tutorial::Tutorial()
     ,mNowOnBtn(BtnState::None)
 {
     // Backgroundクラスのコンストラクタ、引数にタイトル画像を指定する.
-    mBg = new Background(BgImgName[BgImgFileNum::TutorialBg]);
+    mBg = new Background(BgImgName[BgImgFileNum::PlayBg]);
 
     // Buttonクラスのコンストラクタ、引数にボタン画像とステータスを指定する.
     mTutorialSkipBtn = new Button(ButtonImgName[ButtonImgFileNum::TutorialSkip],BtnState::TutoSkip);
 
-    // Buttonクラスの座標設定.@@@(仮)
+    // Buttonクラスの座標設定.
     mTutorialSkipBtn->SetPosition(Vector2((mTutorialSkipBtn->GetScale().x / 2) + 50, (mTutorialSkipBtn->GetScale().y / 2) + 50));
-
-    // チュートリアルスキップボタンのゲージが増加する量の設定.
-    mTutorialSkipBtn->SetCirclePercentAdd(0.5f);
 }
 
 /// <summary>
@@ -112,6 +109,12 @@ void Tutorial::Input()
     // それ以外の時.
     else
     {
+        // カウントを０に戻す.
+        mCount = 0;
+
+        // ゲージを最初からにする.
+        mTutorialSkipBtn->SetCirclePercent(0.0f);
+
         // ゲージを増やすフラグをfalseにする.
         mTutorialSkipBtn->SetCircleFlag(false);
     }
