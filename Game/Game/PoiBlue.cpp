@@ -43,5 +43,5 @@ void PoiBlue::Update(float deltaTime)
 
     Repair(deltaTime);
 
-    Collision::PlayerCollUpdate(mPosX, mPosY, mHalfScaleX, 1);
+    Collision::PlayerCollUpdate(mPosX, mPosY, mHalfScaleX, mIsScoop, 1);
 }
