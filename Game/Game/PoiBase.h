@@ -18,10 +18,10 @@ public:
     virtual ~PoiBase();
 
     /// <summary>
-    /// 更新処理
+    /// 更新処理の純粋仮想関数
     /// </summary>
     /// <param name="deltaTime">1フレームの経過時間</param>
-    virtual void Update(float deltaTime);
+    virtual void Update(float deltaTime) = 0;
 
     /// <summary>
     /// 描画処理
@@ -68,11 +68,6 @@ protected:
     /// </summary>
     /// <param name="tag">金魚の種類</param>
     void CalcScore(Tag tag);
-
-    /// <summary>
-    /// 当たり判定
-    /// </summary>
-    void Coll();
 
     // 位置
     float mPosX;
