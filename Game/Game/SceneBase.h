@@ -1,6 +1,7 @@
 #pragma once
 #include "Math.h"
 #include "Background.h"
+#include "UI.h"
 
 // コンスタント変数(static).
 static const int MWidth = 1920;
@@ -58,6 +59,7 @@ public:
 
 protected:
 	Background* mBg;                     // 背景の生成.
+	UI* ui;
 
 	bool mChangeSceneFlag;               // シーン移動フラグ、trueの時はシーンを変えてfalseの時はシーンを変えない.
 	bool mGameExitFlag;                  // ゲーム終了フラグ、trueの時はゲームを終了させてfalseの時はゲームを続ける.

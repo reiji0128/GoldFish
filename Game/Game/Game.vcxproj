@@ -151,6 +151,7 @@
     <ClInclude Include="BlackFish.h" />
     <ClInclude Include="BlueFish.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="Exit.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="FishManager.h" />
@@ -164,6 +165,8 @@
     <ClInclude Include="PoiManager.h" />
     <ClInclude Include="PoiRed.h" />
     <ClInclude Include="RedFish.h" />
+    <ClInclude Include="UI.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Tag.h" />
     <ClInclude Include="Play.h" />
     <ClInclude Include="Result.h" />
@@ -177,6 +180,7 @@
     <ClCompile Include="BlackFish.cpp" />
     <ClCompile Include="BlueFish.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Exit.cpp" />
     <ClCompile Include="Fish.cpp" />
     <ClCompile Include="FishManager.cpp" />
@@ -194,6 +198,8 @@
     <ClCompile Include="RedFish.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="SceneBase.cpp" />
+    <ClCompile Include="UI.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="Tutorial.cpp" />
   </ItemGroup>

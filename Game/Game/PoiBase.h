@@ -1,6 +1,9 @@
 #pragma once
 #include "Tag.h"
 
+class Sound;
+class UI;
+
 class PoiBase
 {
 public:
@@ -15,10 +18,10 @@ public:
     virtual ~PoiBase();
 
     /// <summary>
-    /// 更新処理
+    /// 更新処理の純粋仮想関数
     /// </summary>
     /// <param name="deltaTime">1フレームの経過時間</param>
-    void Update(float deltaTime);
+    virtual void Update(float deltaTime) = 0;
 
     /// <summary>
     /// 描画処理
@@ -66,11 +69,6 @@ protected:
     /// <param name="tag">金魚の種類</param>
     void CalcScore(Tag tag);
 
-    /// <summary>
-    /// 当たり判定
-    /// </summary>
-    void Coll();
-
     // 位置
     float mPosX;
     float mPosY;
@@ -103,6 +101,14 @@ protected:
     // 掬う差分
     int mScoopImg[6] = { -1 };
 
+    int mBrokenImg;
+
+    int mBrokenImgF;
+
+    float flashInterval;
+
+    bool mFlash;
+
     // 掬っているかどうか
     bool mIsScoop;
 
@@ -130,6 +136,11 @@ protected:
     float deadTime;
 
     // スコア
-    int mScore;
+    int mScore[2] = { 0 };
 
+protected:
+    //Soundの生成
+    Sound* sound;
+
+    UI* ui;
 };

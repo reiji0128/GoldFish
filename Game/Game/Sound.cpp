@@ -4,9 +4,11 @@
 /// <summary>
 /// コンストラクタ.
 /// </summary>
-Sound::Sound()
+Sound::Sound(const char* fileName)
     :mSoundHandle(-1)
 {
+    //サウンド読み込み
+    mSoundHandle = LoadSoundMem(fileName);
 }
 
 /// <summary>
@@ -24,17 +26,17 @@ Sound::~Sound()
 }
 
 /// <summary>
-/// 読み込み関数.
-/// </summary>
-void Sound::Load(const char* soundName)
-{
-    mSoundHandle = LoadSoundMem(soundName);
-}
-
-/// <summary>
-/// 描画関数.
+/// 再生関数.
 /// </summary>
 void Sound::Play(int playTipe)
 {
     PlaySoundMem(mSoundHandle, playTipe, FALSE);
+}
+
+/// <summary>
+/// 停止関数.
+/// </summary>
+void Sound::Stop()
+{
+    StopSoundMem(mSoundHandle);
 }

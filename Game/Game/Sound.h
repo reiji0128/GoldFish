@@ -5,8 +5,17 @@
 /// </summary>
 enum SoundFile: unsigned int
 {
-    NULL=0,
+    NullSound=0,
     SCOOP,
+
+    MaxSoundNum
+};
+
+// 上記のenumクラスの順番で画像パスを保存する保存変数.
+static const char* SoundName[SoundFile::MaxSoundNum] =
+{
+    "",
+    "Sound/ScoopSE.mp3",
 };
 
 class Sound
@@ -15,7 +24,7 @@ public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    Sound();
+    Sound(const char*fileName);
 
     /// <summary>
     /// デストラクタ
@@ -23,15 +32,14 @@ public:
     ~Sound();
 
 	/// <summary>
-    /// 読み込み関数.
-    /// </summary>
-    /// <param name="imgName">読み取り専用のchar*型のファイルパス.</param>
-	void Load(const char* soundName);
-
-	/// <summary>
 	/// 再生関数.
 	/// </summary>
 	void Play(int playTipe);
+
+    /// <summary>
+    /// 停止関数.
+    /// </summary>
+    void Stop();
 
 private:
 	int mSoundHandle;		//サウンドの保存変数

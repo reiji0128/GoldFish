@@ -2,6 +2,8 @@
 #include "DxLib.h"
 #include "FishManager.h"
 #include <math.h>
+#include "Sound.h"
+#include"UI.h"
 
 /// <summary>
 /// コンストラクタ
@@ -19,6 +21,10 @@ PoiBase::PoiBase()
     ,mInputY(0)
     ,mSpeed(400.0f)
     ,mImage(0)
+    ,mBrokenImg(0)
+    ,mBrokenImgF(0)
+    ,flashInterval(0.25f)
+    ,mFlash(false)
     ,mIsScoop(false)
     ,mIsFirstFrame(false)
     ,mPrevInput(false)
@@ -29,8 +35,8 @@ PoiBase::PoiBase()
     ,hp(24)
     ,mIsAlive(true)
     ,deadTime(0)
-    ,mScore(0)
 {
+    sound = new Sound(SoundName[SoundFile::SCOOP]);
 }
 
 /// <summary>
@@ -48,26 +54,6 @@ PoiBase::~PoiBase()
     {
         DeleteGraph(mScoopImg[i]);
     }
-}
-
-/// <summary>
-/// 更新処理
-/// </summary>
-/// <param name="deltaTime">1フレームの経過時間</param>
-void PoiBase::Update(float deltaTime)
-{
-    Move(deltaTime);
-
-    AdjustPos();
-
-    Bonus(deltaTime);
-
-    Scoop(deltaTime);
-
-    CheckHP();
-
-    Repair(deltaTime);
-
 }
 
 /// <summary>
@@ -167,6 +153,8 @@ void PoiBase::Scoop(float deltaTime)
             mPrevInput = true;
             // 入水時の体力減少
             hp -= 3;
+            //サウンドの再生
+            sound->Play(DX_PLAYTYPE_BACK);
         }
         if (hp > 0)
         {
@@ -187,9 +175,6 @@ void PoiBase::Scoop(float deltaTime)
             // アニメーションのカウンタ初期化
             mAnimCounter = 0;
             mIsFirstFrame = false;
-
-            // 当たり判定を調べる
-            //Coll();
         }
         mAnimCounter += deltaTime;
         mAnimNum = int(mAnimCounter * 12);
@@ -244,6 +229,22 @@ void PoiBase::Repair(float deltaTime)
     if (!mIsAlive)
     {
         deadTime += deltaTime;
+        flashInterval -= deltaTime;
+
+        if (flashInterval < 0)
+        {
+            mFlash = !mFlash;
+            flashInterval = 0.5f;
+        }
+
+        if (mFlash)
+        {
+            mImage = mBrokenImg;
+        }
+        else
+        {
+            mImage = mBrokenImgF;
+        }
     }
 
     if (deadTime > 3.0f)
@@ -297,7 +298,8 @@ void PoiBase::CalcScore(Tag tag)
     if ((tag == Tag::RedFish) && mPadNum == DX_INPUT_PAD1 ||
         (tag == Tag::BlueFish && mPadNum == DX_INPUT_PAD2))
     {
-        mScore += 10;
+        
+        mScore[mPadNum] = ui->IncreaseScore(10);
         hp -= 3;
         mBonusCount++;
     }
@@ -312,49 +314,21 @@ void PoiBase::CalcScore(Tag tag)
     // 金の金魚を掬ったら
     if (tag == Tag::GoldFish)
     {
-        mScore += 20;
+        mScore[mPadNum] =ui->IncreaseScore(20);
         hp -= 5;
     }
 
     // 黒の金魚を掬ったら
     if (tag == Tag::BlackFish)
     {
-        mScore += 15;
+        mScore[mPadNum] =ui->IncreaseScore(15);
         hp -= 4;
     }
 
     // 金魚以外を掬ったら
     if (tag == Tag::FailureFish)
     {
+        mScore[mPadNum] = ui->DecreaseScore(5);
         hp -= 6;
-    }
-}
-
-/// <summary>
-/// 当たり判定
-/// </summary>
-void PoiBase::Coll()
-{
-    float pPosX = mPosX - 64.0f;
-    float pPosY = mPosY;
-    float mRadius = mHalfScaleX;
-
-    CollisionInfo tmpFish;
-    for (int i = 0; i < 30; i++)
-    {
-        tmpFish = FishManager::GetCollisionInfo(i);
-
-        float fPosX = tmpFish.pos.x;
-        float fPosY = tmpFish.pos.y;
-        float fRadius = 32.0f;
-
-        float vecX = pPosX - fPosX;
-        float vecY = pPosY - fPosY;
-        float vec = sqrt(vecX * vecX + vecY * vecY);
-
-        if (vec <= fRadius + fRadius)
-        {
-            CalcScore(tmpFish.tag);
-        }
     }
 }

@@ -56,6 +56,11 @@ public:
 	                const int blackFishSize);
 
 	/// <summary>
+	/// プールの初期化
+	/// </summary>
+	static void InitPool();
+
+	/// <summary>
 	/// オブジェクトプールに金魚を追加
 	/// </summary>
 	/// <param name="addFish">追加する金魚</param>
@@ -80,6 +85,12 @@ public:
 	/// <param name="i">取得する要素番号</param>
 	/// <returns>当たり判定情報</returns>
 	static CollisionInfo GetCollisionInfo(int i);
+
+	/// <summary>
+	/// プールのサイズの取得
+	/// </summary>
+	/// <returns>プールのサイズ</returns>
+	static int const GetPoolSize() { return mInstance->mFishPool.size(); }
 
 private:
 	/// <summary>
